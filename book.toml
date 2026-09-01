@@ -15,6 +15,7 @@ to = "latex"
 pdf-engine = "xelatex"
 
 [output.pandoc.profile.pdf.variables]
-mainfont = "宋体"
 colorlinks = true
 fontsize = "12pt"
+mainfont = "新宋体"
+mainfontoptions = ["BoldFont=黑体", "ItalicFont=楷体"]

@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-2986e3d7.js";
+            window.path_to_searchindex_js = "searchindex-14b4b251.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-cc9b3f32.js"></script>
+        <script src="toc-3aa59adb.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -261,6 +261,127 @@ _2
 通过按住Ctrl+Shift并按向上箭头键，可以调出以前的输入行进行编辑，持续按向上箭头直到看到想要处理的行。</p>
 <p>大多数小节中的示例都是独立的，但小节的后面部分可能依赖于前面部分中采取的步骤。
 有些小节依赖于前面几节中采取的步骤，但这应该是相当明显的。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="标准配置"><a class="header" href="#标准配置">标准配置</a></h1>
+<p>本书中的示例假设系统在JQt IDE中启动时运行标准配置文件。这将配置你的系统并提供一些标准实用程序。</p>
+<p>在Term窗口中输入CR（大写字母C后跟大写字母R），以快速检查配置文件是否已运行。</p>
+<pre><code class="language-j">   CR
+
+</code></pre>
+<p>如果运行结果是空行，那么标准配置文件已经运行，你可以跳过本节的其余部分。</p>
+<p>相反，如果你看到：</p>
+<pre><code class="language-j">   CR
+|value error
+</code></pre>
+<p>那么你必须更改系统，以便运行标准配置文件。一个正常的J安装总是被配置为运行标准配置。
+参考<a href="https://code.jsoftware.com/wiki/System/Installation">安装J</a>。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="术语"><a class="header" href="#术语">术语</a></h1>
+<p>所有的编程语言都与英语有共同之处。在类比含义接近的情况下，J编程语言倾向于使用英语术语，而不是数学和其他编程语言中使用的术语。</p>
+<p>像在其他语言中一样，你可以说“代码行”，但在J语言中，倾向于说“句子”。类似地，你可以把<code>+</code>称为“函数”，但在J中通常称为“动词”。</p>
+<p>J使用的英语术语有：字母表、单词、句子、短语、动词、名词、副词和连词。</p>
+<p>采用这种方法有几个原因。它解决的一个问题是：传统术语在数学和许多编程语言中有大量相关但又微妙不同的用法。
+例如：函数、子函数、运算符、程序、例程和子例程在不同的编程语言中都以略有不同的方式使用。
+J没有继承这种混乱，而是采用自己的术语，并在其上下文中精确地定义它们。</p>
+<p>使用英语术语可以让你很好地了解术语在J中的一般含义。此外，使用自然语言术语可以鼓励和促进对问题进行英语陈述，
+并更直接地编写相应的J句子。</p>
+<p>我们鼓励使用J术语，但肯定不是强制性的，使用术语“函数”而不是“动词”是完全可以接受的。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="字母表"><a class="header" href="#字母表">字母表</a></h1>
+<p>J编程语言的字母表是ASCII字母表，由以下部分组成：</p>
+<pre><code>26 lowercase letters (a to z)
+26 uppercase letters (A to Z)
+0 1 2 3 4 5 6 7 8 9
+ = &lt; &gt; _
+ + * - %
+ ^ $ ~ |
+. : , ;
+# ! / \
+[ ] { }
+" ` @ &amp; ?
+( )
+'
+</code></pre>
+<p>有几个字符有时会引起混淆。<code>-</code>（减号）字符不同于<code>_</code>（下划线）字符，并且有三种不同的引号字符：</p>
+<pre><code>'  quote
+"  double-quote
+`  back-quote
+</code></pre>
+<p>如果你尝试一个例子，输入<code>"</code>（双引号）误输入为<code>''</code>（两个单引号），你会感到失望，因为你的结果与书中的不一样。</p>
+<p>句号<code>.</code>通常称为点。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="单词"><a class="header" href="#单词">单词</a></h1>
+<p>单词是字母表中有意义的一组字符。</p>
+<pre><code class="language-j">   2.5 + 5
+</code></pre>
+<p>这个句子有三个单词：数字<code>2.5</code>，<code>+</code>和数字<code>5</code>。</p>
+<p>用字符组成句子中的单词的规则很简单，目前，常识足以识别句子中的单词。有一些复杂情况在后面的章节中讨论。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="句子"><a class="header" href="#句子">句子</a></h1>
+<p>句子是由一组单词组成的完整指令。</p>
+<p>下面的<code>2</code>加<code>5</code>指令就是一个J语言的句子。</p>
+<pre><code class="language-j">   2 + 5
+</code></pre>
+<p>与英语句子不同，J语言的句子不以句号或其他标点符号结尾。</p>
+<p>相反，J编程语言的句子通常是一个完整的行。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="动词"><a class="header" href="#动词">动词</a></h1>
+<p>在下面的句子中<code>+</code>是动词（表示动作的单词）。</p>
+<pre><code class="language-j">   2 + 5
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="名词"><a class="header" href="#名词">名词</a></h1>
+<p>在下面的句子中，数字<code>2</code>和<code>5</code>都是名词。</p>
+<pre><code class="language-j">   2 + 5
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="数字"><a class="header" href="#数字">数字</a></h1>
+<p>以下这些是数字：0 12 02.5 12.75 0.5 7e6</p>
+<p>输入这些数字或其他数字，用动词<code>+</code> <code>-</code> <code>*</code> <code>%</code>组成简单句子。</p>
+<pre><code class="language-j">  2 * 12.75
+25.5
+</code></pre>
+<p>一个重要的规则是数字不能以点（<code>.</code>）开头。</p>
+<pre><code class="language-j">  0.5
+0.5
+   0.5 + 3
+3.5
+   .5
++-+-+
+|.|5|
++-+-+
+   .5 + 3
+|syntax error
+|        .5+3
+</code></pre>
+<p>显然，<code>.5</code>和<code>0.5</code>不一样。你现在不需要知道<code>.5</code>是什么，但重要的是明白数字不是以点开头的。</p>
+<p><code>_</code>（下划线）是无穷大，是一个数字。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="负数"><a class="header" href="#负数">负数</a></h1>
+<p>负数用<code>_</code>（下划线）表示，而不是<code>-</code>（减号）。</p>
+<pre><code class="language-j">   5 + _3
+2
+   _7
+_7
+   _5e_3
+_0.005
+   5 - 9
+_4
+</code></pre>
+<p>去掉<code>-</code>和<code>9</code>之间的空白并不会改变含义。</p>
+<pre><code class="language-j">   5 -9
+_4
+</code></pre>
+<p><code>-</code>总是动词。这简化了识别句子的规则，因为没有把<code>-</code>直接用在数字左边这种特殊情况。
+代价就是，既然<code>-</code>总是一个动词，则需要另一个字符<code>_</code>（下划线）来拼写负数。</p>
+<p><code>_</code>用于拼写数字，放在有<code>0</code> <code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code>，<code>.</code> 以及表示指数符号的<code>e</code>组成的数字前；表示一个负数。</p>
+<p><strong>记住</strong>：数字前面的·_·是数字的一部分，表示它是负数，而<code>-</code>总是一个动词，不是数字的一部分。</p>
+<p><code>__</code>（两个下划线）表示负无穷，是一个数字。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="原语"><a class="header" href="#原语">原语</a></h1>
+<p>原语是由系统定义的一个单词。例如，<code>+</code>是一个原语。原语的含义是固定的，不能改变。</p>
+<p>原语可以由一个图形字符（如<code>+</code>）拼写的，或者用图形字符加上一个表示变形的字符（点号或冒号）拼写，如<code>+.</code>或者<code>+:</code>。</p>
+<p>原语也可以由一个或多个字母后跟一个点号或冒号拼写。例如，<code>i.</code>是一个原语，根据它的使用方式的不同，被称为<strong>生成索引</strong>或<strong>求索引</strong>。</p>
 
                     </main>
 

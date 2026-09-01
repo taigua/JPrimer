@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>实验 - J Primer</title>
+        <title>数字 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,34 +176,37 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="实验"><a class="header" href="#实验">实验</a></h1>
-<p>我们鼓励你去尝试。尝试用不同的数字输入类似的行。很明显，<code>+</code>是加法，<code>-</code>是减法。
-输入一些用<code>*</code>表示乘，用<code>%</code>表示除的行。通过使用<code>%</code>，你将很快看到结果可以是<code>2.5</code>这样的数字，并且它们也可以用作参数。</p>
-<p>在你有更多的经验之前，你有时可能会对你所观察到的东西感到惊讶甚至不安。一步一步来。尝试一些你确信你已经知道答案的例子，
-并做实验来证实你的理解。如果一个结果让你太困惑，早期阶段不要花时间在它上面。</p>
-<pre><code class="language-j">   3 - 5
-_2
+                        <h1 id="数字"><a class="header" href="#数字">数字</a></h1>
+<p>以下这些是数字：0 12 02.5 12.75 0.5 7e6</p>
+<p>输入这些数字或其他数字，用动词<code>+</code> <code>-</code> <code>*</code> <code>%</code>组成简单句子。</p>
+<pre><code class="language-j">  2 * 12.75
+25.5
 </code></pre>
-<p><code>_2</code>，而不是<code>-2</code>，可能会让你困惑。别担心，一会儿就会解释的。</p>
-<p>本书中的大多数示例会显示你应输入的内容（缩进三个空格），同时也会显示系统返回的结果。这意味着你可以轻松地通读本入门手册，
-无需实际操作系统即可查看结果。然而，真正学会的唯一途径，最终还是靠你亲自尝试这些示例，并用自己的想法进行实验。
-示例采用等宽字体显示，与它们在系统Term窗口中的呈现方式基本一致。部分示例会使用较大的字体，以便你更轻松地阅读并在系统中
-输入——这通常出现在你可能因对某些词汇不熟悉而输错内容，或者输入错误可能导致令人困惑的结果时。</p>
-<p>在做实验的时候，你经常想对你已经输入过的句子做一些细微的改变。有几个捷径可以使这更容易。在Term窗口中，
-你可以将光标移动到窗口中的任意行，然后按Enter键，将该行作为窗口底部的新行，以便进行编辑。
-通过按住Ctrl+Shift并按向上箭头键，可以调出以前的输入行进行编辑，持续按向上箭头直到看到想要处理的行。</p>
-<p>大多数小节中的示例都是独立的，但小节的后面部分可能依赖于前面部分中采取的步骤。
-有些小节依赖于前面几节中采取的步骤，但这应该是相当明显的。</p>
+<p>一个重要的规则是数字不能以点（<code>.</code>）开头。</p>
+<pre><code class="language-j">  0.5
+0.5
+   0.5 + 3
+3.5
+   .5
++-+-+
+|.|5|
++-+-+
+   .5 + 3
+|syntax error
+|        .5+3
+</code></pre>
+<p>显然，<code>.5</code>和<code>0.5</code>不一样。你现在不需要知道<code>.5</code>是什么，但重要的是明白数字不是以点开头的。</p>
+<p><code>_</code>（下划线）是无穷大，是一个数字。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="006.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="014.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="008.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="016.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -213,11 +216,11 @@ _2
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="006.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="014.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="008.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="016.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
