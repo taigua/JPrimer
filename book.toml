@@ -1,0 +1,20 @@
+[book]
+title = "J Primer"
+authors = ["作者: Eric Iverson", "翻译: Taigua"]
+language = "zh-CN"
+
+[output.html]
+mathjax-support = true
+
+[output.pandoc.markdown.extensions]
+math = true
+
+[output.pandoc.profile.pdf]
+output-file = "JPrimer.pdf"
+to = "latex"
+pdf-engine = "xelatex"
+
+[output.pandoc.profile.pdf.variables]
+mainfont = "宋体"
+colorlinks = true
+fontsize = "12pt"
