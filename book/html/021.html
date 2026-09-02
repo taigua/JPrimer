@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>如何使用本书 - J Primer</title>
+        <title>两可性 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,28 +176,27 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="如何使用本书"><a class="header" href="#如何使用本书">如何使用本书</a></h1>
-<p>本书是一系列小的，易消化的部分，适合从头到尾按顺序阅读。一个章节通常需要你读过大部分甚至所有之前的章节。
-跳来跳去毫无意义，而且可能令人沮丧。</p>
-<p>本书是自包含的，可以在不访问J系统的情况下读取。特别是，与J系统交互的示例显示了输入的内容以及系统如何响应。
-然而，它的目的是在访问系统和尽可能多地使用系统的情况下读取。强烈建议你最后输入所有示例，并尽可能多地把玩它们的变体。</p>
-<p>有时章节使用的术语和概念直到后面才定义。这就要求你在第一次阅读时有一个初步的理解并继续，在第二次阅读时它们将变得更加具体。</p>
-<p>本书最好读三遍：</p>
-<ul>
-<li>浏览整本书。可以尝试一些例子，但最好持续前进，了解全局。</li>
-<li>第二次仔细阅读并尝试所有的例子。</li>
-<li>第三次尝试自己的例子来澄清你的理解，并提升你实际使用系统机制的舒适度（而不仅仅是阅读它和遵循说明）。</li>
-</ul>
+                        <h1 id="两可性"><a class="header" href="#两可性">两可性</a></h1>
+<p>每个动词都有两种定义：当它同时有左参数和右参数时使用双子（<strong>dyad</strong>），当它只有右参数时使用单子（<strong>monad</strong>）。
+这两个定义通常是相关的，比如<code>-</code>的双子定义表示减法，而单子定义表示求负。</p>
+<pre><code class="language-j">   5 - 3
+2
+   - 7
+_7
+</code></pre>
+<p>双子也被称为动词的二元模式，而单子被称为动词的一元模式。
+“两可性”一词用于化学意义上的两种价态，表明一个动词既可以与一个参数反应，也可以与两个参数反应。</p>
+<p><strong>记住</strong>：绝大多数动词都有单子和双子两种定义。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="004.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="020.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="006.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="022.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -207,11 +206,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="004.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="020.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="006.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="022.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
