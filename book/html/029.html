@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>字符串 - J Primer</title>
+        <title>空格 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,39 +176,63 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="字符串"><a class="header" href="#字符串">字符串</a></h1>
-<p>用单引号括起来的字符创建一个字符串。</p>
-<pre><code class="language-j">   char =. 'Q'
-   chars =. 'this is a list of characters' 
+                        <h1 id="空格"><a class="header" href="#空格">空格</a></h1>
+<p>不需要空格来分隔原语和其他单词。另一方面，额外的空格也不会改变意思。</p>
+<pre><code class="language-j">   2+3
+5
+   2 + 3
+5
+   2    +    3
+5
 </code></pre>
-<p>显示字符串时不显示单引号。</p>
-<pre><code class="language-j">   char
-Q
-   chars
-this is a list of characters
+<p>本书中的大多数示例在所有原语周围都有空格。这使得单个单词显而易见，让你专注于单词的意思，而不需要先弄清哪些是单词。</p>
+<p>然而，大多数J程序员，随着他们变得越来越有经验，达到了可以轻松阅读句子中的单词的程度，而额外的空格变成了理解的麻烦和障碍，而不是帮助。
+你将注意到，在后面的一些示例中，省略了一些不必要的空格。</p>
+<p>在某些情况下，空间是必不可少的。</p>
+<p>名字之间必须用空格分隔。</p>
+<pre><code class="language-j">   a=.3
+   plus=.+
+   a plus a
+6
+   aplusa
+|value error: aplusa
 </code></pre>
-<p>单引号用于字符串的开始和结束。一对单引号表示引号字符本身在字符串中。</p>
-<pre><code class="language-j">   'put 2 ''s to get 1 '' in the string'
-put 2 's to get 1 ' in the string
+<p>而<code>.</code>（点）和<code>:</code>（冒号）用作单词屈折变化，将紧接在它们前面的单词变成一个新词。当它们用作原语或原语的开头时，
+必须在前面有一个空格，这样它们就不会被视为屈折。</p>
+<pre><code class="language-j">   ;: 'a . b'	NB. 3 words
++-+-+-+
+|a|.|b|
++-+-+-+
+   ;: 'a .b'	NB. same 3 words
++-+-+-+
+|a|.|b|
++-+-+-+
+   ;: 'a. b'	NB. 2 words
++--+-+
+|a.|b|
++--+-+
 </code></pre>
-<p>不匹配的单引号是错误的。</p>
-<pre><code class="language-j">   abc =. 'asdf
-|open quote
+<p>如上所示，<code>.</code>或者<code>:</code>如果不是用作屈折，则必须和它们之前的单词之间用空格分开。</p>
+<p>数字，例如1e7，可以包含字母。事实上，在J中，有几个字母可以用于拼写数字。而紧跟着数字的字母将被当作数字拼写的一部分。</p>
+<pre><code class="language-j">   plus =. +
+   1plus 3
+|ill-formed number
+|      1plus 3
+|      ^
+   1 plus 3
+4
 </code></pre>
-<p>字符串可以为空。</p>
-<pre><code class="language-j">   abc =. ''
-</code></pre>
-<p>字符串也被称为字面值常量或字符常量。</p>
+<p>必须用空格将数字与非数字组成部分的字母分开。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="026.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="028.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="028.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="030.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -218,11 +242,11 @@ put 2 's to get 1 ' in the string
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="026.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="028.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="028.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="030.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

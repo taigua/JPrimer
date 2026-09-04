@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-41495b84.js";
+            window.path_to_searchindex_js = "searchindex-dc059c29.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-c75c0d52.js"></script>
+        <script src="toc-b6b5f7c5.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -582,6 +582,135 @@ NB. this is a comment
 <p>如果你确实对一个J句子感到困惑（这是可能发生的），你可以做的一件事就是对它应用<code>;:</code>,
 以确保你知道构成它的单词。然后你就可以关注这些单词的意思了。</p>
 <p>在<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>中查找<code>;:</code>。<code>;:</code>的非正式名称单词构成。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="空格"><a class="header" href="#空格">空格</a></h1>
+<p>不需要空格来分隔原语和其他单词。另一方面，额外的空格也不会改变意思。</p>
+<pre><code class="language-j">   2+3
+5
+   2 + 3
+5
+   2    +    3
+5
+</code></pre>
+<p>本书中的大多数示例在所有原语周围都有空格。这使得单个单词显而易见，让你专注于单词的意思，而不需要先弄清哪些是单词。</p>
+<p>然而，大多数J程序员，随着他们变得越来越有经验，达到了可以轻松阅读句子中的单词的程度，而额外的空格变成了理解的麻烦和障碍，而不是帮助。
+你将注意到，在后面的一些示例中，省略了一些不必要的空格。</p>
+<p>在某些情况下，空间是必不可少的。</p>
+<p>名字之间必须用空格分隔。</p>
+<pre><code class="language-j">   a=.3
+   plus=.+
+   a plus a
+6
+   aplusa
+|value error: aplusa
+</code></pre>
+<p>而<code>.</code>（点）和<code>:</code>（冒号）用作单词屈折变化，将紧接在它们前面的单词变成一个新词。当它们用作原语或原语的开头时，
+必须在前面有一个空格，这样它们就不会被视为屈折。</p>
+<pre><code class="language-j">   ;: 'a . b'	NB. 3 words
++-+-+-+
+|a|.|b|
++-+-+-+
+   ;: 'a .b'	NB. same 3 words
++-+-+-+
+|a|.|b|
++-+-+-+
+   ;: 'a. b'	NB. 2 words
++--+-+
+|a.|b|
++--+-+
+</code></pre>
+<p>如上所示，<code>.</code>或者<code>:</code>如果不是用作屈折，则必须和它们之前的单词之间用空格分开。</p>
+<p>数字，例如1e7，可以包含字母。事实上，在J中，有几个字母可以用于拼写数字。而紧跟着数字的字母将被当作数字拼写的一部分。</p>
+<pre><code class="language-j">   plus =. +
+   1plus 3
+|ill-formed number
+|      1plus 3
+|      ^
+   1 plus 3
+4
+</code></pre>
+<p>必须用空格将数字与非数字组成部分的字母分开。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="优先级"><a class="header" href="#优先级">优先级</a></h1>
+<p>数学传统上认为乘法优先于加法。在数学课上，如果有人问你<code>2 + 3 * 4</code>等于多少，你要知道答案是<code>14</code>。</p>
+<p>如果只有几个函数和几个级别的优先级(除法|乘法|加法和减法)，这并不太令人困惑。但事情在诸如C这样的语言中会变得笨拙，
+因为有许多功能和优先级级别。</p>
+<p>由于J中有大量的动词，很难定义优先级，更不用说在阅读或编写时试图记住它了。
+此外，能够命名事物意味着你还必须弄清楚如何处理这个句子：</p>
+<pre><code class="language-j">   2 plus 3 times 4
+</code></pre>
+<p>与传统数学以及大多数其他编程语言不同，J没有动词优先级。你可能需要一点时间先停止乘法，但整体的简化是值得的。</p>
+<p>记住：<strong>没有</strong>动词优先级。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="括号"><a class="header" href="#括号">括号</a></h1>
+<p>数学和大多数编程语言（包括J语言）都使用括号来控制句子的求值。如果一个句子被完全括起来，
+那么大多数语言的求值顺序是相同的，并且不受动词优先级或任何其他规则的影响。</p>
+<pre><code class="language-j">      2 + (3 * 4)
+14
+   (2 + 3) * 4
+20
+   10 - (4 - 3)
+9
+   (10 - 4) - 3
+3
+</code></pre>
+<p>对这些答案没有任何异议。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="求值顺序"><a class="header" href="#求值顺序">求值顺序</a></h1>
+<p>如果省略括号，答案是什么？</p>
+<pre><code class="language-j">   10 - 4 - 3
+9
+</code></pre>
+<p>J对句子求值为：</p>
+<pre><code class="language-j">   10 - (4 - 3)
+9
+</code></pre>
+<p>大多数其他语言会将其求值为：</p>
+<pre><code class="language-j">   (10 - 4) - 3
+3
+</code></pre>
+<p>在没有括号的情况下，J从右到左隐式地产生语句。其他语言从左到右产生它们。
+一个更长的句子会让这看起来更清晰。</p>
+<pre><code class="language-j">   10 - 4 - 3 - 1
+8
+   10 - (4 - (3 - 1))	NB. J right-to-left
+8
+   ((10 - 4) - 3) - 1	NB. others left-to-right
+2
+</code></pre>
+<p>现在考虑一组一元动词。</p>
+<pre><code class="language-j">   - - - 4
+_4
+</code></pre>
+<p>每个人都知道如何加括号，每个语言都是一样的。</p>
+<pre><code class="language-j">   - (- (- 4))
+_4
+</code></pre>
+<p>分组是从右向左进行的，在这种情况下，其他语言和J一样。J总是从右向左插入括号，而其他语言对于不同的情况有不同的规则。</p>
+<p>J的求值顺序是从右到左。大多数其他语言都是从左到右对二元动词求值，从右到左对一元动词求值；而求值顺序又会被所涉及的动词的相对优先级修改。</p>
+<p>对于名词和动词，<a href="https://www.jsoftware.com/help/dictionary/dicte.htm">J词典E章节</a>的J求值规则是：</p>
+<blockquote>
+<p>执行从右向左进行，但当遇到右括号时，先执行它及其匹配的左括号所包含的段，用其结果替换整个段及括号。</p>
+</blockquote>
+<p>我们应该注意到，虽然<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>是J信息的权威来源，但J字典中有很多有用的信息可能没有进入wiki。</p>
+<p>在J中，除了名词和动词之外，还有一些你还没见过的东西，它们会让这个规则变得更加复杂。正是这些额外的类在很大程度上证明了J打破传统
+并采用从右到左的求值是合理的。进一步引自<a href="https://www.jsoftware.com/help/dictionary/dicte.htm">J词典E章节</a>：</p>
+<blockquote>
+<p>这些规则的一个重要后果是，在没有括号的表达式中，任何动词的右参数都是其右侧整个短语的结果。</p>
+</blockquote>
+<p>这是因为没有动词优先级以及从右到左的求值的结果。</p>
+<p>没有动词优先级、从右到左的求值以及其他类的规则使总体求值规则变得简单，减少了对括号的需要，并且使有经验的J用户更容易阅读和编写句子。</p>
+<p>阅读下面的句子，在你的脑海中对它们求值，并理解无优先级和从右到左求值是如何解释答案的。</p>
+<pre><code class="language-j">    2 * 4 + 5
+18
+   2 + 4 * 5
+22
+   2 - 4 - 5
+3
+   8 % 2 + 2
+2
+</code></pre>
+<p><strong>记住</strong>：没有动词优先级和从右到左的求值。</p>
 
                     </main>
 

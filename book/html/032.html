@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>字符串 - J Primer</title>
+        <title>求值顺序 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,41 +176,70 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="字符串"><a class="header" href="#字符串">字符串</a></h1>
-<p>用单引号括起来的字符创建一个字符串。</p>
-<pre><code class="language-j">   char =. 'Q'
-   chars =. 'this is a list of characters' 
+                        <h1 id="求值顺序"><a class="header" href="#求值顺序">求值顺序</a></h1>
+<p>如果省略括号，答案是什么？</p>
+<pre><code class="language-j">   10 - 4 - 3
+9
 </code></pre>
-<p>显示字符串时不显示单引号。</p>
-<pre><code class="language-j">   char
-Q
-   chars
-this is a list of characters
+<p>J对句子求值为：</p>
+<pre><code class="language-j">   10 - (4 - 3)
+9
 </code></pre>
-<p>单引号用于字符串的开始和结束。一对单引号表示引号字符本身在字符串中。</p>
-<pre><code class="language-j">   'put 2 ''s to get 1 '' in the string'
-put 2 's to get 1 ' in the string
+<p>大多数其他语言会将其求值为：</p>
+<pre><code class="language-j">   (10 - 4) - 3
+3
 </code></pre>
-<p>不匹配的单引号是错误的。</p>
-<pre><code class="language-j">   abc =. 'asdf
-|open quote
+<p>在没有括号的情况下，J从右到左隐式地产生语句。其他语言从左到右产生它们。
+一个更长的句子会让这看起来更清晰。</p>
+<pre><code class="language-j">   10 - 4 - 3 - 1
+8
+   10 - (4 - (3 - 1))	NB. J right-to-left
+8
+   ((10 - 4) - 3) - 1	NB. others left-to-right
+2
 </code></pre>
-<p>字符串可以为空。</p>
-<pre><code class="language-j">   abc =. ''
+<p>现在考虑一组一元动词。</p>
+<pre><code class="language-j">   - - - 4
+_4
 </code></pre>
-<p>字符串也被称为字面值常量或字符常量。</p>
+<p>每个人都知道如何加括号，每个语言都是一样的。</p>
+<pre><code class="language-j">   - (- (- 4))
+_4
+</code></pre>
+<p>分组是从右向左进行的，在这种情况下，其他语言和J一样。J总是从右向左插入括号，而其他语言对于不同的情况有不同的规则。</p>
+<p>J的求值顺序是从右到左。大多数其他语言都是从左到右对二元动词求值，从右到左对一元动词求值；而求值顺序又会被所涉及的动词的相对优先级修改。</p>
+<p>对于名词和动词，<a href="https://www.jsoftware.com/help/dictionary/dicte.htm">J词典E章节</a>的J求值规则是：</p>
+<blockquote>
+<p>执行从右向左进行，但当遇到右括号时，先执行它及其匹配的左括号所包含的段，用其结果替换整个段及括号。</p>
+</blockquote>
+<p>我们应该注意到，虽然<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>是J信息的权威来源，但J字典中有很多有用的信息可能没有进入wiki。</p>
+<p>在J中，除了名词和动词之外，还有一些你还没见过的东西，它们会让这个规则变得更加复杂。正是这些额外的类在很大程度上证明了J打破传统
+并采用从右到左的求值是合理的。进一步引自<a href="https://www.jsoftware.com/help/dictionary/dicte.htm">J词典E章节</a>：</p>
+<blockquote>
+<p>这些规则的一个重要后果是，在没有括号的表达式中，任何动词的右参数都是其右侧整个短语的结果。</p>
+</blockquote>
+<p>这是因为没有动词优先级以及从右到左的求值的结果。</p>
+<p>没有动词优先级、从右到左的求值以及其他类的规则使总体求值规则变得简单，减少了对括号的需要，并且使有经验的J用户更容易阅读和编写句子。</p>
+<p>阅读下面的句子，在你的脑海中对它们求值，并理解无优先级和从右到左求值是如何解释答案的。</p>
+<pre><code class="language-j">    2 * 4 + 5
+18
+   2 + 4 * 5
+22
+   2 - 4 - 5
+3
+   8 % 2 + 2
+2
+</code></pre>
+<p><strong>记住</strong>：没有动词优先级和从右到左的求值。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="026.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="031.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="028.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -218,13 +247,10 @@ put 2 's to get 1 ' in the string
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="026.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="031.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="028.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                    </a>
             </nav>
 
         </div>
