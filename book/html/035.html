@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>实验 - J Primer</title>
+        <title>脚本 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,36 +176,109 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="实验"><a class="header" href="#实验">实验</a></h1>
-<p>我们鼓励你去尝试。尝试用不同的数字输入类似的行。很明显，<code>+</code>是加法，<code>-</code>是减法。
-输入一些用<code>*</code>表示乘，用<code>%</code>表示除的行。通过使用<code>%</code>，你将很快看到结果可以是<code>2.5</code>这样的数字，并且它们也可以用作参数。</p>
-<p>在你有更多的经验之前，你有时可能会对你所观察到的东西感到惊讶甚至不安。一步一步来。尝试一些你确信你已经知道答案的例子，
-并做实验来证实你的理解。如果一个结果让你太困惑，早期阶段不要花时间在它上面。</p>
-<pre><code class="language-j">   3 - 5
-_2
+                        <h1 id="脚本"><a class="header" href="#脚本">脚本</a></h1>
+<p>当你关闭J时，所有名字的定义都将失效。你在<code>Term</code>窗口中执行的操作只影响当前会话，但不是永久性的。
+这在实验时很好，但是当你开始定义像摄氏度这样的动词时，会想要记录下这个定义，以便在另一个会话中使用它。</p>
+<p>关闭J并重新启动它。</p>
+<pre><code class="language-j">   centigrade
+|value error: centigrade
 </code></pre>
-<p><code>_2</code>，而不是<code>-2</code>，可能会让你困惑。别担心，一会儿就会解释的。</p>
-<p>本书中的大多数示例会显示你应输入的内容（缩进三个空格），同时也会显示系统返回的结果。这意味着你可以轻松地通读本入门手册，
-无需实际操作系统即可查看结果。然而，真正学会的唯一途径，最终还是靠你亲自尝试这些示例，并用自己的想法进行实验。
-示例采用等宽字体显示，与它们在系统Term窗口中的呈现方式基本一致。部分示例会使用较大的字体，以便你更轻松地阅读并在系统中
-输入——这通常出现在你可能因对某些词汇不熟悉而输错内容，或者输入错误可能导致令人困惑的结果时。</p>
-<p>在做实验的时候，你经常想对你已经输入过的句子做一些细微的改变。有几个捷径可以使这更容易。在Term窗口中，
-你可以将光标移动到窗口中的任意行，然后按Enter键，将该行作为窗口底部的新行，以便进行编辑。
-通过按住Ctrl+Shift并按向上箭头键，可以调出以前的输入行进行编辑，持续按向上箭头直到看到想要处理的行。</p>
-<p>大多数小节中的示例都是独立的，但小节的后面部分可能依赖于前面部分中采取的步骤。
-有些小节依赖于前面几节中采取的步骤，但这应该是相当明显的。</p>
+<p>因为你已经重新启动了，在上一个会话中定义的摄氏度动词和所有其他名字都丢失了。</p>
+<p>但至少原语还在那里！</p>
+<pre><code class="language-j">   2 + 5
+7
+</code></pre>
+<p>正如你所想的那样，为了永久记录定义，要将它们保存在文件中。带有J句子和定义的文件称为脚本文件，
+你可以像编辑任何其他文本文件一样编辑它们。脚本文件的后缀通常是<code>.ijs</code>。</p>
+<p>记住：脚本文件是存储定义的源文件。</p>
+<p>尽管你可以使用任何文本编辑器来处理脚本文件，但是J系统提供了一个简单的编辑器，该编辑器通过集成在J系统的方式使其更加方便使用。</p>
+<p>当使用JQt界面时，<code>File | New temp</code>菜单命令创建一个新的脚本文件和一个用于编辑它的窗口。
+当你点击它时，将看到你的J会话有一个<code>Term</code>窗口和一个新的<code>Edit</code>窗口来编辑<code>.ij</code>文件。</p>
+<p><code>Edit</code>窗口中，<code>.ijs</code>文件的名字显示在其标题栏。在<code>Edit</code>窗口中按下<code>Enter</code>键不会执行该行，它只是将光标移动到新行的开头。</p>
+<p>在<code>Edit</code>窗口中输入你的摄氏度定义。</p>
+<pre><code class="language-j">centigrade =: 3 : 0
+t1 =. y - 32
+t2 =. t1 * 5
+t3 =. t2 % 9
+)
+</code></pre>
+<p>在第一行<strong>一定</strong>要使用<code>=:</code>而不是<code>=.</code>。<code>=:</code>创建一个全局定义。如果使用<code>=.</code>，则是一个局部定义。这个重要的区别将在接下来的几页中解释。
+现在，如果你希望赋值具有预期的效果，只需确保使用<code>=:</code>创建文件中的定义。</p>
+<p>到目前为止，你只是将在窗口中更改编辑。该文件尚未更改，动词仍未定义。你必须通过运行脚本来执行句子。</p>
+<p>在<code>Edit</code>窗口中点击<code>Run | Load Script</code>以将更改保存到文件中，然后执行文件中的每个句子。
+这类似于在<code>Term</code>窗口中输入文件的内容，只是没有显示句子和结果。<code>Term</code>窗口中唯一显示的是系统生成的语句，它表示文件中的语句已被执行。
+这句话类似于：<code>load 'c:/j9.4-user/temp/1.ijs'</code>，取决于你运行的J的版本。如果报告了一个错误（在<code>Term</code>窗口中输出，左侧有一个竖线），
+那么你的脚本中有拼写错误。在<code>Edit</code>窗口中更正文本并再次运行。</p>
+<p>脚本文件中的句子已经执行完毕，现在已经定义了摄氏度动词。在<code>Term</code>窗口尝试使用摄氏度。</p>
+<pre><code class="language-j">   centigrade 32
+0
+</code></pre>
+<p>使用<code>File | New temp</code>创建的文件位于J临时目录中，并具有临时形式名称(带有<code>.ij</code>后缀)。
+但是，现在最好在J用户目录中使用更合适的名称重新保存它。点击<code>File | Save As...</code>，向上一个目录级别，然后到用户目录，
+并将文件名设置为<code>cf.ijs</code>。<code>Edit</code>窗口标题栏中的文件名将更改为新名称。</p>
+<p>关闭<code>cf.ijs</code>窗口并删除你的摄氏度定义。你可以使用功能动词<code>erase</code>来删除名字的定义，其参数是要删除名字的字符串。结果为<code>1</code>表示删除成功。</p>
+<pre><code class="language-j">   erase 'centigrade'
+1
+   centigrade 212
+|value error: centigrade
+|       centigrade 212
+</code></pre>
+<p>使用<code>File | Recent</code>打开<code>cf.ijs</code>窗口，使用<code>Run | Load Script</code>加载并运行定义摄氏度的脚本。</p>
+<pre><code class="language-j">   centigrade 212
+100
+</code></pre>
+<p>让我们在<code>cf.ijs</code>窗口中添加一个华氏度的定义。在你的摄氏定义后输入以下内容。同样，一定要使用<code>=:</code>。</p>
+<pre><code class="language-j">fahrenheit =: 3 : 0
+t1 =. y * 9
+t2 =. t1 % 5
+t3 =. t2 + 32
+)
+</code></pre>
+<p>使用<code>Run | Load Script</code>加载并运行<code>cf.ijs</code>脚本中的句子。</p>
+<pre><code class="language-j">   fahrenheit 0
+32
+   fahrenheit 451
+843.8
+</code></pre>
+<p>关闭J并重启。</p>
+<pre><code class="language-j">   centigrade
+|value error: centigrade
+   fahrenheit
+|value error: fahrenheit
+</code></pre>
+<p>使用<code>File | Recent</code>并选择你的<code>cf.ijs</code>文件。然后点击<code>Run | Load Script</code>，一个类似下面的行</p>
+<pre><code class="language-j">   load'c:/j9.4-user/cf.ijs'
+</code></pre>
+<p>出现在<code>Term</code>窗口，表示执行了文件中的句子，而你的动词现在已经定义。</p>
+<pre><code class="language-j">   centigrade 32
+0
+   fahrenheit 100
+212
+</code></pre>
+<p>在<code>Term</code>窗口中出现的以<code>load</code>开头的行实际上是导致文件中的句子被执行的句子。
+菜单命令只是执行这个句子的一种快捷方式。该字符串是要运行的文件的完整路径名。
+手动输入完整路径名时，可以将其缩短为相对路径名。</p>
+<pre><code class="language-j">   load'~/j9.4-user/cf.ijs'
+</code></pre>
+<p>现在检查一下你的动词是否定义好了。</p>
+<p>使用<code>File | Recent</code>打开你的<code>cf.ijs</code>文件进行编辑。</p>
+<p>如果脚本中有错误怎么办？让我们在脚本中添加一个故意的错误，看看会发生什么。在脚本末尾添加foo 123行，然后再次运行脚本。</p>
+<pre><code class="language-j">   load'c:/j9.4-user/cf.ijs'
+|value error: foo
+|       foo 123
+|[-13]
+</code></pre>
+<p>J系统报告错误并停止执行脚本中句子。错误报告末尾的数字是脚本中出现错误的行号。</p>
+<p>从脚本中删除错误并再次运行它。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="006.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="034.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="008.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -213,13 +286,10 @@ _2
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="006.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="034.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="008.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                    </a>
             </nav>
 
         </div>
