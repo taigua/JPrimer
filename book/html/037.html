@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>数值常量 - J Primer</title>
+        <title>全局名字 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,22 +176,72 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="数值常量"><a class="header" href="#数值常量">数值常量</a></h1>
-<p>你已经看到了单个数字的使用。也可以有一个数字列表。</p>
-<pre><code class="language-j">   num =. 5
-   nums =. 23 0.5 12.5 7e6 _12 7
+                        <h1 id="全局名字"><a class="header" href="#全局名字">全局名字</a></h1>
+<p>在动词执行之外定义的名字是全局名子。</p>
+<p>上一节中，<code>Term</code>窗口中定义的<code>t1</code>是一个全局名子，与动词摄氏度内定义的<code>t1</code>完全不同。</p>
+<p>让我们来做些实验。使用<code>File | New temp</code>创建一个临时脚本文件，并在其中输入以下定义：</p>
+<pre><code class="language-j">fooa =: 3 : 0   NB. =: is important
+zzz + y
+)
 </code></pre>
-<p>你将会对数字列表做更多操作，但现在我们只想建立这样一个列表。</p>
+<p>使用<code>Run | Load script</code>运行脚本。Term窗口显示：</p>
+<pre><code class="language-j">   fooa 5
+|value error: zzz
+|       zzz+y
+</code></pre>
+<p>让我们定义全局<code>zzz</code>，看看会发生什么。在动词外定义它，无论我们使用<code>=.</code>还是<code>=:</code>，它都是全局的。</p>
+<p>为了遵循最佳实践，我们将在<code>Term</code>窗口中使用<code>=:</code>：</p>
+<pre><code class="language-j">   zzz =: 23	NB. define global zzz
+   fooa 5
+28
+</code></pre>
+<p>动词<code>fooa</code>使用全局的<code>zzz</code>。动词可以使用全局名字。</p>
+<p>编辑脚本以添加```foob`，然后运行脚本。</p>
+<pre><code class="language-j">foob =: 3 : 0
+zzz =. 7
+zzz + y
+)
+</code></pre>
+<p>在<code>Term</code>窗口中：</p>
+<pre><code class="language-j">   foob 3
+10
+   zzz
+23
+</code></pre>
+<p>动词<code>foob</code>使用它的局部<code>zzz</code>而忽略全局<code>zzz</code>。因此，动词可以使用局部名字而忽略同名的全局名字。</p>
+<p>如果你想定义一个全局名字呢？全局连词<code>=:</code>（带<code>:</code>词形变化的<code>=</code>）定义了一个全局名字。编辑脚本以添加<code>fooc</code>，然后运行脚本。</p>
+<pre><code class="language-j">fooc =: 3 : 0
+gw =: y
+lz =. y
+)
+</code></pre>
+<p>在<code>Term</code>窗口中：</p>
+<pre><code class="language-j">   fooc 3
+3
+   gw
+3
+   lz
+|value error: lz
+   gw =: 24  NB. Using =: to assign a global value, although assignment with =.  outside of a verb would also be global.
+   fooc 5
+5
+   gw
+5
+</code></pre>
+<p>用<code>=:</code>定义<code>gw</code>，则定义了全局名字。</p>
+<p>一般来说，在动词中只定义局部名字而不定义全局名字是一种很好的做法。这是有时被称为函数式编程风格的重要组成部分。
+定义全局名字的动词被认为具有副作用，并且更有可能导致bug，并且使阅读应用程序以理解正在发生的事情变得更加困难。
+事实上，在J的最新版本中，当你定义一个同时使用同名全局名字和局部名字定义的动词并且运行它，将会触发一个域错误。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="025.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="036.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="027.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="038.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -201,11 +251,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="025.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="036.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="027.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="038.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

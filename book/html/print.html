@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-30649e1a.js";
+            window.path_to_searchindex_js = "searchindex-440bccff.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-bd18a530.js"></script>
+        <script src="toc-e04d9edd.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -897,6 +897,104 @@ t3 =. t2 + 32
 </code></pre>
 <p>J系统报告错误并停止执行脚本中句子。错误报告末尾的数字是脚本中出现错误的行号。</p>
 <p>从脚本中删除错误并再次运行它。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="局部名字"><a class="header" href="#局部名字">局部名字</a></h1>
+<p>动词摄氏度在其定义中使用了名字<code>t1</code>、<code>t2</code>和<code>t3</code>，但如果你在动词之外引用它们，它们就没有定义。</p>
+<pre><code class="language-j">   centigrade 32
+0
+   t1
+|value error: t1
+   t1 =. 123
+   t1
+123
+   centigrade 212
+100
+   t1
+123
+</code></pre>
+<p>在摄氏度定义内使用<code>t1</code>和在定义外使用<code>t1</code>没有冲突。动词摄氏度并没有在它自身之外定义一个<code>t1</code>，
+正如<code>value error</code>所表明的那样，给摄氏度的<code>t1</code>中设置一个值并不会改变它定义之外的<code>t1</code>的值。</p>
+<p>摄氏度内部使用的<code>t1</code>是局部名字。局部名字仅存在于动词中。在摄氏度外面使用的<code>t1</code>是一个全局名字。
+在执行动词定义是遇到的由连词<code>=.</code>定义的名字，是局部名字。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="全局名字"><a class="header" href="#全局名字">全局名字</a></h1>
+<p>在动词执行之外定义的名字是全局名子。</p>
+<p>上一节中，<code>Term</code>窗口中定义的<code>t1</code>是一个全局名子，与动词摄氏度内定义的<code>t1</code>完全不同。</p>
+<p>让我们来做些实验。使用<code>File | New temp</code>创建一个临时脚本文件，并在其中输入以下定义：</p>
+<pre><code class="language-j">fooa =: 3 : 0   NB. =: is important
+zzz + y
+)
+</code></pre>
+<p>使用<code>Run | Load script</code>运行脚本。Term窗口显示：</p>
+<pre><code class="language-j">   fooa 5
+|value error: zzz
+|       zzz+y
+</code></pre>
+<p>让我们定义全局<code>zzz</code>，看看会发生什么。在动词外定义它，无论我们使用<code>=.</code>还是<code>=:</code>，它都是全局的。</p>
+<p>为了遵循最佳实践，我们将在<code>Term</code>窗口中使用<code>=:</code>：</p>
+<pre><code class="language-j">   zzz =: 23	NB. define global zzz
+   fooa 5
+28
+</code></pre>
+<p>动词<code>fooa</code>使用全局的<code>zzz</code>。动词可以使用全局名字。</p>
+<p>编辑脚本以添加```foob`，然后运行脚本。</p>
+<pre><code class="language-j">foob =: 3 : 0
+zzz =. 7
+zzz + y
+)
+</code></pre>
+<p>在<code>Term</code>窗口中：</p>
+<pre><code class="language-j">   foob 3
+10
+   zzz
+23
+</code></pre>
+<p>动词<code>foob</code>使用它的局部<code>zzz</code>而忽略全局<code>zzz</code>。因此，动词可以使用局部名字而忽略同名的全局名字。</p>
+<p>如果你想定义一个全局名字呢？全局连词<code>=:</code>（带<code>:</code>词形变化的<code>=</code>）定义了一个全局名字。编辑脚本以添加<code>fooc</code>，然后运行脚本。</p>
+<pre><code class="language-j">fooc =: 3 : 0
+gw =: y
+lz =. y
+)
+</code></pre>
+<p>在<code>Term</code>窗口中：</p>
+<pre><code class="language-j">   fooc 3
+3
+   gw
+3
+   lz
+|value error: lz
+   gw =: 24  NB. Using =: to assign a global value, although assignment with =.  outside of a verb would also be global.
+   fooc 5
+5
+   gw
+5
+</code></pre>
+<p>用<code>=:</code>定义<code>gw</code>，则定义了全局名字。</p>
+<p>一般来说，在动词中只定义局部名字而不定义全局名字是一种很好的做法。这是有时被称为函数式编程风格的重要组成部分。
+定义全局名字的动词被认为具有副作用，并且更有可能导致bug，并且使阅读应用程序以理解正在发生的事情变得更加困难。
+事实上，在J的最新版本中，当你定义一个同时使用同名全局名字和局部名字定义的动词并且运行它，将会触发一个域错误。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="调试全局名字"><a class="header" href="#调试全局名字">调试全局名字</a></h1>
+<p>有时，在尝试调试或更好地理解动词时，查看其局部名字或其他中间结果的值是很有用的。
+一种快速的方法是在动词定义中添加一行来进行全局定义。</p>
+<p>打开<code>cf.ijs</code>文件并向摄氏度定义添加一行，将全局<code>gt1</code>定义为<code>t1</code>。</p>
+<pre><code class="language-j">centigrade =: 3 : 0   NB. =:
+t1 =. y - 32
+gt1 =: t1             NB. temp line for debugging info
+t2 =. t1 * 5
+t3 =. t2 % 9
+)
+</code></pre>
+<p>运行脚本。在Term窗口中：</p>
+<pre><code class="language-j">   centigrade 124
+51.1111
+   t1
+|value error
+   gt1
+92
+</code></pre>
+<p>在摄氏度动词完成执行后，你无法看到局部<code>t1</code>的值，但你可以在<code>gt1</code>中看到值的副本。</p>
+<p>从脚本中删除该行，并运行脚本以重新定义不含调试行的摄氏度动词。</p>
 
                     </main>
 
