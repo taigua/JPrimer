@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-440bccff.js";
+            window.path_to_searchindex_js = "searchindex-fffe3f03.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-e04d9edd.js"></script>
+        <script src="toc-233e9b55.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -995,6 +995,30 @@ t3 =. t2 % 9
 </code></pre>
 <p>在摄氏度动词完成执行后，你无法看到局部<code>t1</code>的值，但你可以在<code>gt1</code>中看到值的副本。</p>
 <p>从脚本中删除该行，并运行脚本以重新定义不含调试行的摄氏度动词。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="与何时类似"><a class="header" href="#与何时类似">=.与=:何时类似</a></h1>
+<p>你已经看到了<code>=.</code>和<code>=:</code>用于动词定义时的不同之处。</p>
+<p>当你在<code>Term</code>窗口中执行句子时，你不会在动词内执行它们，此时<code>=.</code>和<code>=:</code>有相同的效果。</p>
+<pre><code class="language-j">   NB. In the Term window
+
+   a =. 123
+   a
+123
+   a =: 234
+   a
+234
+</code></pre>
+<p>在<code>Term</code>窗口中连词<code>=.</code>和<code>=:</code>是相同的，你使用哪个来定义名字并不重要，因为它们都定义了全局名字。
+<code>=.</code>更容易输入，也更容易被使用。但严格来说，在定义全局名字时，最好显式地使用<code>=:</code>。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="与何时不同"><a class="header" href="#与何时不同">=.与=:何时不同</a></h1>
+<p>你已经看到了<code>=.</code>和<code>=:</code>在<code>Term</code>窗口中是相同的。同时在动词定义里，它们是不同的。
+但重要的是要认识到在脚本中也存在差异。</p>
+<p>当你运行脚本时，<code>load</code>句子在<code>Term</code>窗口中执行，动词<code>load</code>执行脚本中的句子。
+因此，脚本中的句子在<code>load</code>动词中执行。这意味着用<code>=.</code>定义的名字被定义为动词<code>load</code>的局部名字。
+如果想在脚本中定义一个全局名字，必须使用<code>=:</code>。这就是为什么在脚本<code>cf.ijs</code>中定义全局名字
+（如摄氏度和华氏度）的行必须使用<code>=:</code>的原因。如果使用<code>=.</code>，它们将成为<code>load</code>的局部名字，并在<code>load</code>执行完后立即消失。</p>
+<p>始终考虑定义是全局的还是局部的，并据此正确使用<code>=:</code>和<code>=.</code>。</p>
 
                     </main>
 
