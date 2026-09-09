@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-70136a6b.js";
+            window.path_to_searchindex_js = "searchindex-bb1278ec.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-f74ccb25.js"></script>
+        <script src="toc-2d96ce93.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1150,6 +1150,58 @@ sir richard
 <li>运行脚本并测试动词<code>square</code></li>
 <li>关闭J，重新启动，使用<code>load '~/j9.4-user/square.ijs</code>运行<code>square.ijs</code>并测试它（路径描述可能因J版本而异）</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="调试逐步执行"><a class="header" href="#调试逐步执行">调试——逐步执行</a></h1>
+<p>在前面的一节中，你向动词定义添加了调试行，使你能够在运行动词时查看中间步骤的结果。
+有时候你需要更强大的工具。</p>
+<p>在J的最新版本中包含了调试工具，但如果没有，你可以用<code>load 'debug'</code>来加载调试工具。</p>
+<p>打开脚本文件<code>cf.ijs</code>并运行它。</p>
+<p>让我们执行摄氏度，但是每一行都有一个停顿，以便你可以确切地看到正在发生什么。</p>
+<pre><code class="language-j">   dbss 'centigrade *:*'
+</code></pre>
+<p><code>dbss (Set Stop)</code>的参数声明在执行所有摄氏度的行（用<code>*:*</code>表示）之前有一个断点。</p>
+<pre><code class="language-j">   dbr 1
+</code></pre>
+<p>参数为<code>1</code>的<code>dbr</code>要求系统在发生错误或断点时暂停执行。当动词被暂停时，它在执行过程中停止。
+你可以检查定义、更改定义，还可以恢复暂停动词的执行。</p>
+<pre><code class="language-j">   centigrade 212
+|stop
+|       t1=.y-32
+|centigrade[0]
+</code></pre>
+<p>错误报告（在左侧行首的竖线）指出执行在摄氏度时在第0行暂停，并显示该行中的句子。</p>
+<p>摄氏度的执行被暂停，缩进六个空格，而不是三个，表示暂停。变量<code>y</code>是参数。</p>
+<pre><code class="language-j">      y
+212
+</code></pre>
+<p>暂停发生在行执行之前，所以<code>t1</code>没有被定义，如果你试图查看它，你将得到一个值错误。</p>
+<p>使用<code>dbrun</code>继续执行。它将执行当前行，因为所有行都设置了断点，所以它将在下一行暂停。</p>
+<pre><code class="language-j">      dbrun ''
+|stop
+|       t2=.t1*5
+|centigrade[1]
+      t1
+180
+      t1*5
+900
+</code></pre>
+<p>现在，摄氏度在第一行暂停了，正如你所看到的，你可以检查在第0行中定义的局部<code>t1</code>的值。继续调试后续的行，检查局部名字。</p>
+<pre><code class="language-j">      dbrun ''
+|stop
+|       t3=.t2%9
+|centigrade[2]
+      t2
+900
+      t2%9
+100
+      dbrun ''
+100
+</code></pre>
+<p>摄氏度执行完毕后，你又回到了正常的三个空间的缩进。</p>
+<p>关闭调试暂停请求并重置为没有断点。</p>
+<pre><code class="language-j">   dbr 0
+   dbss ''
+</code></pre>
 
                     </main>
 
