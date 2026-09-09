@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>字母表 - J Primer</title>
+        <title>区域 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,38 +176,81 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="字母表"><a class="header" href="#字母表">字母表</a></h1>
-<p>J编程语言的字母表是ASCII字母表，由以下部分组成：</p>
-<pre><code>26 lowercase letters (a to z)
-26 uppercase letters (A to Z)
-0 1 2 3 4 5 6 7 8 9
- = &lt; &gt; _
- + * - %
- ^ $ ~ |
-. : , ;
-# ! / \
-[ ] { }
-" ` @ &amp; ?
-( )
-'
+                        <h1 id="区域"><a class="header" href="#区域">区域</a></h1>
+<p>首先，请注意<em>区域</em>（<code>locale</code>）与<em>局部</em>（<code>local</code>）是一个非常不同的单词，尽管后者只少了一个字母。</p>
+<p>区域是一组全局名字。可以有多个区域，因此可以有多个全局名字集。</p>
+<p>一个区域中的全局名字与其他区域中的相同名字的区别是，通过添加用<code>_</code>（下划线）括起来的区域名称后缀来限定名字。
+带有区域限定的名字始终是全局名字。</p>
+<pre><code class="language-j">   abc_def_ =: 2
 </code></pre>
-<p>有几个字符有时会引起混淆。<code>-</code>（减号）字符不同于<code>_</code>（下划线）字符，并且有三种不同的引号字符：</p>
-<pre><code>'  quote
-"  double-quote
-`  back-quote
+<p>上面的句子可以读作在<code>def</code>区域中的全局<code>abc</code>是<code>2</code>。</p>
+<pre><code class="language-j">   abc_base_ =: 4
 </code></pre>
-<p>如果你尝试一个例子，输入<code>"</code>（双引号）误输入为<code>''</code>（两个单引号），你会感到失望，因为你的结果与书中的不一样。</p>
-<p>句号<code>.</code>通常称为点。</p>
+<p>上面的句子可以读作在<code>base</code>区域中的全局<code>abc</code>是<code>4</code>。</p>
+<p>如果省略了区域名称，则假定它是<code>base</code>区域的名字。</p>
+<pre><code class="language-j">   abc__   NB. the same as abc_base_
+4
+</code></pre>
+<p>如果全局名字没有使用区域名称进行限定，则它位于当前区域中。<code>base</code>区域是当前默认区域，
+除非在不同的区域中执行动词显式地更改了当前区域。下面的代码定义了<code>base</code>区域中的abc：</p>
+<pre><code class="language-j">   abc =. 6
+   abc_base_
+6
+   abc
+6
+</code></pre>
+<p>由于<code>base</code>区域是当前默认区域，因此名字<code>abc</code>和<code>abc_base_</code>是相同的。</p>
+<p>名字<code>abc_def_</code>显然不同于<code>abc</code>，但到目前为止还没有办法知道发生了什么特别的事情。
+在什么意义上<code>abc</code>和<code>foo</code>在同一个（<code>base</code>）区域中？而<code>abc</code>和<code>abc_def_</code>在不同的区域？</p>
+<p>一种区分方法是使用列出全局名字的工具动词<code>names</code>。</p>
+<pre><code class="language-j">   a =. 23
+   b =. 24
+   a_q_ =. 25
+   w_q_ =. 26
+   names 0	NB. 0 lists nouns
+a abc b
+</code></pre>
+<p>你的<code>names</code>结果可能不同，但它将包括你在<code>base</code>区域中定义的所有全局名字。
+你应该看到上面定义的<code>a</code>和<code>b</code>，并注意到没有看到在<code>q</code>区域中定义的<code>w</code>。</p>
+<p>要查看在<code>q</code>区域中定义的名字，你可以执行以下操作：</p>
+<pre><code class="language-j">   names_q_ 0	NB. names in locale q
+a w
+</code></pre>
+<p>名词<code>a</code>和<code>w</code>在<code>q</code>区域中定义。</p>
+<p>区域将全局名字划分为不同的集合，而诸如<code>names</code>之类的实用程序可以操作特定区域中的全局名字。</p>
+<p>区域的真正威力在于区域中定义的动词。当动词在一个区域中执行时，它将该区域（而不是<code>base</code>区域）作为当前区域。</p>
+<p>让我们在<code>q</code>区域中定义一个简单的动词，看看它是如何工作的。</p>
+<pre><code class="language-j">   f_q_ =. 3 : 'a =: y'
+</code></pre>
+<p>这个动词用右参数定义全局<code>a</code>。可以有许多不同的区域，每个区域都有自己的全局<code>a</code>。但是当<code>f_q_</code>执行时，
+它在<code>q</code>区域中执行，<code>q</code>区域是当前的区域，它使用的全局名字来自<code>q</code>区域。试试下面的实验：</p>
+<pre><code class="language-j">   a =. 23	NB. define a in the base locale
+   a_q_ =. 24	NB. define a in locale q
+   f_q_ 100	NB. execute f in locale q
+100
+   a
+23
+   a_q_
+100
+</code></pre>
+<p>区域将全局名字划分为单独的集合。特别是，相关的名词和动词（比如在一组实用程序中），可以在它们自己的区域中定义。
+它们的名字不会与<code>base</code>区域或其他区域中的名字冲突。当你查看应用程序时，你可以只查看特定区域中的相关全局名字。
+当动词在区域中运行时，它使用来自同一区域的全局名字。</p>
+<p>参数为<code>0</code>时，<code>names</code>动词列出名词，参数为<code>3</code>时列出动词，参数为6时列出区域名称。</p>
+<p>区域名称列表很有趣。<code>base</code>和<code>q</code>大家都知道，但是<code>j</code>和<code>z</code>呢？</p>
+<p><code>j</code>和<code>z</code>区域中的全局名字是在J启动并运行<code>profile.ijs</code>脚本文件时定义的。
+<code>j</code>区域包含在构建应用程序时很有用的东西，在<a href="https://code.jsoftware.com/wiki/Standard_Library/Overview">J在线文档</a>中有详细讨论。</p>
+<p><code>z</code>区域确实非常有趣。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="009.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="040.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="011.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="042.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -217,11 +260,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="009.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="040.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="011.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="042.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
