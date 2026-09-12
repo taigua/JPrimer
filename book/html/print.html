@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-bb1278ec.js";
+            window.path_to_searchindex_js = "searchindex-7fe11d9c.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-2d96ce93.js"></script>
+        <script src="toc-3df14ccc.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1202,6 +1202,47 @@ sir richard
 <pre><code class="language-j">   dbr 0
    dbss ''
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="调试处理错误"><a class="header" href="#调试处理错误">调试——处理错误</a></h1>
+<p>让我们在你的摄氏度动词中引入一个错误，看看它是什么样子的，以及你如何发现和修复它。</p>
+<p>打开你的<code>cf.ijs</code>脚本并编辑第一行，通过在连词<code>=.</code>右侧的表达式两边添加引号来制造错误。</p>
+<pre><code class="language-j">t1 =. 'y - 32'
+</code></pre>
+<p><code>t1</code>不再被定义为<code>y - 32</code>的结果，它将被定义为字符串。</p>
+<p>运行脚本生成新的定义。关闭调试暂停，并清除断点，然后运行有bug的摄氏度动词。</p>
+<pre><code>   dbr 0	NB. disable suspension
+   dbss ''
+   centigrade 212 NB. Error messages in versions prior to J9.4
+|domain error
+|   t2=.t1    *5
+
+   centigrade 212    NB. Expanded error messages in J9.4
+|domain error in centigrade, executing dyad *
+|x is character
+|   t2=.t1    *5
+</code></pre>
+<p>你正在禁用暂停（<code>dbr 0</code>）的情况下运行，所以执行没有在摄氏度上暂停，缩进依然是正常的3个空格。</p>
+<p>如果你看一下错误行，很明显，<code>5</code>是乘法的有效参数，所以<code>t1</code>一定有问题。但是你不知道<code>t1</code>的值。
+你可以查看源代码找错误，但是，在复杂的情况下，使用debug可能会更快。</p>
+<p>启用暂停并重新运行。</p>
+<pre><code class="language-j">   dbr 1	NB. enable suspension
+   centigrade 212
+|domain error
+|   t2=.t1    *5
+|centigrade[1]
+</code></pre>
+<p>此时光标会缩进6个空格表示暂停，因为摄氏度被暂停了，你可以看看<code>t1</code>的值。</p>
+<pre><code class="language-j">      t1
+y - 32
+</code></pre>
+<p>从<code>t1</code>的显示可以清楚地看出它是一个字符串，而不是所需计算的数字。现在可以查看源代码，
+看看<code>t1</code>是在哪里定义的，并发现引号不应该出现在那里。</p>
+<p>编辑源代码，通过删除引号来修复定义，并运行脚本来重新定义摄氏度动词。</p>
+<p>要重新运行第0行来正确地定义<code>t1</code>，你可以通过使用<code>dbjmp</code>从第0行继续执行。</p>
+<pre><code class="language-j">      dbjmp 0
+100
+</code></pre>
+<p>由于没有设置断点，也没有其他错误，因此摄氏度第0行被执行，它将给局部名字<code>t1</code>设置正确的值，并继续执行直到完成。</p>
 
                     </main>
 
