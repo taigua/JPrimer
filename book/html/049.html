@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>第一个检查点 - J Primer</title>
+        <title>第三个检查点 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,29 +176,46 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="第一个检查点"><a class="header" href="#第一个检查点">第一个检查点</a></h1>
+                        <h1 id="第三个检查点"><a class="header" href="#第三个检查点">第三个检查点</a></h1>
 <p>到了这个检查点，你应该明白：</p>
 <ul>
-<li>如何使用J字典词汇表</li>
-<li>术语：单词、句子、名词、动词、矛盾词、双子、单子等</li>
+<li>动词调试的一般方法</li>
+<li>控制词如何将将句子分组成块来创建控制结构</li>
+<li>T块测试结果是什么</li>
+<li>测试结果如何决定执行哪个B块</li>
+<li>测试结果如何决定控制结构的执行何时结束</li>
 </ul>
 <p>通过做以下练习来检查你的理解：</p>
 <ul>
-<li>查找单子<code>+:</code> <code>*:</code> <code>-:</code> <code>%:</code>的定义</li>
-<li>试试这些新单子</li>
+<li>单步调试温度转换动词</li>
+<li>创建一个临时脚本文件，并定义一个名为<code>conv</code>的动词，它类似于温度转换，但坚持使用<code>'f'</code>参数来进行华氏度的转换，并且当
+做参数既不是<code>'f'</code>也不是<code>'c'</code>时，返回一个字符串表示错误。
+<strong>提示</strong>：使用下面的控制结构示例，或者使用<code>select.</code>控制结构
+<pre><code class="language-j">if. x = 'c' do. ...
+  elseif. x = 'f' do. ...
+  elseif. 1 do. 'left arg not c or f'
+end.
+</code></pre>
+</li>
+<li>创建一个临时脚本文件，并定义一个名为<code>plus</code>的双子，将其左参数和右参数相加。但是，如果有错误，它应该给出一个字符串结果。
+<strong>提示</strong>：
+<ul>
+<li>使用<code>dyad : 0</code>；</li>
+<li><code>4 plus 9</code>应当返回13；</li>
+<li><code>'a' plus 9</code>应当返回错误字符串（比如，<code>'there was an error'</code>）;</li>
+<li>使用<code>try.</code>控制结构来捕捉错误并给出字符串结果。</li>
+</ul>
+</li>
 </ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="024.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="048.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="026.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -206,13 +223,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="024.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="048.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="026.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                    </a>
             </nav>
 
         </div>

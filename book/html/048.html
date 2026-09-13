@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>第一个检查点 - J Primer</title>
+        <title>控制结构 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,27 +176,82 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="第一个检查点"><a class="header" href="#第一个检查点">第一个检查点</a></h1>
-<p>到了这个检查点，你应该明白：</p>
-<ul>
-<li>如何使用J字典词汇表</li>
-<li>术语：单词、句子、名词、动词、矛盾词、双子、单子等</li>
-</ul>
-<p>通过做以下练习来检查你的理解：</p>
-<ul>
-<li>查找单子<code>+:</code> <code>*:</code> <code>-:</code> <code>%:</code>的定义</li>
-<li>试试这些新单子</li>
-</ul>
+                        <h1 id="控制结构"><a class="header" href="#控制结构">控制结构</a></h1>
+<p>在摄氏度中，定义中的句子只是一个接一个地按顺序执行。要有条件地控制执行哪些句子，可以使用控制结构。</p>
+<p>控制结构由控制词和句子组成。下面是一个控制结构的例子：</p>
+<pre><code class="language-j">if. x = 'c'
+ do. centigrade y
+ else. fahrenheit y
+end.
+</code></pre>
+<p>控制词<code>if.</code>开启控制结构，控制词<code>end.</code>结束控制结构。<code>x = 'c'</code>句子的值是测试结果，
+它决定了控制结构中哪个句子被执行。如果测试结果为<code>1</code>，则控制词<code>do.</code>后的句子被执行。
+如果测试结果是<strong>任何其他值</strong>，则控制词<code>else.</code>后面的句子被执行。
+用汉语解释就是：如果左参数<code>x</code>等于字母<code>c</code>，则执行摄氏温度，否则执行华氏温度。</p>
+<p>使用此功能可以在<code>cf.ijs</code>脚本中添加一个新的动词，该动词将根据左参数的值将数字
+从华氏度转换为摄氏度，或从摄氏度转换为华氏度。打开<code>cf.ijs</code>脚本，并在最后添加以下定义。</p>
+<pre><code class="language-j">NB. convert f to c if x is 'c', otherwise c to f
+convert =: dyad : 0
+if. x = 'c'
+ do. centigrade y
+ else. fahrenheit y
+end.
+)
+</code></pre>
+<p>以上定义了动词的二元形式。这个双子有一个左参数<code>x</code>，一个右参数<code>y</code>。动词的左参数为<code>'c'</code>时，
+将华氏度转换为摄氏度。除了<code>'c'</code>以外的任何左边参数都会将摄氏度转换为华氏度。</p>
+<p>注意，动词华氏度和摄氏度的用法就像使用原语动词一样。</p>
+<p>运行脚本并测试转换。</p>
+<pre><code class="language-j">   'c' convert  212
+100
+   'f' convert 100
+212
+</code></pre>
+<p>通常一个句子是脚本中的一行。但是，使用控制词将一行分隔成几个句子，就有可能在一行中包含多个句子。</p>
+<p>下面的单行相当于前面使用的多行。</p>
+<pre><code class="language-j">if. x = 'c' do. centigrade y else. fahrenheit y end.
+</code></pre>
+<p>控制结构只允许在脚本中使用，不能直接在REPL窗口中输入执行控制结构。</p>
+<p>有九种控制结构模式：</p>
+<pre><code class="language-j">if. T do. B end.
+if. T do. B else. B1 end.
+if. T do. B elseif. T1 do. B1 elseif. T2 do. B2 end.
+try. B catch. B1 end.
+while. T do. B end.
+whilst. T do. B end.
+for. T do. B end.
+for_i. T do. B end.
+select. T
+ case. T0 do. B0
+ case. T1 do. B1
+ fcase.T2 do. B2
+ case. T3 do. B3
+end.
+</code></pre>
+<p>控制结构以<code>if.</code>、<code>try.</code>、<code>while.</code>、<code>whilst.</code>、<code>for.</code>、 <code>for_i.</code>或<code>select.</code>开始，并以一个匹配的<code>end.</code>结束。</p>
+<p>以<strong>T</strong>或<strong>B</strong>开头的单词表示由0个或多个句子组成的块，并且可以包含嵌套的控制结构。</p>
+<p>T块中最后一个句子的结果决定接下来执行哪个块，以及控制结构是否执行完毕。</p>
+<p>通常，T块是一个简单的句子，可以做一个简单的测试，就像上面例子中的一样。</p>
+<p><code>try.</code>控制结构是一个有趣的结构。它执行B块句子，如果没有错误，它就跳到结构的末尾。但是，如果出现错误，则执行B1块。</p>
+<p><code>while.</code>控制结构执行T块，如果其结果不为0，则执行B块并继续执行，直到T块的结果为0。如果T块第一次为0，则B块不执行。</p>
+<p><code>whilst.</code>控制结构与<code>while.</code>相同，除了T块第一次被跳过。这意味着B块总是至少执行一次。</p>
+<p>在<code>for.</code>控制结构中，B块对数组A中的每一项求值一次，该数组A是由求值T块产生的。在<code>for_i.</code>形式中，
+局部名字<code>i</code>被设置为每次对B块求值时项的值，<code>i_index</code>被设置为该项的索引。控制词<code>break.</code>跳到<code>for.</code>控制结构的结尾，
+控制词<code>continue.</code>跳到B块对下一项的进行求值。</p>
+<p>在<code>select.</code>控制结构中，T的结果<strong>R</strong>与Ti的结果Ri进行比较，第一个匹配的<code>case.</code>或<code>fcase.</code>中的Bi将被执行。
+如果匹配的是<code>case.</code>，则<code>select.</code>控制结构的执行就此结束；如果匹配的是<code>fcase.</code>，则下一个<code>case.</code>或<code>fcase.</code>
+的B(i+1)块将被执行。如果下一个是<code>fcase.</code>，则还会继续执行下下一个，直到遇不到<code>fcase.</code>或执行到<code>select.</code>的结尾。</p>
+<p>有关控制结构的更多信息，请参考<a href="https://code.jsoftware.com/wiki/Vocabulary/ControlStructures">NuVoc</a>。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="024.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="047.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="026.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="049.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -206,11 +261,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="024.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="047.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="026.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="049.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
