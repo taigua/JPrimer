@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-80535c1d.js";
+            window.path_to_searchindex_js = "searchindex-4e28722d.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-ec58dfa4.js"></script>
+        <script src="toc-337e5b90.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1520,7 +1520,7 @@ _40 32 89.6 212 413.6
 重要的是，你要把这一点融入到思考解决问题的方式中。</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="更多原语"><a class="header" href="#更多原语">更多原语</a></h1>
-<p>单子<code>i. (整数)</code>的结果是从0到其右参数的整数列表。</p>
+<p>单子<code>i. (integers)</code>的结果是从0到其右参数的整数列表。</p>
 <pre><code class="language-j">   i. 2
 0 1
    i. 4
@@ -1561,11 +1561,72 @@ _40 32 89.6 212 413.6
    2 ^ i. 6
 1 2 4 8 16 32
 </code></pre>
-<p>二元动词<code>o. (圆)</code>是字母<code>o</code>加上<code>.</code>的变形，它提供了圆（三角）函数。特别地，左参数为1时，动词<code>o.</code>求右参数的正弦值。</p>
+<p>二元动词<code>o. (circle)</code>是字母<code>o</code>加上<code>.</code>的变形，它提供了圆（三角）函数。特别地，左参数为1时，动词<code>o.</code>求右参数的正弦值。</p>
 <pre><code class="language-j">   1 o. i.7
 0 0.841471 0.909297 0.14112 _0.756802 _0.958924 _0.279415
 </code></pre>
 <p>单纯语言描述很难搞明白这些动词的含义，所以下一章我们将用图表来展示这些数据。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="绘图"><a class="header" href="#绘图">绘图</a></h1>
+<p>要使用绘图功能，你需要加载它。</p>
+<pre><code class="language-j">   load 'plot'
+</code></pre>
+<p>尝试一个简单的绘图。</p>
+<pre><code class="language-j">   plot 5 10 23 45 8
+</code></pre>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../pics/Help-plot.gif" alt=""><span class="img-wrapper"><img src="../pics/Help-plot.gif" alt=""></span></label></p>
+<p>绘图位于一个单独的窗口。关闭绘图窗口，丢弃它。</p>
+<p>现在可以绘制数据了，让我们看一下在前一节中使用的一些原语。</p>
+<pre><code class="language-j">   plot 2 ^ i. 5
+   plot ? 5 $ 100
+   plot ? 50 $ 100
+   plot ? 100 $ 100
+   plot ? 1 + i. 50
+   plot ? 1 + i. 100
+</code></pre>
+<p>通过左参数定制绘图。</p>
+<pre><code class="language-j">   'TITLE myplot;TYPE bar' plot 2 ^ i. 5
+</code></pre>
+<p>或者试试之前计算的正弦值。</p>
+<pre><code class="language-j">   plot 1 o. i. 16  
+</code></pre>
+<p>在<code>trig.ijs</code>脚本中定义了一系列实用程序，你可以在这里使用。使用load来加载该脚本。</p>
+<pre><code class="language-j">   load 'trig'
+   plot sin i. 16
+</code></pre>
+<p>为了生成更精细的图，你需要在类似的范围内提供更多的数值结果。</p>
+<pre><code class="language-j">   plot sin 0.2 * i.60
+   plot cos 0.2 * i.60
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="绘图区域"><a class="header" href="#绘图区域">绘图区域</a></h1>
+<p>绘图还说明了使用区域的一种常用技术。关闭J并重新启动它以获得一个干净的环境。
+<code>base</code>区域中没有动词名字，但是<code>profile.ijs</code>脚本加载了一些其他标准区域。</p>
+<pre><code class="language-j">   names 3	NB. verbs
+   names 6	NB. locales
+base     j        jcompare jgl2     jp       jqtide   jregex   jrx      jtask    z 
+</code></pre>
+<p>动词<code>load</code>（在<code>z</code>区域中定义）将<code>plot.ijs</code>脚本加载到<code>plot</code>区域中。</p>
+<pre><code class="language-j">   load 'plot'
+   plot ? 5 $ 100	
+   names 3
+   names 6
+base  j     jcfg  jplot z
+   plot
++----------+
+|plot_plot_|
++----------+
+</code></pre>
+<p>动词<code>plot</code>没有在<code>base</code>区域中定义，而是在<code>z</code>区域中定义。当它在<code>base</code>区域中执行时，
+来自<code>z</code>区域的定义就像在其定义在<code>base</code>区域中一样执行。输入<code>plot</code>名字将显示其定义。
+关于<code>plot</code>定义的有趣之处在于，它执行在<code>plot</code>区域中定义的<code>plot</code>动词。
+<code>z</code>区域中的<code>plot</code>是一个在所有语言区域中都有效的覆盖，它的作用是在执行<code>plot</code>区域中的<code>plot</code>动词。</p>
+<blockquote>
+<p>注：在较新的J版本中（J9.7以上），<code>plot.jis</code>已经被替换为别的脚本，具体看J实现。</p>
+</blockquote>
+<p>这种技术将像<code>plot</code>包这样的工具加载到它自己的区域中，然后在<code>z</code>区域中定义覆盖动词，
+以便用简单名字引用（不需要加区域后缀）调用功能区域中所需的动词。可以将<code>plot</code>区域中的定义
+视为该工具包的私有实现，而通过在<code>z</code>区域中定义而公开的名字是公共或发布的接口。</p>
 
                     </main>
 
