@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-4e28722d.js";
+            window.path_to_searchindex_js = "searchindex-392b194d.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-337e5b90.js"></script>
+        <script src="toc-dbc3dee1.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1627,6 +1627,48 @@ base  j     jcfg  jplot z
 <p>这种技术将像<code>plot</code>包这样的工具加载到它自己的区域中，然后在<code>z</code>区域中定义覆盖动词，
 以便用简单名字引用（不需要加区域后缀）调用功能区域中所需的动词。可以将<code>plot</code>区域中的定义
 视为该工具包的私有实现，而通过在<code>z</code>区域中定义而公开的名字是公共或发布的接口。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="打印精度"><a class="header" href="#打印精度">打印精度</a></h1>
+<p>打印精度是显示数字时显示的位数。</p>
+<pre><code class="language-j">   1 % 3
+0.333333
+   10 % 3
+3.33333
+   100 % 3
+33.3333
+</code></pre>
+<p>使用列表和一些新的原语，现在可以更简洁地看明白打印精度：</p>
+<pre><code class="language-j">   (10 ^ i. 6) % 3
+0.333333 3.33333 33.3333 333.333 3333.33 33333.3
+</code></pre>
+<p>你可以猜到默认的打印精度是6，因为在每种情况下显示6位数字。</p>
+<pre><code class="language-j">   a =. 1e5 + 10 % 3
+   b =. a + 0.1
+   a
+100003
+   b
+100003
+   a = b
+0
+</code></pre>
+<p>如果只显示6个数字，a和b看起来是一样的，尽管它们并不相等。在这种情况下，你需要看到更多的数字。
+使用下面的动词可以改变打印精度。</p>
+<pre><code class="language-j">   pps 9
+   a
+100003.333
+   b
+100003.433
+</code></pre>
+<p>打印精度设为9，因此有足够的细节可以看到发生了什么。</p>
+<pre><code class="language-j">   pps 6
+   %3 9 13
+0.333333 0.111111 0.0769231
+   pps 12
+   %3 9 13
+0.333333333333 0.111111111111 0.0769230769231
+</code></pre>
+<p>默认的打印精度6对于大多数情况来说是足够的，因为你通常不需要看到所有这些额外的数字细节。
+然而，重要的是要知道额外的数字确实存在，只是为了方便起见，显示被缩短了。</p>
 
                     </main>
 
