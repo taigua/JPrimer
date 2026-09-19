@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>名词 - J Primer</title>
+        <title>容差 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,22 +176,59 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="名词"><a class="header" href="#名词">名词</a></h1>
-<p>在下面的句子中，数字<code>2</code>和<code>5</code>都是名词。</p>
-<pre><code class="language-j">   2 + 5
+                        <h1 id="容差"><a class="header" href="#容差">容差</a></h1>
+<p>这一部分有点高级，理解它并不重要。如果能理解，那很好。如果不明白，不要担心，直接进入下一部分。</p>
+<p>对于使用浮点数的某些工作，本节非常重要，同时还需要更详细地了解硬件如何存储和操作数值。然而，对于大多数工作，这部分可以忽略。</p>
+<p>在上一节的最后，我们看到计算机不能总是精确地表示数值。那么如果它们不能被精确地表示出来呢，我们怎么知道一个数是否等于另一个数？
+解决这个问题的方法是宽容比较的概念。也就是说，数值不必完全相同才能被认为是相等的。</p>
+<p>让我们通过实验来了解比较的宽容度如何，方法是逐渐使值远离100。使用输入行召回快捷键<code>Shift+Ctrl+Up</code>对于这类操作非常有用。</p>
+<pre><code class="language-j">   100 = 100
+1
+   100 = 99.999999999999986
+1
+   100 = 99.99999999999998
+1
+   100 = 99.9999999999999
+1
+   100 = 99.999999999999
+1
+   100 = 99.99999999999
+0
 </code></pre>
+<p>在上面的示例中，你越过了这条线，使得数值离100足够远，以至于它们不再被认为是相等的。让我们看另一个例子。</p>
+<pre><code class="language-j">   a =. 23
+   b =. a - 1e_12
+   c =. a - 1e_11
+   a
+23
+   a-b
+9.9831254374294076115e_13
+   a=b
+1
+   a-c
+1.0000889005823410116e_11
+   a=c
+0
+</code></pre>
+<p>a和b的值足够接近，可以认为是相等的。a和c的值不够接近，不能认为是相等的。
+足够接近和两个数值之间的差异相关。在这两种情况下，差异都很小，但b比c更接近a。
+阅读<a href="https://code.jsoftware.com/wiki/Vocabulary/eq#dyadic">NuVoc对=定义</a>，
+你将看到足够接近和不够接近之间的分界线是由较大的数值乘以默认容差值<code>2^_44</code>的结果决定的。
+也就是说，足够接近与否与数值的大小有关。</p>
+<p>将两个差异值和容差值进行比较：</p>
+<pre><code class="language-j">   (a - b , c) &lt;: tolerance    NB. Remember, this is equivalent to (a - (b,c)) due to right to left precedence.
+1 0
+</code></pre>
+<p>a和b之间的差异小于或等于容差，而a和c之间的差异则不是。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="013.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="056.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="015.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -199,13 +236,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="013.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="056.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="015.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                    </a>
             </nav>
 
         </div>

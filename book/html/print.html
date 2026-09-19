@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-2b307bc8.js";
+            window.path_to_searchindex_js = "searchindex-60ece90e.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-549beb36.js"></script>
+        <script src="toc-6c97aaea.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1697,6 +1697,51 @@ base  j     jcfg  jplot z
 <p>0.5和0.25被精确地存储，但是0.1被不精确地存储，当以最大精度显示时显示为0.10000000000000000555。</p>
 <p>这些都是计算机存储浮点数时无法该变的事实，适用于所有计算机语言，而不仅仅是J语言。
 通常你可以忽略这些细节，但如果你不知道发生了什么，它们有时会引起问题或困惑。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="容差"><a class="header" href="#容差">容差</a></h1>
+<p>这一部分有点高级，理解它并不重要。如果能理解，那很好。如果不明白，不要担心，直接进入下一部分。</p>
+<p>对于使用浮点数的某些工作，本节非常重要，同时还需要更详细地了解硬件如何存储和操作数值。然而，对于大多数工作，这部分可以忽略。</p>
+<p>在上一节的最后，我们看到计算机不能总是精确地表示数值。那么如果它们不能被精确地表示出来呢，我们怎么知道一个数是否等于另一个数？
+解决这个问题的方法是宽容比较的概念。也就是说，数值不必完全相同才能被认为是相等的。</p>
+<p>让我们通过实验来了解比较的宽容度如何，方法是逐渐使值远离100。使用输入行召回快捷键<code>Shift+Ctrl+Up</code>对于这类操作非常有用。</p>
+<pre><code class="language-j">   100 = 100
+1
+   100 = 99.999999999999986
+1
+   100 = 99.99999999999998
+1
+   100 = 99.9999999999999
+1
+   100 = 99.999999999999
+1
+   100 = 99.99999999999
+0
+</code></pre>
+<p>在上面的示例中，你越过了这条线，使得数值离100足够远，以至于它们不再被认为是相等的。让我们看另一个例子。</p>
+<pre><code class="language-j">   a =. 23
+   b =. a - 1e_12
+   c =. a - 1e_11
+   a
+23
+   a-b
+9.9831254374294076115e_13
+   a=b
+1
+   a-c
+1.0000889005823410116e_11
+   a=c
+0
+</code></pre>
+<p>a和b的值足够接近，可以认为是相等的。a和c的值不够接近，不能认为是相等的。
+足够接近和两个数值之间的差异相关。在这两种情况下，差异都很小，但b比c更接近a。
+阅读<a href="https://code.jsoftware.com/wiki/Vocabulary/eq#dyadic">NuVoc对=定义</a>，
+你将看到足够接近和不够接近之间的分界线是由较大的数值乘以默认容差值<code>2^_44</code>的结果决定的。
+也就是说，足够接近与否与数值的大小有关。</p>
+<p>将两个差异值和容差值进行比较：</p>
+<pre><code class="language-j">   (a - b , c) &lt;: tolerance    NB. Remember, this is equivalent to (a - (b,c)) due to right to left precedence.
+1 0
+</code></pre>
+<p>a和b之间的差异小于或等于容差，而a和c之间的差异则不是。</p>
 
                     </main>
 
