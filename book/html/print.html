@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-e6c8db8b.js";
+            window.path_to_searchindex_js = "searchindex-423eae14.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-f0421975.js"></script>
+        <script src="toc-6adb8161.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1759,6 +1759,24 @@ base  j     jcfg  jplot z
 以便能够忽略尚未介绍的部分，并挑选出已经介绍的部分</li>
 <li>用这些新的原语进行实验</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="原子"><a class="header" href="#原子">原子</a></h1>
+<p>由单独的实体构成的名词，是一个原子。</p>
+<pre><code class="language-j">   23
+   'a'
+   b =. 23
+   a =. 'q'
+</code></pre>
+<p>一个原子的维度为0。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="列表"><a class="header" href="#列表">列表</a></h1>
+<p>由一列原子构成的名词就是列表。</p>
+<pre><code class="language-j">   23 24 25
+   'this is a string'
+   b =. 7 14 21
+   a =. 'another string'
+</code></pre>
+<p>列表的维度为1。维度的长度是该维度中原子的数量。</p>
 
                     </main>
 
