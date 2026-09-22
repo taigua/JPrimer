@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>比较原语 - J Primer</title>
+        <title>表格 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,41 +176,44 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="比较原语"><a class="header" href="#比较原语">比较原语</a></h1>
-<p>如果左右参数相等，则双子<code>=</code>的结果为1，如果它们不同，则结果为0。</p>
-<pre><code>   23 = 34
-0
-   23 = 23
-1
-   a =. 'd'
-   a = 'c'
-0
-   7 + a = 'c'
-7
-   7 + a = 'd'
-8
+                        <h1 id="表格"><a class="header" href="#表格">表格</a></h1>
+<p>表格是由原子组成的二维阵列。表格不能像原子或列表那样直接写成字面量，而是必须用原语创建。
+双子<code>$ (shape)</code>可以创建表格。左边的参数表示每个维度中的元素数量，右边的参数提供用于填充表格的元素。</p>
+<pre><code class="language-j">   2 3 $ 7	NB. a 2 by 3 table of 7's
+7 7 7
+7 7 7
+   2 3 $ 7 8 9 10 11 12
+ 7  8  9
+10 11 12
+   2 3 $ 7 8	NB. cycle through atoms to get enough
+7 8 7
+8 7 8
+   3 4 $ 'abcdefghijklmnopqrstuv'
+abcd
+efgh
+ijkl
 </code></pre>
-<p>一些编程语言将比较原语（如<code>=</code>）的结果视为非数字的<code>True</code>和<code>False</code>值。在J中，比较的结果只是数字。</p>
-<p>还有其他几个比较动词：小于<code>&lt;</code>、小于等于<code>&lt;:</code>、大于<code>&gt;</code>和大于等于<code>&gt;:</code>。这些比较原语有时被称为关系原语。</p>
-<pre><code>   7 &lt; 8
-1
-   7 &lt; 7
-0
-   7 &lt;: 7
-1
+<p>单子<code>$ (shape of)</code>给出了它的参数的形状。形状是参数每个维度上元素数量的列表。</p>
+<pre><code class="language-j">   a =. 2 3 $ 7
+   $ a
+2 3
+</code></pre>
+<p>前面介绍的用于创建整数列表的单子<code>i. (integers)</code>可用于创建整数表格。</p>
+<pre><code class="language-j">   i.5		NB. list of 5 integers
+0 1 2 3 4
+   i. 2 3	NB. 2 by 3 table of integers
+0 1 2
+3 4 5
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="046.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="060.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="048.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -218,13 +221,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="046.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="060.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="048.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                    </a>
             </nav>
 
         </div>

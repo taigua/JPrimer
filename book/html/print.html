@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-423eae14.js";
+            window.path_to_searchindex_js = "searchindex-a7e3f4cd.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-6adb8161.js"></script>
+        <script src="toc-91e02d0f.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1777,6 +1777,36 @@ base  j     jcfg  jplot z
    a =. 'another string'
 </code></pre>
 <p>列表的维度为1。维度的长度是该维度中原子的数量。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="表格"><a class="header" href="#表格">表格</a></h1>
+<p>表格是由原子组成的二维阵列。表格不能像原子或列表那样直接写成字面量，而是必须用原语创建。
+双子<code>$ (shape)</code>可以创建表格。左边的参数表示每个维度中的元素数量，右边的参数提供用于填充表格的元素。</p>
+<pre><code class="language-j">   2 3 $ 7	NB. a 2 by 3 table of 7's
+7 7 7
+7 7 7
+   2 3 $ 7 8 9 10 11 12
+ 7  8  9
+10 11 12
+   2 3 $ 7 8	NB. cycle through atoms to get enough
+7 8 7
+8 7 8
+   3 4 $ 'abcdefghijklmnopqrstuv'
+abcd
+efgh
+ijkl
+</code></pre>
+<p>单子<code>$ (shape of)</code>给出了它的参数的形状。形状是参数每个维度上元素数量的列表。</p>
+<pre><code class="language-j">   a =. 2 3 $ 7
+   $ a
+2 3
+</code></pre>
+<p>前面介绍的用于创建整数列表的单子<code>i. (integers)</code>可用于创建整数表格。</p>
+<pre><code class="language-j">   i.5		NB. list of 5 integers
+0 1 2 3 4
+   i. 2 3	NB. 2 by 3 table of integers
+0 1 2
+3 4 5
+</code></pre>
 
                     </main>
 
