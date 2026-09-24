@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-14b68080.js";
+            window.path_to_searchindex_js = "searchindex-96a360c7.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-effa3e20.js"></script>
+        <script src="toc-1354ec70.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1857,6 +1857,59 @@ cdef
    $ 4		NB. atom has 0 axes and its shape is empty
    $ i. 5
 5
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="秩"><a class="header" href="#秩">秩</a></h1>
+<p>名词的秩是它的轴数。原子的秩为0，列表的秩为1，表格的秩为2，有5个轴的阵列的秩为5。
+阵列的秩非常重要，它在很大程度上决定了动词如何操作阵列。</p>
+<p>阵列的形是一个列表，其中的数字个数与阵列的轴数一样多。这意味着阵列的形的长度就是它的秩。</p>
+<pre><code class="language-j">   # $ 4	NB. atom has rank 0
+0
+   # $ 4 5 6	NB. list has rank 1
+1
+   # $ 2 3 $ 'a'	NB. table has rank 2
+2
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="空阵列"><a class="header" href="#空阵列">空阵列</a></h1>
+<p>如果阵列中没有原子，那么它就是空的。一个空阵列的形是0。</p>
+<pre><code class="language-j">   a =. 0 $ 0	NB. empty list
+   $a
+0
+   $ ''	NB. empty list
+0
+   b =. 2 0 3 $ 'a'	NB. empty rank 3 array
+   $b
+2 0 3
+</code></pre>
+<p>空阵列没有原子来显示，如果不知道该期望什么，那么显示可能会让人困惑。
+空阵列显示为空白行。一个0行的表格被当作0行来显示（即没有显示）；一个有3行0列的表格，显示为3个空白行。</p>
+<pre><code class="language-j">   2 $ 5
+5 5
+   1 $ 5
+5
+   0 $ 5	NB. empty list displays as blank line
+   2 2 $ 5
+5 5
+5 5
+   1 2 $ 5
+5 5
+   2 0 $ 5	NB. 2 rows displays 2 lines
+
+
+   0 2 $ 5	NB. 0 rows displays 0 lines
+</code></pre>
+<p>列表和表格的显示可以看起来是一样的，你必须查看它们的形来区分它们。</p>
+<pre><code class="language-j">   a =. 2 $ 5
+   b =. 1 2 $ 5
+   a
+5 5
+   b		NB. b displays the same as a
+5 5
+   $ a
+2
+   $ b		NB. but b has a different shape
+1 2
 </code></pre>
 
                     </main>
