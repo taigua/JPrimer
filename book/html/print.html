@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-96a360c7.js";
+            window.path_to_searchindex_js = "searchindex-e7652f11.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-1354ec70.js"></script>
+        <script src="toc-8e4740ba.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1327,7 +1327,7 @@ end.
 <p><code>try.</code>控制结构是一个有趣的结构。它执行B块句子，如果没有错误，它就跳到结构的末尾。但是，如果出现错误，则执行B1块。</p>
 <p><code>while.</code>控制结构执行T块，如果其结果不为0，则执行B块并继续执行，直到T块的结果为0。如果T块第一次为0，则B块不执行。</p>
 <p><code>whilst.</code>控制结构与<code>while.</code>相同，除了T块第一次被跳过。这意味着B块总是至少执行一次。</p>
-<p>在<code>for.</code>控制结构中，B块对数组A中的每一项求值一次，该数组A是由求值T块产生的。在<code>for_i.</code>形式中，
+<p>在<code>for.</code>控制结构中，B块对阵列A中的每一项求值一次，该阵列A是由求值T块产生的。在<code>for_i.</code>形式中，
 局部名字<code>i</code>被设置为每次对B块求值时项的值，<code>i_index</code>被设置为该项的索引。控制词<code>break.</code>跳到<code>for.</code>控制结构的结尾，
 控制词<code>continue.</code>跳到B块对下一项的进行求值。</p>
 <p>在<code>select.</code>控制结构中，T的结果<strong>R</strong>与Ti的结果Ri进行比较，第一个匹配的<code>case.</code>或<code>fcase.</code>中的Bi将被执行。
@@ -1910,6 +1910,58 @@ cdef
 2
    $ b		NB. but b has a different shape
 1 2
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="单原子阵列"><a class="header" href="#单原子阵列">单原子阵列</a></h1>
+<p>只有一个原子的阵列称为单例。具有相同原子的所有单例都以相同的方式显示。
+然而，它们有不同的秩这一事实影响了动词对它们的作用。对于初学者来说，这可能是一个陷阱。
+重要的是要记住，如果它显示为原子，但行为不像原子，那么检查它的秩。</p>
+<pre><code class="language-j">   atom =. 5
+   list =. 1 $ 5
+   atom
+5
+   list	NB. list looks like atom
+5
+   atom + 23 23 23
+28 28 28
+   list + 23 23 23	NB. but does not behave like atom
+|length error
+|   list    +23 23 23
+   # $ atom	NB. rank of atom is 0
+0
+   # $ list	NB. rank of list is 1
+1
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="动词参数"><a class="header" href="#动词参数">动词参数</a></h1>
+<p>J的很大一部分功能在于动词将其参数视为一系列部分的能力。
+动词将自己应用于每个部分，创建一系列部分结果，然后将部分结果组装成最终结果。
+接下来的几节将详细描述它的工作原理以及使用它可以做些什么。</p>
+<p>让我们看几个例子，以了解后续学习方向。</p>
+<pre><code class="language-j">   m =. i. 2 2
+   m
+0 1
+2 3
+</code></pre>
+<p>你可以将具有相同秩和形的阵列加在一起。</p>
+<pre><code class="language-j">   m + 2 2 $ 10 11 12 13
+10 12
+14 16
+</code></pre>
+<p>也可以把单个数值和阵列相加。</p>
+<pre><code class="language-j">  10 + m
+10 11
+12 13
+</code></pre>
+<p>如果你想给第一行加上一个数值，给第二行加上另一个数值呢？</p>
+<pre><code class="language-j">   10 20 + m
+10 11
+22 23
+</code></pre>
+<p>但是如果你想把这些数值加到列上呢？那你必须明确想要加到列上而不是行上。</p>
+<pre><code class="language-j">   10 20 +"1 m
+10 21
+12 23
 </code></pre>
 
                     </main>
