@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>数值常量 - J Primer</title>
+        <title>框架和单元格 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,24 +176,57 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="数值常量"><a class="header" href="#数值常量">数值常量</a></h1>
-<p>你已经看到了单个数字的使用。也可以有一个数字列表。</p>
-<pre><code class="language-j">   num =. 5
-   nums =. 23 0.5 12.5 7e6 _12 7
+                        <h1 id="框架和单元格"><a class="header" href="#框架和单元格">框架和单元格</a></h1>
+<p>到目前为止，名词一直被视为整体。但是，将阵列视为由单元格组成是有用的，
+单元格是阵列的一部分（子阵列），当将其放置在框架中时，就构成了整个阵列。</p>
+<pre><code class="language-j">   a =. 2 3 $ 'abcdef'
+   a
+abc
+def
 </code></pre>
-<p>你将会对数字列表做更多操作，但现在我们只想建立这样一个列表。</p>
+<p>阵列<code>a</code>可以被认为有<code>6</code>个单元格，每个单元格是一个原子。框架的形是<code>2 3</code>，
+将<code>6</code>个单独的单元格组装到阵列<code>a</code>中。视觉上（单元格是原子，框架是<code>2 3</code>）：</p>
+<pre><code class="language-j">	a       cell 0
+	b       cell 1
+	...
+	f       cell 5
+</code></pre>
+<p>阵列<code>a</code>也可以被认为有<code>2</code>个单元格，其中每个单元格是一个列表。框架的形是<code>2</code>，
+将单元格组装到阵列<code>a</code>中。视觉上（单元格是列表，框架是<code>2</code>）：</p>
+<pre><code class="language-j">	abc   cell 0
+	def   cell 1
+</code></pre>
+<p>最后，可以认为阵列<code>a</code>有一个单元格，其中单元格是一个表格。框架的形为空，
+将单元格组装到阵列<code>a</code>中。视觉上（单元格是表格，框架是空的）：</p>
+<pre><code class="language-j">	abc   cell 0
+	def
+</code></pre>
+<p>形为<code>2 3</code>的表格可以理解为：</p>
+<ul>
+<li>一个以原子为单元格，形为<code>2 3</code>的框架</li>
+<li>一个以列表（形为<code>3</code>）为单元格，形为<code>2</code>的框架</li>
+<li>一个以表格（形为<code>2 3</code>）为单元格的空框架</li>
+</ul>
+<p>类似地，形为<code>4 3 2</code>的阵列可以被认为是：</p>
+<ul>
+<li>一个以原子为单元格，形为<code>4 3 2</code>的框架</li>
+<li>一个以列表（形为<code>2</code>）为单元格，形为<code>4 3</code>的框架</li>
+<li>一个以表格（形为<code>3 2</code>）为单元格，形为<code>4</code>的框架</li>
+<li>一个以秩为3的阵列（形为<code>4 3 2</code>）为单元格的空框架</li>
+</ul>
+<p>框架是阵列形的前缀。它可以是整个形（以整个形作为前缀），在这种情况下，单元格是原子。
+它可以为空（空前缀），在这种情况下，以整个阵列作为单一单元格。或者介于两者之间。</p>
+<p>单元格的形是去掉框架前缀后阵列的形。单元格形的长度就是单元格的秩。</p>
+<p>阵列的单元格是子阵列，当它们组装到相应的框架中时，就创建了整个阵列。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="025.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="068.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="027.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -201,13 +234,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="025.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="068.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="027.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                    </a>
             </nav>
 
         </div>
