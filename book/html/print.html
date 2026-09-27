@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-015abd73.js";
+            window.path_to_searchindex_js = "searchindex-c728851e.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9d18c45d.js"></script>
+        <script src="toc-0e91da16.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2006,6 +2006,24 @@ def
 它可以为空（空前缀），在这种情况下，以整个阵列作为单一单元格。或者介于两者之间。</p>
 <p>单元格的形是去掉框架前缀后阵列的形。单元格形的长度就是单元格的秩。</p>
 <p>阵列的单元格是子阵列，当它们组装到相应的框架中时，就创建了整个阵列。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="项"><a class="header" href="#项">项</a></h1>
+<p>阵列通常被视为具有长度为1的框架。在这种框架中，阵列的单元格的秩小于阵列的秩。这些单元格是数组的<strong>项</strong>。</p>
+<p>列表中的项是列表中的原子。</p>
+<p>表格中的项是表格中的行。</p>
+<p>秩为3的阵列的项是阵列中的表格。</p>
+<p><strong>阵列是它的项的列表。</strong></p>
+<p>一个原子有一个项，它自己。</p>
+<p>名词的计数（<code># (tally)</code>）是名词中项的数量。</p>
+<pre><code class="language-j">   # 23
+1
+   # 1 $ 5
+1
+   # i. 5
+5
+   # i.2 3
+2
+</code></pre>
 
                     </main>
 
