@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-c728851e.js";
+            window.path_to_searchindex_js = "searchindex-85f9ef62.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-0e91da16.js"></script>
+        <script src="toc-3610ca81.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2008,7 +2008,7 @@ def
 <p>阵列的单元格是子阵列，当它们组装到相应的框架中时，就创建了整个阵列。</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="项"><a class="header" href="#项">项</a></h1>
-<p>阵列通常被视为具有长度为1的框架。在这种框架中，阵列的单元格的秩小于阵列的秩。这些单元格是数组的<strong>项</strong>。</p>
+<p>阵列通常被视为具有长度为1的框架。以这种框架看阵列，其单元格的秩比阵列的秩小1。这些单元格是阵列的<strong>项</strong>。</p>
 <p>列表中的项是列表中的原子。</p>
 <p>表格中的项是表格中的行。</p>
 <p>秩为3的阵列的项是阵列中的表格。</p>
@@ -2024,6 +2024,27 @@ def
    # i.2 3
 2
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="k元格"><a class="header" href="#k元格">k元格</a></h1>
+<p>秩为k的单元格也称为k秩单元格或k元格。0元格是一个原子，1元格是一个列表，2元格是一个表格，以此类推。
+如果一个名词的单元格的秩是已知的，那么它的框架就是它的形除去单元格的秩所剩下的东西。</p>
+<p>也可以使用负数，如<code>_2</code>元格和<code>_1</code>元格；这种单元格的框架的长度由其负数秩的绝对值表示。你之前已经见过<code>_1</code>元格：它们是项。</p>
+<pre><code class="language-j">  abc =. 4 3 2 $ i. 24
+</code></pre>
+<p>名词<code>abc</code>可以理解为：</p>
+<ul>
+<li><code>4 3 2</code>框架装着0元格</li>
+<li><code>4 3</code>框架装着1元格</li>
+<li><code>4</code>框架装着2元格</li>
+<li>空框架装着3元格</li>
+</ul>
+<p>更通用的表达方式是：</p>
+<ul>
+<li>秩为3的框架装着0元格</li>
+<li>秩为2的框架装着1元格</li>
+<li>秩为1的框架装着2元格</li>
+<li>秩为0的框架装着3元格</li>
+</ul>
 
                     </main>
 
