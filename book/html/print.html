@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-85f9ef62.js";
+            window.path_to_searchindex_js = "searchindex-8f79137f.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-3610ca81.js"></script>
+        <script src="toc-ffd0dae7.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2045,6 +2045,33 @@ def
 <li>秩为1的框架装着2元格</li>
 <li>秩为0的框架装着3元格</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="动词的秩"><a class="header" href="#动词的秩">动词的秩</a></h1>
+<p>动词也有秩，决定了它如何应用于其参数。秩为<strong>k</strong>的单子应用于其参数的<strong>k</strong>元格。
+左秩<strong>kl</strong>和右秩<strong>kr</strong>的双子应用于左参数的<strong>kl</strong>元格和右参数的<strong>kr</strong>元格。
+动词的秩是一个强大的工具，它控制着动词应用于阵列的方式。</p>
+<p>原语动词的秩在NuVoc定义中给出。例如，查找<code>+</code>的定义。秩信息紧挨着标题中的动词名称。
+对于<code>+</code>，显示为<code>0 Conjugate</code>，这表明单子<code>+ (Conjugate)</code>适用于原子。
+双子<code>+ (Plus)</code>的秩是<code>Plus 0 0</code>，表示它适用于左参数和右参数的每个原子。</p>
+<p>让我们看看把两个表相加时它是如何工作的。</p>
+<pre><code class="language-j">   a =. i. 2 3
+   b =. 6 + a
+   a
+0 1 2
+3 4 5
+   b
+6  7  8
+9 10 11
+   a + b
+ 6  8 10
+12 14 16
+</code></pre>
+<p>双子<code>+</code>的左秩是0。这意味着它应用于左参数的原子。类似地，右秩为0，也应用于其右参数的原子。
+动词从其左参数中获取一个原子，从其右参数中获取一个原子，并将它们相加以创建部分结果。
+它对来自左右参数的每个原子执行此操作，并创建适当数量的部分结果，然后将其组装到结果框架中以创建最终结果。</p>
+<p>在上面的例子中，动词<code>+</code>的左秩为0。这意味着左参数被看作是一个装着原子的<code>2 3</code>框架。
+类似地，右秩为0意味着右参数被视为装着原子的<code>2 3</code>框架。</p>
+<p>结果的框架是由参数的框架决定的，所以它的框架也是<code>2 3</code>，其每个单元格都是左参数中的一个原子和右参数中的一个原子相加的结果。</p>
 
                     </main>
 
