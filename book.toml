@@ -6,16 +6,16 @@ language = "zh-CN"
 [output.html]
 mathjax-support = true
 
-[output.pandoc.markdown.extensions]
-math = true
+#[output.pandoc.markdown.extensions]
+#math = true
 
-[output.pandoc.profile.pdf]
-output-file = "JPrimer.pdf"
-to = "latex"
-pdf-engine = "xelatex"
+#[output.pandoc.profile.pdf]
+#output-file = "JPrimer.pdf"
+#to = "latex"
+#pdf-engine = "xelatex"
 
-[output.pandoc.profile.pdf.variables]
-colorlinks = true
-fontsize = "12pt"
-mainfont = "新宋体"
-mainfontoptions = ["BoldFont=黑体", "ItalicFont=楷体"]
+#[output.pandoc.profile.pdf.variables]
+#colorlinks = true
+#fontsize = "12pt"
+#mainfont = "新宋体"
+#mainfontoptions = ["BoldFont=黑体", "ItalicFont=楷体"]

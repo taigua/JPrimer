@@ -1,0 +1,2212 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>J Primer</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-1d84f11a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-48aac53d.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">J Primer</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="从这里开始"><a class="header" href="#从这里开始">从这里开始</a></h1>
+<p>J是一种通用的高级编程语言。如果您是J的新手，并且想成为一名J程序员，那么这是一个很好的起点。
+即使您有相当丰富的编程经验，J也有很多独特之处，在深入研究之前，至少浏览一下这些内容是值得的。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="为什么学j"><a class="header" href="#为什么学j">为什么学J？</a></h1>
+<p>J是一种非常丰富的语言。你可能学习和使用它很多年，但仍然认为自己是个初学者。这与Basic或Java等更简单的语言形成鲜明对比，
+在这些语言中，数月的努力学习和使用将使您成为专家。成为一名专家J程序员所需要的努力与成为一名专家c++程序员所需要的努力更接近。</p>
+<p>好消息是，J的本质是如此简单和一致，你可以很快地学会解决真正有趣的问题。</p>
+<p>学习足够的Basic或Java来解决琐碎的问题更容易，但学习足够的J来解决更有趣和更具挑战性的问题更容易。
+一旦你掌握了这种水平的技能，你就不会走到路的尽头，而是可以继续提高，使自己成为一个更好、更强大的程序员。</p>
+<p>J尤其擅长对阵列数据进行数学、统计和逻辑方面的分析。它是一个强大的工具，可以为老问题构建新的更好的解决方案，
+甚至可以更好地找到尚未完全理解的问题的解决方案。</p>
+<p>作为一种通用编程语言，J系统还提供：</p>
+<ul>
+<li>两个集成的开发环境。JHS和JQt</li>
+<li>标准库、实用程序和包</li>
+<li>为应用程序构建事件驱动图形用户界面（JQt）</li>
+<li>几种与其他编程语言和应用程序接口的方法</li>
+<li>快速应用程序原型和开发</li>
+<li>免版税发布应用程序的运行时版本</li>
+</ul>
+<p>如果你对具有挑战性的数据处理问题的编程解决方案感兴趣，那么在学习J上投入的时间将是值得的。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="本书的目标"><a class="header" href="#本书的目标">本书的目标</a></h1>
+<p><a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>是J语言的权威和明确的规范。<a href="https://www.jsoftware.com/help/dictionary/contents.htm">J字典</a>也可以用来学习J，但正因为它简洁、完整且严谨地涵盖了这门语言，并且更侧重于复杂之处而非寻常之处，它确实把我们中的一些人吓跑了。</p>
+<p>本书为初学者提供了一个更亲切、更温和的起点。它带着你沿着一条路径，以轻松的步骤逐步前进，直到你能够用J语言编写应用程序。
+在这个过程中，你会通过简化和具体的情境来接触J的所有关键概念。这本手册的目的是让你快速上手，达到能够使用NuVoc和J字典的程度，
+并且用起来会让你纳闷：当初为什么还要为这些简单的东西费心呢？</p>
+<p>你应该能够相当快地完成入门，最后将成为入门级的J程序员。这样，你将比最有经验的Basic或Java程序员拥有更强大的编程能力。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="需要的背景知识"><a class="header" href="#需要的背景知识">需要的背景知识</a></h1>
+<p>本书假设你熟悉另一种编程语言，如Basic、Java或C。然而，这不是先决条件，即使J是你的第一门计算机语言，
+应该也不会有什么特别的问题（实际上，更应祝贺你！）。</p>
+<p>大多数事情都可以在J中完成，就像在其他语言中完成一样，并且通常一个主题的引入方式和在其他语言中引入它一样，
+这使得在J中更容易理解它是如何工作的。在某些情况下，有一种更好的J方法来解决问题，也会介绍这种方法。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="如何使用本书"><a class="header" href="#如何使用本书">如何使用本书</a></h1>
+<p>本书是一系列小的，易消化的部分，适合从头到尾按顺序阅读。一个章节通常需要你读过大部分甚至所有之前的章节。
+跳来跳去毫无意义，而且可能令人沮丧。</p>
+<p>本书是自包含的，可以在不访问J系统的情况下读取。特别是，与J系统交互的示例显示了输入的内容以及系统如何响应。
+然而，它的目的是在访问系统和尽可能多地使用系统的情况下读取。强烈建议你最后输入所有示例，并尽可能多地把玩它们的变体。</p>
+<p>有时章节使用的术语和概念直到后面才定义。这就要求你在第一次阅读时有一个初步的理解并继续，在第二次阅读时它们将变得更加具体。</p>
+<p>本书最好读三遍：</p>
+<ul>
+<li>浏览整本书。可以尝试一些例子，但最好持续前进，了解全局。</li>
+<li>第二次仔细阅读并尝试所有的例子。</li>
+<li>第三次尝试自己的例子来澄清你的理解，并提升你实际使用系统机制的舒适度（而不仅仅是阅读它和遵循说明）。</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="开始"><a class="header" href="#开始">开始</a></h1>
+<p>本章假设你在<a href="https://code.jsoftware.com/wiki/Guides/Qt_IDE">JQt IDE</a>（交互式开发环境）中使用<a href="https://code.jsoftware.com/wiki/System/Installation">最新版本的J</a>。</p>
+<p>Term窗口是一个执行窗口。你在Term窗口中键入J语句，当按Enter键时，J将执行它们并显示结果。</p>
+<p>在Term窗口中键入以下行并按Enter键。</p>
+<pre><code class="language-j">   2 + 3
+</code></pre>
+<p>语句被执行并显示结果。输入以下行并按Enter键。</p>
+<pre><code class="language-j">   5 - 3
+</code></pre>
+<p>你的会话应该看起来像这样：</p>
+<pre><code class="language-j">   2 + 3
+5
+   5 - 3
+2
+</code></pre>
+<p>你输入的行缩进三个空格，J的答案从行首开始。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="实验"><a class="header" href="#实验">实验</a></h1>
+<p>我们鼓励你去尝试。尝试用不同的数字输入类似的行。很明显，<code>+</code>是加法，<code>-</code>是减法。
+输入一些用<code>*</code>表示乘，用<code>%</code>表示除的行。通过使用<code>%</code>，你将很快看到结果可以是<code>2.5</code>这样的数字，并且它们也可以用作参数。</p>
+<p>在你有更多的经验之前，你有时可能会对你所观察到的东西感到惊讶甚至不安。一步一步来。尝试一些你确信你已经知道答案的例子，
+并做实验来证实你的理解。如果一个结果让你太困惑，早期阶段不要花时间在它上面。</p>
+<pre><code class="language-j">   3 - 5
+_2
+</code></pre>
+<p><code>_2</code>，而不是<code>-2</code>，可能会让你困惑。别担心，一会儿就会解释的。</p>
+<p>本书中的大多数示例会显示你应输入的内容（缩进三个空格），同时也会显示系统返回的结果。这意味着你可以轻松地通读本入门手册，
+无需实际操作系统即可查看结果。然而，真正学会的唯一途径，最终还是靠你亲自尝试这些示例，并用自己的想法进行实验。
+示例采用等宽字体显示，与它们在系统Term窗口中的呈现方式基本一致。部分示例会使用较大的字体，以便你更轻松地阅读并在系统中
+输入——这通常出现在你可能因对某些词汇不熟悉而输错内容，或者输入错误可能导致令人困惑的结果时。</p>
+<p>在做实验的时候，你经常想对你已经输入过的句子做一些细微的改变。有几个捷径可以使这更容易。在Term窗口中，
+你可以将光标移动到窗口中的任意行，然后按Enter键，将该行作为窗口底部的新行，以便进行编辑。
+通过按住Ctrl+Shift并按向上箭头键，可以调出以前的输入行进行编辑，持续按向上箭头直到看到想要处理的行。</p>
+<p>大多数小节中的示例都是独立的，但小节的后面部分可能依赖于前面部分中采取的步骤。
+有些小节依赖于前面几节中采取的步骤，但这应该是相当明显的。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="标准配置"><a class="header" href="#标准配置">标准配置</a></h1>
+<p>本书中的示例假设系统在JQt IDE中启动时运行标准配置文件。这将配置你的系统并提供一些标准实用程序。</p>
+<p>在Term窗口中输入CR（大写字母C后跟大写字母R），以快速检查配置文件是否已运行。</p>
+<pre><code class="language-j">   CR
+
+</code></pre>
+<p>如果运行结果是空行，那么标准配置文件已经运行，你可以跳过本节的其余部分。</p>
+<p>相反，如果你看到：</p>
+<pre><code class="language-j">   CR
+|value error
+</code></pre>
+<p>那么你必须更改系统，以便运行标准配置文件。一个正常的J安装总是被配置为运行标准配置。
+参考<a href="https://code.jsoftware.com/wiki/System/Installation">安装J</a>。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="术语"><a class="header" href="#术语">术语</a></h1>
+<p>所有的编程语言都与英语有共同之处。在类比含义接近的情况下，J编程语言倾向于使用英语术语，而不是数学和其他编程语言中使用的术语。</p>
+<p>像在其他语言中一样，你可以说“代码行”，但在J语言中，倾向于说“句子”。类似地，你可以把<code>+</code>称为“函数”，但在J中通常称为“动词”。</p>
+<p>J使用的英语术语有：字母表、单词、句子、短语、动词、名词、副词和连词。</p>
+<p>采用这种方法有几个原因。它解决的一个问题是：传统术语在数学和许多编程语言中有大量相关但又微妙不同的用法。
+例如：函数、子函数、运算符、程序、例程和子例程在不同的编程语言中都以略有不同的方式使用。
+J没有继承这种混乱，而是采用自己的术语，并在其上下文中精确地定义它们。</p>
+<p>使用英语术语可以让你很好地了解术语在J中的一般含义。此外，使用自然语言术语可以鼓励和促进对问题进行英语陈述，
+并更直接地编写相应的J句子。</p>
+<p>我们鼓励使用J术语，但肯定不是强制性的，使用术语“函数”而不是“动词”是完全可以接受的。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="字母表"><a class="header" href="#字母表">字母表</a></h1>
+<p>J编程语言的字母表是ASCII字母表，由以下部分组成：</p>
+<pre><code>26 lowercase letters (a to z)
+26 uppercase letters (A to Z)
+0 1 2 3 4 5 6 7 8 9
+ = &lt; &gt; _
+ + * - %
+ ^ $ ~ |
+. : , ;
+# ! / \
+[ ] { }
+" ` @ &amp; ?
+( )
+'
+</code></pre>
+<p>有几个字符有时会引起混淆。<code>-</code>（减号）字符不同于<code>_</code>（下划线）字符，并且有三种不同的引号字符：</p>
+<pre><code>'  quote
+"  double-quote
+`  back-quote
+</code></pre>
+<p>如果你尝试一个例子，输入<code>"</code>（双引号）误输入为<code>''</code>（两个单引号），你会感到失望，因为你的结果与书中的不一样。</p>
+<p>句号<code>.</code>通常称为点。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="单词"><a class="header" href="#单词">单词</a></h1>
+<p>单词是字母表中有意义的一组字符。</p>
+<pre><code class="language-j">   2.5 + 5
+</code></pre>
+<p>这个句子有三个单词：数字<code>2.5</code>，<code>+</code>和数字<code>5</code>。</p>
+<p>用字符组成句子中的单词的规则很简单，目前，常识足以识别句子中的单词。有一些复杂情况在后面的章节中讨论。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="句子"><a class="header" href="#句子">句子</a></h1>
+<p>句子是由一组单词组成的完整指令。</p>
+<p>下面的<code>2</code>加<code>5</code>指令就是一个J语言的句子。</p>
+<pre><code class="language-j">   2 + 5
+</code></pre>
+<p>与英语句子不同，J语言的句子不以句号或其他标点符号结尾。</p>
+<p>相反，J编程语言的句子通常是一个完整的行。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="动词"><a class="header" href="#动词">动词</a></h1>
+<p>在下面的句子中<code>+</code>是动词（表示动作的单词）。</p>
+<pre><code class="language-j">   2 + 5
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="名词"><a class="header" href="#名词">名词</a></h1>
+<p>在下面的句子中，数字<code>2</code>和<code>5</code>都是名词。</p>
+<pre><code class="language-j">   2 + 5
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="数字"><a class="header" href="#数字">数字</a></h1>
+<p>以下这些是数字：0 12 02.5 12.75 0.5 7e6</p>
+<p>输入这些数字或其他数字，用动词<code>+</code> <code>-</code> <code>*</code> <code>%</code>组成简单句子。</p>
+<pre><code class="language-j">  2 * 12.75
+25.5
+</code></pre>
+<p>一个重要的规则是数字不能以点（<code>.</code>）开头。</p>
+<pre><code class="language-j">  0.5
+0.5
+   0.5 + 3
+3.5
+   .5
++-+-+
+|.|5|
++-+-+
+   .5 + 3
+|syntax error
+|        .5+3
+</code></pre>
+<p>显然，<code>.5</code>和<code>0.5</code>不一样。你现在不需要知道<code>.5</code>是什么，但重要的是明白数字不是以点开头的。</p>
+<p><code>_</code>（下划线）是无穷大，是一个数字。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="负数"><a class="header" href="#负数">负数</a></h1>
+<p>负数用<code>_</code>（下划线）表示，而不是<code>-</code>（减号）。</p>
+<pre><code class="language-j">   5 + _3
+2
+   _7
+_7
+   _5e_3
+_0.005
+   5 - 9
+_4
+</code></pre>
+<p>去掉<code>-</code>和<code>9</code>之间的空白并不会改变含义。</p>
+<pre><code class="language-j">   5 -9
+_4
+</code></pre>
+<p><code>-</code>总是动词。这简化了识别句子的规则，因为没有把<code>-</code>直接用在数字左边这种特殊情况。
+代价就是，既然<code>-</code>总是一个动词，则需要另一个字符<code>_</code>（下划线）来拼写负数。</p>
+<p><code>_</code>用于拼写数字，放在有<code>0</code> <code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code>，<code>.</code> 以及表示指数符号的<code>e</code>组成的数字前；表示一个负数。</p>
+<p><strong>记住</strong>：数字前面的·_·是数字的一部分，表示它是负数，而<code>-</code>总是一个动词，不是数字的一部分。</p>
+<p><code>__</code>（两个下划线）表示负无穷，是一个数字。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="原语"><a class="header" href="#原语">原语</a></h1>
+<p>原语是由系统定义的一个单词。例如，<code>+</code>是一个原语。原语的含义是固定的，不能改变。</p>
+<p>原语可以由一个图形字符（如<code>+</code>）拼写的，或者用图形字符加上一个表示变形的字符（点号或冒号）拼写，如<code>+.</code>或者<code>+:</code>。</p>
+<p>原语也可以由一个或多个字母后跟一个点号或冒号拼写。例如，<code>i.</code>是一个原语，根据它的使用方式的不同，被称为<strong>生成索引</strong>或<strong>求索引</strong>。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="名字"><a class="header" href="#名字">名字</a></h1>
+<p>原语是由系统定义的单词，而名称是由你定义的单词。原语<code>=.</code>定义一个名字。</p>
+<pre><code class="language-j">   5 + v
+28
+</code></pre>
+<p>这个句子可以读作<code>v</code>是<code>23</code>。单词<code>=.</code>叫做<strong>系动词</strong>（另一个很好的英语术语）。名字<code>v</code>被定义为数字<code>23</code>，可以用在其他句子中。</p>
+<p>与原语不同，名字可以重新定义。</p>
+<pre><code class="language-j">   v =. 45
+   5 + v
+50
+</code></pre>
+<p>当句子以系动词开始时，系统不会显示句子的结果。只包含名字的句子将显示名字所定义内容的显示形式。</p>
+<pre><code class="language-j">   abc =. 123
+   abc
+123
+</code></pre>
+<p>你可以给任何东西起名字。例如，你可以给动词<code>+</code>起一个名字。</p>
+<pre><code class="language-j">   plus =. +
+   23 plus 45
+68
+</code></pre>
+<p><code>abc =. def</code>的一般读作：<code>abc</code>被定义为<code>def</code>。然而，借用其他计算机语言，也常说：<code>abc</code>被赋值为<code>def</code>或将值<code>def</code>赋给abc。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="注释"><a class="header" href="#注释">注释</a></h1>
+<p>原语<code>NB.</code>开始一个注释，该注释一直到行尾结束。</p>
+<pre><code class="language-j">   2 + 23   NB. this is a comment and is not executed
+25
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="错误"><a class="header" href="#错误">错误</a></h1>
+<p>句子中的错误将会被报告并停止执行。</p>
+<pre><code class="language-j">   123 foo 234
+|value error: foo
+|   123     foo 234
+</code></pre>
+<p>一条竖线标记了错误报告。如果可以的话，句子会用额外的空格来标记检测到错误的地方。
+在J9.4版本中，错误消息得到了改进，使调试更加容易。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="两可性"><a class="header" href="#两可性">两可性</a></h1>
+<p>每个动词都有两种定义：当它同时有左参数和右参数时使用双子（<strong>dyad</strong>），当它只有右参数时使用单子（<strong>monad</strong>）。
+这两个定义通常是相关的，比如<code>-</code>的双子定义表示减法，而单子定义表示求负。</p>
+<pre><code class="language-j">   5 - 3
+2
+   - 7
+_7
+</code></pre>
+<p>双子也被称为动词的二元模式，而单子被称为动词的一元模式。
+“两可性”一词用于化学意义上的两种价态，表明一个动词既可以与一个参数反应，也可以与两个参数反应。</p>
+<p><strong>记住</strong>：绝大多数动词都有单子和双子两种定义。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="双子"><a class="header" href="#双子">双子</a></h1>
+<p>如果一个动词同时有左参数和右参数，则使用动词的二元模式。</p>
+<p>双子<code>%</code>（除以）被定义为左参数除以右参数。</p>
+<pre><code class="language-j">   5 % 2
+2.5
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="单子"><a class="header" href="#单子">单子</a></h1>
+<p>当动词只有一个右参数时，使用动词的一元模式。</p>
+<p>单子<code>%</code>（倒数）被定义为1除以右边的参数。</p>
+<pre><code class="language-j">   % 2
+0.5
+</code></pre>
+<p>单子<code>%</code>和双子<code>%</code>之间的关系很常见，其中单子是带有固定左参数的双子，你会在许多其他原语动词中看到这种关系。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="nuvoc---新词汇表"><a class="header" href="#nuvoc---新词汇表">NuVoc - 新词汇表</a></h1>
+<p><a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>（菜单Help|Vocabulary）是最新的J参考，
+是你关于J的最终、权威信息来源。你越早熟悉使用它越好，一个好的开始方法是查找到目前为止介绍的原语。</p>
+<p>在JQt IDE中，按<code>F1</code>显示<code>NuVoc</code>，并单击原语跳转到条目。如果你按下<code>F1</code>同时按住<code>Ctrl</code> (<code>Mac</code>的<code>Cmd</code>)，
+你会得到上下文敏感的帮助。如果光标在<code>+</code>处，按<code>Ctrl+F1</code>将跳转到原语<code>+</code>的条目。</p>
+<p>在<code>NuVoc</code>中，查看包含<code>+</code>的第6行。这一行的第一项包含：<code>+ 0 Conjugate . Plus 0 0</code>。
+单词<code>+</code>是动词。它的单子称为求共轭，它的双子称为加法，就像算术中定义的那样。</p>
+<p>单子<code>+</code>很有趣。在数学中，复数的共轭是实部相同，虚部相反的数。在实数上求共轭没有作用，结果是参数本身，
+在复数上它改变虚部的符号。J支持复数，就像直接支持整数或实数一样。复数用<code>j</code>分隔实部和虚部来表示。</p>
+<pre><code class="language-j">   int =. 23
+   + int
+23
+   float =. 23.5
+   + float
+23.5
+   imagine =. 2j3    NB. 2 real part, 3 imaginary part
+   + imagine	     NB. change sign of imaginary part
+2j_3
+</code></pre>
+<p>许多原语支持复数，<code>NuVoc</code>必须对此进行记录，这意味着在某些描述中存在一些额外的复杂性。
+如果你的应用程序中需要复数，这是非常棒的。但如果你是一个初学者，不关心复数，
+那么你必须知道足够的知识，从而能够忽略掉这些，而不会分心或困惑。</p>
+<p>让我们看一下wiki中的<code>Plus</code>条目。你可以通过点击<code>Plus</code>链接访问。这将带你到描述<code>+</code>的页面中间。
+wiki页面的上半部分是描述<code>Conjugate</code>的信息。<code>Plus</code>的标题行显示它是一个带参数<code>x</code>和<code>y</code>的双子动词。
+下面是一个指向<code>Rank 0 0</code>的链接，以及一个指向<em>为什么这很重要</em>的链接。你很快就会知道的。</p>
+<p>接着下面是<code>+</code>的简要描述。然后，该页面继续进行一般性讨论和示例。</p>
+<p>回到<code>NuVoc</code>，看看<code>+</code>列右边的<code>+.</code>条目，它包含：<code>+. Real/Imaginary . GCD (or)</code>，
+其中<code>Real/Imaginary</code>是双子，<code>GCD (or)</code>是单子。我们来看一下定义。</p>
+<p>参考页面的上半部分涵盖了<code>+.</code>的<code>Real/Imaginary</code>用法。下半部分覆盖<code>GCD (or)</code>。</p>
+<p>二元模式被描述为：<code>GCD (Or)</code>，它有两个非正式的名称，<code>GCD</code>和<code>Or</code>，表明它可以以两种不同的方式使用。
+请注意，<code>GCD</code>代表最大公约数（这至少应该唤起数学记忆）。进一步在定义中，你将发现，如果参数是布尔值，则<code>+.</code>是逻辑<strong>or</strong>函数。
+<code>GCD</code>是将<code>or</code>函数的域拓展到非布尔参数的有用扩展。这种原语域的扩展在J中很常见。现在有趣的是，请注意<code>+.</code>有这个较大的域，
+但也很容易把它限制到布尔参数上。</p>
+<pre><code class="language-j">   0 +. 0	NB. 0 or 0
+0
+   0 +. 1
+1
+   1 +. 0
+1
+   1 +. 1
+1
+</code></pre>
+<p>在<code>NuVoc</code>中再移动一列，我们可以看到词汇表条目<code>+:</code>包含: <code>Double . Not-Or</code>。该定义对单子和双子都给出了非常简单的定义。</p>
+<p>一元模式的情况称为加倍，它的作用正如你所期望的那样。</p>
+<pre><code class="language-j">   +:  3
+6
+</code></pre>
+<p>二元模式是实参逻辑或运算的否定。</p>
+<p>同样，<code>NuVoc</code>中的一些一般性讨论和示例现在可能超出了你的能力范围。但关键是要知道如何导航并获取相关信息。</p>
+<p><code>?</code>和<code>?.</code>行之后，有一些其他原语行，这些原语是由用点或者冒号作为后缀的名字组成的。
+在原语表的下面是一个辅助页面列表，它们解释了J的一些概念。它们中的一些在你完成本入门之后值得一看，
+因为它们提供了你将看到的一些概念的更详细的信息。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="第一个检查点"><a class="header" href="#第一个检查点">第一个检查点</a></h1>
+<p>到了这个检查点，你应该明白：</p>
+<ul>
+<li>如何使用J字典词汇表</li>
+<li>术语：单词、句子、名词、动词、矛盾词、双子、单子等</li>
+</ul>
+<p>通过做以下练习来检查你的理解：</p>
+<ul>
+<li>查找单子<code>+:</code> <code>*:</code> <code>-:</code> <code>%:</code>的定义</li>
+<li>试试这些新单子</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="数值常量"><a class="header" href="#数值常量">数值常量</a></h1>
+<p>你已经看到了单个数字的使用。也可以有一个数字列表。</p>
+<pre><code class="language-j">   num =. 5
+   nums =. 23 0.5 12.5 7e6 _12 7
+</code></pre>
+<p>你将会对数字列表做更多操作，但现在我们只想建立这样一个列表。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="字符串"><a class="header" href="#字符串">字符串</a></h1>
+<p>用单引号括起来的字符创建一个字符串。</p>
+<pre><code class="language-j">   char =. 'Q'
+   chars =. 'this is a list of characters' 
+</code></pre>
+<p>显示字符串时不显示单引号。</p>
+<pre><code class="language-j">   char
+Q
+   chars
+this is a list of characters
+</code></pre>
+<p>单引号用于字符串的开始和结束。一对单引号表示引号字符本身在字符串中。</p>
+<pre><code class="language-j">   'put 2 ''s to get 1 '' in the string'
+put 2 's to get 1 ' in the string
+</code></pre>
+<p>不匹配的单引号是错误的。</p>
+<pre><code class="language-j">   abc =. 'asdf
+|open quote
+</code></pre>
+<p>字符串可以为空。</p>
+<pre><code class="language-j">   abc =. ''
+</code></pre>
+<p>字符串也被称为字面值常量或字符常量。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="单词构成"><a class="header" href="#单词构成">单词构成</a></h1>
+<p>单子<code>;:</code>可以帮助你找出句子中的单词。单词构成原语以字符串作为其右参数，将其分割成单词，并返回结果，每个单词都在一个盒子中。
+先不要担心这些盒子是什么，只需注意它们在视觉上的帮助。你将在后面的部分中了解盒子。</p>
+<pre><code class="language-j">   ;: '2 + 3'
++-----+
+|2|+|3|
++-----+
+   ;: '2.5 + 3e4'
++---+-+---+
+|2.5|+|3e4|
++---+-+---+
+   ;: 'a =. 1 2 3'
++-+--+-----+
+|a|=.|1 2 3|
++-+--+-----+
+   ;: 'test + 123 NB. this is a comment'
++----+-+---+---------------------+
+|test|+|123|NB. this is a comment|
++----+-+---+---------------------+
+   ;: 'def =. ''testing 1 2 3'''
++---+--+---------------+
+|def|=.|'testing 1 2 3'|
++---+--+---------------+
+</code></pre>
+<p>请注意，以下都是J单词，每个单词都在自己的盒子里：</p>
+<pre><code class="language-j">2.5
+3e4
+=.
+1 2 3
+test
+NB. this is a comment
+'testing 1 2 3'
+</code></pre>
+<p>你可能会感到惊讶，诸如<code>1 2 3</code>和<code>'testing 1 2 3'</code>之类的常量都是J单词。
+这是很重要的一点，理解这一点在阅读和书写J句子时是必要的。</p>
+<p>如果你确实对一个J句子感到困惑（这是可能发生的），你可以做的一件事就是对它应用<code>;:</code>,
+以确保你知道构成它的单词。然后你就可以关注这些单词的意思了。</p>
+<p>在<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>中查找<code>;:</code>。<code>;:</code>的非正式名称单词构成。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="空格"><a class="header" href="#空格">空格</a></h1>
+<p>不需要空格来分隔原语和其他单词。另一方面，额外的空格也不会改变意思。</p>
+<pre><code class="language-j">   2+3
+5
+   2 + 3
+5
+   2    +    3
+5
+</code></pre>
+<p>本书中的大多数示例在所有原语周围都有空格。这使得单个单词显而易见，让你专注于单词的意思，而不需要先弄清哪些是单词。</p>
+<p>然而，大多数J程序员，随着他们变得越来越有经验，达到了可以轻松阅读句子中的单词的程度，而额外的空格变成了理解的麻烦和障碍，而不是帮助。
+你将注意到，在后面的一些示例中，省略了一些不必要的空格。</p>
+<p>在某些情况下，空间是必不可少的。</p>
+<p>名字之间必须用空格分隔。</p>
+<pre><code class="language-j">   a=.3
+   plus=.+
+   a plus a
+6
+   aplusa
+|value error: aplusa
+</code></pre>
+<p>而<code>.</code>（点）和<code>:</code>（冒号）用作单词屈折变化，将紧接在它们前面的单词变成一个新词。当它们用作原语或原语的开头时，
+必须在前面有一个空格，这样它们就不会被视为屈折。</p>
+<pre><code class="language-j">   ;: 'a . b'	NB. 3 words
++-+-+-+
+|a|.|b|
++-+-+-+
+   ;: 'a .b'	NB. same 3 words
++-+-+-+
+|a|.|b|
++-+-+-+
+   ;: 'a. b'	NB. 2 words
++--+-+
+|a.|b|
++--+-+
+</code></pre>
+<p>如上所示，<code>.</code>或者<code>:</code>如果不是用作屈折，则必须和它们之前的单词之间用空格分开。</p>
+<p>数字，例如1e7，可以包含字母。事实上，在J中，有几个字母可以用于拼写数字。而紧跟着数字的字母将被当作数字拼写的一部分。</p>
+<pre><code class="language-j">   plus =. +
+   1plus 3
+|ill-formed number
+|      1plus 3
+|      ^
+   1 plus 3
+4
+</code></pre>
+<p>必须用空格将数字与非数字组成部分的字母分开。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="优先级"><a class="header" href="#优先级">优先级</a></h1>
+<p>数学传统上认为乘法优先于加法。在数学课上，如果有人问你<code>2 + 3 * 4</code>等于多少，你要知道答案是<code>14</code>。</p>
+<p>如果只有几个函数和几个级别的优先级(除法|乘法|加法和减法)，这并不太令人困惑。但事情在诸如C这样的语言中会变得笨拙，
+因为有许多功能和优先级级别。</p>
+<p>由于J中有大量的动词，很难定义优先级，更不用说在阅读或编写时试图记住它了。
+此外，能够命名事物意味着你还必须弄清楚如何处理这个句子：</p>
+<pre><code class="language-j">   2 plus 3 times 4
+</code></pre>
+<p>与传统数学以及大多数其他编程语言不同，J没有动词优先级。你可能需要一点时间先停止乘法，但整体的简化是值得的。</p>
+<p>记住：<strong>没有</strong>动词优先级。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="括号"><a class="header" href="#括号">括号</a></h1>
+<p>数学和大多数编程语言（包括J语言）都使用括号来控制句子的求值。如果一个句子被完全括起来，
+那么大多数语言的求值顺序是相同的，并且不受动词优先级或任何其他规则的影响。</p>
+<pre><code class="language-j">      2 + (3 * 4)
+14
+   (2 + 3) * 4
+20
+   10 - (4 - 3)
+9
+   (10 - 4) - 3
+3
+</code></pre>
+<p>对这些答案没有任何异议。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="求值顺序"><a class="header" href="#求值顺序">求值顺序</a></h1>
+<p>如果省略括号，答案是什么？</p>
+<pre><code class="language-j">   10 - 4 - 3
+9
+</code></pre>
+<p>J对句子求值为：</p>
+<pre><code class="language-j">   10 - (4 - 3)
+9
+</code></pre>
+<p>大多数其他语言会将其求值为：</p>
+<pre><code class="language-j">   (10 - 4) - 3
+3
+</code></pre>
+<p>在没有括号的情况下，J从右到左隐式地产生语句。其他语言从左到右产生它们。
+一个更长的句子会让这看起来更清晰。</p>
+<pre><code class="language-j">   10 - 4 - 3 - 1
+8
+   10 - (4 - (3 - 1))	NB. J right-to-left
+8
+   ((10 - 4) - 3) - 1	NB. others left-to-right
+2
+</code></pre>
+<p>现在考虑一组一元动词。</p>
+<pre><code class="language-j">   - - - 4
+_4
+</code></pre>
+<p>每个人都知道如何加括号，每个语言都是一样的。</p>
+<pre><code class="language-j">   - (- (- 4))
+_4
+</code></pre>
+<p>分组是从右向左进行的，在这种情况下，其他语言和J一样。J总是从右向左插入括号，而其他语言对于不同的情况有不同的规则。</p>
+<p>J的求值顺序是从右到左。大多数其他语言都是从左到右对二元动词求值，从右到左对一元动词求值；而求值顺序又会被所涉及的动词的相对优先级修改。</p>
+<p>对于名词和动词，<a href="https://www.jsoftware.com/help/dictionary/dicte.htm">J词典E章节</a>的J求值规则是：</p>
+<blockquote>
+<p>执行从右向左进行，但当遇到右括号时，先执行它及其匹配的左括号所包含的段，用其结果替换整个段及括号。</p>
+</blockquote>
+<p>我们应该注意到，虽然<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>是J信息的权威来源，但J字典中有很多有用的信息可能没有进入wiki。</p>
+<p>在J中，除了名词和动词之外，还有一些你还没见过的东西，它们会让这个规则变得更加复杂。正是这些额外的类在很大程度上证明了J打破传统
+并采用从右到左的求值是合理的。进一步引自<a href="https://www.jsoftware.com/help/dictionary/dicte.htm">J词典E章节</a>：</p>
+<blockquote>
+<p>这些规则的一个重要后果是，在没有括号的表达式中，任何动词的右参数都是其右侧整个短语的结果。</p>
+</blockquote>
+<p>这是因为没有动词优先级以及从右到左的求值的结果。</p>
+<p>没有动词优先级、从右到左的求值以及其他类的规则使总体求值规则变得简单，减少了对括号的需要，并且使有经验的J用户更容易阅读和编写句子。</p>
+<p>阅读下面的句子，在你的脑海中对它们求值，并理解无优先级和从右到左求值是如何解释答案的。</p>
+<pre><code class="language-j">    2 * 4 + 5
+18
+   2 + 4 * 5
+22
+   2 - 4 - 5
+3
+   8 % 2 + 2
+2
+</code></pre>
+<p><strong>记住</strong>：没有动词优先级和从右到左的求值。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="动词定义"><a class="header" href="#动词定义">动词定义</a></h1>
+<p>编程的艺术不在于使用原语，而在于定义适合自己需求的动词。在定义自己的动词时，你是通过扩展语言来构建解决特定问题集的应用程序。</p>
+<p>我们假设一个华氏温度和摄氏温度转换的问题。你需要定义一个动词来完成这个任务。</p>
+<p>下面是动词摄氏度的定义，它将把它的参数从华氏温度转换成摄氏温度。</p>
+<pre><code class="language-j">   centigrade =. 3 : 0
+t1 =. y - 32
+t2 =. t1 * 5
+t3 =. t2 % 9
+)
+</code></pre>
+<p>此时，你想要做一些有用事情，而不是处理由拼写错误引起的问题，因此请仔细抄写。
+在终端窗口输入第一行：</p>
+<pre><code class="language-j">   centigrade =. 3 : 0
+</code></pre>
+<p>按所示输入。在<code>3</code>和<code>:</code>之间必须有一个空格。<code>3</code>表示正在定义一个动词，<code>0</code>表示定义在随后的输入行中。</p>
+<p>当你输入上述行之后，光标位于左侧行首，并且没有像通常那样缩进三个空格。这表明系统正在等待你输入定义的其余部分。</p>
+<p>输入示例中摄氏度定义里剩下的行。它们位于左边界处，因此看起来它们可能是由系统显示的输出，但实际上它们是定义动词所需的行输入。</p>
+<p>最后一行仅包含<code>)</code>的最后一行，结束了这种特殊的定义输入模式。输入最后一行后，系统再次缩进三个空格，表示准备执行一个句子。</p>
+<p>如果你输入的定义正确，你应该可以尝试使用你的新动词。</p>
+<pre><code class="language-j">   centigrade 32	
+0
+   centigrade _40
+_40
+   centigrade 212
+100
+</code></pre>
+<p>让我们看看它的定义并理解它是如何工作的。定义的第一句中的<code>y</code>是动词实参的名称。当你执行带有参数的动词时，
+第一行将从参数中减去<code>32</code>并定义<code>t1</code>。当第一行完成后，继续执行下一行，它将<code>t2</code>定义为<code>t1</code>乘以<code>5</code>的结果。
+继续执行到下一行，并将<code>t3</code>定义为<code>t2</code>除以<code>9</code>。没有更多的行了，所以动词的执行完成了。动词的结果是最后计算的结果。</p>
+<p>我们用<code>3:0</code>来定义动词。短语<code>verb define</code>和它是等价的，有些人觉得短语更容易阅读。事实上，
+如果你在系统中键入<code>verb</code>或<code>define</code>，你将看到它们已经分别被定义为<code>3</code>和<code>:0</code>。
+但是，短语隐藏了信息，而我们将使用<code>3 : 0</code>这种形式。</p>
+<pre><code class="language-j">   centrigrade =. verb define
+t1 =. y - 32
+t2 =. t1 * 5
+t3 =. t2 % 9
+)
+        verb
+3
+        define
+:0
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="单子双子定义"><a class="header" href="#单子双子定义">单子/双子定义</a></h1>
+<p>正如前面关于<a href="#两可性">两可性</a>的部分所讨论的那样，所有动词都有两种定义，单子和双子。
+你只定义了摄氏度的单子。那么双子呢？</p>
+<pre><code class="language-j">   23 centigrade 32
+|domain error: centigrade
+|   23     centigrade 32
+</code></pre>
+<p>由于你没有提供一个双子定义，它是空的，这被视为双子在其域中没有参数，你给出的任何参数都会导致域错误。</p>
+<p>让我们看一些简单的例子来定义双子、单子和都定义的情况。</p>
+<pre><code class="language-j">   monadminus =. 3 : 0
+- y
+)
+   monadminus 5
+_5
+   5 monadminus 3
+|domain error: monadminus
+|   5     monadminus 3
+</code></pre>
+<p>上面的代码定义了名为<code>monadminus</code>的动词的单子。一元应用有效，二元应用失败。</p>
+<p>对于这种只有一行的定义，你可以采用快捷方式。将定义放在单行上，并避免进入需要以<code>)</code>结尾的特殊输入模式。
+以下是完成上述定义的等效方法：</p>
+<pre><code class="language-j">   monadminus =. 3 : '- y'
+</code></pre>
+<p>到目前为止，你只定义了动词的单子。你也可以通过只定义双子来定义一个动词。使用<code>4</code>来定义双子，而不是将<code>3</code>作为<code>:</code>的左参数。</p>
+<pre><code class="language-j">   dyadminus =. 4 : 'x - y'
+   5 dyadminus 3
+2
+   dyadminus 5
+|domain error: dyadminus
+|       dyadminus 5
+</code></pre>
+<p>在单子的情况下，<code>y</code>是右参数；在双子的情况下，<code>x</code>是左参数，<code>y</code>是右参数。</p>
+<p>如果你想同时定义一个动词的单子和双子呢？</p>
+<pre><code class="language-j">   minus =. 3 : 0
+- y
+:
+x - y
+)
+</code></pre>
+<p>行<code>:</code>分隔了单子和双子的定义。</p>
+<pre><code class="language-j">   3 minus 5
+_2
+   5 minus 3
+2
+   minus 5
+_5
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="脚本"><a class="header" href="#脚本">脚本</a></h1>
+<p>当你关闭J时，所有名字的定义都将失效。你在<code>Term</code>窗口中执行的操作只影响当前会话，但不是永久性的。
+这在实验时很好，但是当你开始定义像摄氏度这样的动词时，会想要记录下这个定义，以便在另一个会话中使用它。</p>
+<p>关闭J并重新启动它。</p>
+<pre><code class="language-j">   centigrade
+|value error: centigrade
+</code></pre>
+<p>因为你已经重新启动了，在上一个会话中定义的摄氏度动词和所有其他名字都丢失了。</p>
+<p>但至少原语还在那里！</p>
+<pre><code class="language-j">   2 + 5
+7
+</code></pre>
+<p>正如你所想的那样，为了永久记录定义，要将它们保存在文件中。带有J句子和定义的文件称为脚本文件，
+你可以像编辑任何其他文本文件一样编辑它们。脚本文件的后缀通常是<code>.ijs</code>。</p>
+<p>记住：脚本文件是存储定义的源文件。</p>
+<p>尽管你可以使用任何文本编辑器来处理脚本文件，但是J系统提供了一个简单的编辑器，该编辑器通过集成在J系统的方式使其更加方便使用。</p>
+<p>当使用JQt界面时，<code>File | New temp</code>菜单命令创建一个新的脚本文件和一个用于编辑它的窗口。
+当你点击它时，将看到你的J会话有一个<code>Term</code>窗口和一个新的<code>Edit</code>窗口来编辑<code>.ij</code>文件。</p>
+<p><code>Edit</code>窗口中，<code>.ijs</code>文件的名字显示在其标题栏。在<code>Edit</code>窗口中按下<code>Enter</code>键不会执行该行，它只是将光标移动到新行的开头。</p>
+<p>在<code>Edit</code>窗口中输入你的摄氏度定义。</p>
+<pre><code class="language-j">centigrade =: 3 : 0
+t1 =. y - 32
+t2 =. t1 * 5
+t3 =. t2 % 9
+)
+</code></pre>
+<p>在第一行<strong>一定</strong>要使用<code>=:</code>而不是<code>=.</code>。<code>=:</code>创建一个全局定义。如果使用<code>=.</code>，则是一个局部定义。这个重要的区别将在接下来的几页中解释。
+现在，如果你希望赋值具有预期的效果，只需确保使用<code>=:</code>创建文件中的定义。</p>
+<p>到目前为止，你只是将在窗口中更改编辑。该文件尚未更改，动词仍未定义。你必须通过运行脚本来执行句子。</p>
+<p>在<code>Edit</code>窗口中点击<code>Run | Load Script</code>以将更改保存到文件中，然后执行文件中的每个句子。
+这类似于在<code>Term</code>窗口中输入文件的内容，只是没有显示句子和结果。<code>Term</code>窗口中唯一显示的是系统生成的语句，它表示文件中的语句已被执行。
+这句话类似于：<code>load 'c:/j9.4-user/temp/1.ijs'</code>，取决于你运行的J的版本。如果报告了一个错误（在<code>Term</code>窗口中输出，左侧有一个竖线），
+那么你的脚本中有拼写错误。在<code>Edit</code>窗口中更正文本并再次运行。</p>
+<p>脚本文件中的句子已经执行完毕，现在已经定义了摄氏度动词。在<code>Term</code>窗口尝试使用摄氏度。</p>
+<pre><code class="language-j">   centigrade 32
+0
+</code></pre>
+<p>使用<code>File | New temp</code>创建的文件位于J临时目录中，并具有临时形式名称(带有<code>.ij</code>后缀)。
+但是，现在最好在J用户目录中使用更合适的名称重新保存它。点击<code>File | Save As...</code>，向上一个目录级别，然后到用户目录，
+并将文件名设置为<code>cf.ijs</code>。<code>Edit</code>窗口标题栏中的文件名将更改为新名称。</p>
+<p>关闭<code>cf.ijs</code>窗口并删除你的摄氏度定义。你可以使用功能动词<code>erase</code>来删除名字的定义，其参数是要删除名字的字符串。结果为<code>1</code>表示删除成功。</p>
+<pre><code class="language-j">   erase 'centigrade'
+1
+   centigrade 212
+|value error: centigrade
+|       centigrade 212
+</code></pre>
+<p>使用<code>File | Recent</code>打开<code>cf.ijs</code>窗口，使用<code>Run | Load Script</code>加载并运行定义摄氏度的脚本。</p>
+<pre><code class="language-j">   centigrade 212
+100
+</code></pre>
+<p>让我们在<code>cf.ijs</code>窗口中添加一个华氏度的定义。在你的摄氏定义后输入以下内容。同样，一定要使用<code>=:</code>。</p>
+<pre><code class="language-j">fahrenheit =: 3 : 0
+t1 =. y * 9
+t2 =. t1 % 5
+t3 =. t2 + 32
+)
+</code></pre>
+<p>使用<code>Run | Load Script</code>加载并运行<code>cf.ijs</code>脚本中的句子。</p>
+<pre><code class="language-j">   fahrenheit 0
+32
+   fahrenheit 451
+843.8
+</code></pre>
+<p>关闭J并重启。</p>
+<pre><code class="language-j">   centigrade
+|value error: centigrade
+   fahrenheit
+|value error: fahrenheit
+</code></pre>
+<p>使用<code>File | Recent</code>并选择你的<code>cf.ijs</code>文件。然后点击<code>Run | Load Script</code>，一个类似下面的行</p>
+<pre><code class="language-j">   load'c:/j9.4-user/cf.ijs'
+</code></pre>
+<p>出现在<code>Term</code>窗口，表示执行了文件中的句子，而你的动词现在已经定义。</p>
+<pre><code class="language-j">   centigrade 32
+0
+   fahrenheit 100
+212
+</code></pre>
+<p>在<code>Term</code>窗口中出现的以<code>load</code>开头的行实际上是导致文件中的句子被执行的句子。
+菜单命令只是执行这个句子的一种快捷方式。该字符串是要运行的文件的完整路径名。
+手动输入完整路径名时，可以将其缩短为相对路径名。</p>
+<pre><code class="language-j">   load'~/j9.4-user/cf.ijs'
+</code></pre>
+<p>现在检查一下你的动词是否定义好了。</p>
+<p>使用<code>File | Recent</code>打开你的<code>cf.ijs</code>文件进行编辑。</p>
+<p>如果脚本中有错误怎么办？让我们在脚本中添加一个故意的错误，看看会发生什么。在脚本末尾添加foo 123行，然后再次运行脚本。</p>
+<pre><code class="language-j">   load'c:/j9.4-user/cf.ijs'
+|value error: foo
+|       foo 123
+|[-13]
+</code></pre>
+<p>J系统报告错误并停止执行脚本中句子。错误报告末尾的数字是脚本中出现错误的行号。</p>
+<p>从脚本中删除错误并再次运行它。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="局部名字"><a class="header" href="#局部名字">局部名字</a></h1>
+<p>动词摄氏度在其定义中使用了名字<code>t1</code>、<code>t2</code>和<code>t3</code>，但如果你在动词之外引用它们，它们就没有定义。</p>
+<pre><code class="language-j">   centigrade 32
+0
+   t1
+|value error: t1
+   t1 =. 123
+   t1
+123
+   centigrade 212
+100
+   t1
+123
+</code></pre>
+<p>在摄氏度定义内使用<code>t1</code>和在定义外使用<code>t1</code>没有冲突。动词摄氏度并没有在它自身之外定义一个<code>t1</code>，
+正如<code>value error</code>所表明的那样，给摄氏度的<code>t1</code>中设置一个值并不会改变它定义之外的<code>t1</code>的值。</p>
+<p>摄氏度内部使用的<code>t1</code>是局部名字。局部名字仅存在于动词中。在摄氏度外面使用的<code>t1</code>是一个全局名字。
+在执行动词定义是遇到的由连词<code>=.</code>定义的名字，是局部名字。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="全局名字"><a class="header" href="#全局名字">全局名字</a></h1>
+<p>在动词执行之外定义的名字是全局名子。</p>
+<p>上一节中，<code>Term</code>窗口中定义的<code>t1</code>是一个全局名子，与动词摄氏度内定义的<code>t1</code>完全不同。</p>
+<p>让我们来做些实验。使用<code>File | New temp</code>创建一个临时脚本文件，并在其中输入以下定义：</p>
+<pre><code class="language-j">fooa =: 3 : 0   NB. =: is important
+zzz + y
+)
+</code></pre>
+<p>使用<code>Run | Load script</code>运行脚本。Term窗口显示：</p>
+<pre><code class="language-j">   fooa 5
+|value error: zzz
+|       zzz+y
+</code></pre>
+<p>让我们定义全局<code>zzz</code>，看看会发生什么。在动词外定义它，无论我们使用<code>=.</code>还是<code>=:</code>，它都是全局的。</p>
+<p>为了遵循最佳实践，我们将在<code>Term</code>窗口中使用<code>=:</code>：</p>
+<pre><code class="language-j">   zzz =: 23	NB. define global zzz
+   fooa 5
+28
+</code></pre>
+<p>动词<code>fooa</code>使用全局的<code>zzz</code>。动词可以使用全局名字。</p>
+<p>编辑脚本以添加```foob`，然后运行脚本。</p>
+<pre><code class="language-j">foob =: 3 : 0
+zzz =. 7
+zzz + y
+)
+</code></pre>
+<p>在<code>Term</code>窗口中：</p>
+<pre><code class="language-j">   foob 3
+10
+   zzz
+23
+</code></pre>
+<p>动词<code>foob</code>使用它的局部<code>zzz</code>而忽略全局<code>zzz</code>。因此，动词可以使用局部名字而忽略同名的全局名字。</p>
+<p>如果你想定义一个全局名字呢？全局连词<code>=:</code>（带<code>:</code>词形变化的<code>=</code>）定义了一个全局名字。编辑脚本以添加<code>fooc</code>，然后运行脚本。</p>
+<pre><code class="language-j">fooc =: 3 : 0
+gw =: y
+lz =. y
+)
+</code></pre>
+<p>在<code>Term</code>窗口中：</p>
+<pre><code class="language-j">   fooc 3
+3
+   gw
+3
+   lz
+|value error: lz
+   gw =: 24  NB. Using =: to assign a global value, although assignment with =.  outside of a verb would also be global.
+   fooc 5
+5
+   gw
+5
+</code></pre>
+<p>用<code>=:</code>定义<code>gw</code>，则定义了全局名字。</p>
+<p>一般来说，在动词中只定义局部名字而不定义全局名字是一种很好的做法。这是有时被称为函数式编程风格的重要组成部分。
+定义全局名字的动词被认为具有副作用，并且更有可能导致bug，并且使阅读应用程序以理解正在发生的事情变得更加困难。
+事实上，在J的最新版本中，当你定义一个同时使用同名全局名字和局部名字定义的动词并且运行它，将会触发一个域错误。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="调试全局名字"><a class="header" href="#调试全局名字">调试全局名字</a></h1>
+<p>有时，在尝试调试或更好地理解动词时，查看其局部名字或其他中间结果的值是很有用的。
+一种快速的方法是在动词定义中添加一行来进行全局定义。</p>
+<p>打开<code>cf.ijs</code>文件并向摄氏度定义添加一行，将全局<code>gt1</code>定义为<code>t1</code>。</p>
+<pre><code class="language-j">centigrade =: 3 : 0   NB. =:
+t1 =. y - 32
+gt1 =: t1             NB. temp line for debugging info
+t2 =. t1 * 5
+t3 =. t2 % 9
+)
+</code></pre>
+<p>运行脚本。在Term窗口中：</p>
+<pre><code class="language-j">   centigrade 124
+51.1111
+   t1
+|value error
+   gt1
+92
+</code></pre>
+<p>在摄氏度动词完成执行后，你无法看到局部<code>t1</code>的值，但你可以在<code>gt1</code>中看到值的副本。</p>
+<p>从脚本中删除该行，并运行脚本以重新定义不含调试行的摄氏度动词。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="与何时类似"><a class="header" href="#与何时类似">=.与=:何时类似</a></h1>
+<p>你已经看到了<code>=.</code>和<code>=:</code>用于动词定义时的不同之处。</p>
+<p>当你在<code>Term</code>窗口中执行句子时，你不会在动词内执行它们，此时<code>=.</code>和<code>=:</code>有相同的效果。</p>
+<pre><code class="language-j">   NB. In the Term window
+
+   a =. 123
+   a
+123
+   a =: 234
+   a
+234
+</code></pre>
+<p>在<code>Term</code>窗口中连词<code>=.</code>和<code>=:</code>是相同的，你使用哪个来定义名字并不重要，因为它们都定义了全局名字。
+<code>=.</code>更容易输入，也更容易被使用。但严格来说，在定义全局名字时，最好显式地使用<code>=:</code>。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="与何时不同"><a class="header" href="#与何时不同">=.与=:何时不同</a></h1>
+<p>你已经看到了<code>=.</code>和<code>=:</code>在<code>Term</code>窗口中是相同的。同时在动词定义里，它们是不同的。
+但重要的是要认识到在脚本中也存在差异。</p>
+<p>当你运行脚本时，<code>load</code>句子在<code>Term</code>窗口中执行，动词<code>load</code>执行脚本中的句子。
+因此，脚本中的句子在<code>load</code>动词中执行。这意味着用<code>=.</code>定义的名字被定义为动词<code>load</code>的局部名字。
+如果想在脚本中定义一个全局名字，必须使用<code>=:</code>。这就是为什么在脚本<code>cf.ijs</code>中定义全局名字
+（如摄氏度和华氏度）的行必须使用<code>=:</code>的原因。如果使用<code>=.</code>，它们将成为<code>load</code>的局部名字，并在<code>load</code>执行完后立即消失。</p>
+<p>始终考虑定义是全局的还是局部的，并据此正确使用<code>=:</code>和<code>=.</code>。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="区域"><a class="header" href="#区域">区域</a></h1>
+<p>首先，请注意<em>区域</em>（<code>locale</code>）与<em>局部</em>（<code>local</code>）是一个非常不同的单词，尽管后者只少了一个字母。</p>
+<p>区域是一组全局名字。可以有多个区域，因此可以有多个全局名字集。</p>
+<p>一个区域中的全局名字与其他区域中的相同名字的区别是，通过添加用<code>_</code>（下划线）括起来的区域名称后缀来限定名字。
+带有区域限定的名字始终是全局名字。</p>
+<pre><code class="language-j">   abc_def_ =: 2
+</code></pre>
+<p>上面的句子可以读作在<code>def</code>区域中的全局<code>abc</code>是<code>2</code>。</p>
+<pre><code class="language-j">   abc_base_ =: 4
+</code></pre>
+<p>上面的句子可以读作在<code>base</code>区域中的全局<code>abc</code>是<code>4</code>。</p>
+<p>如果省略了区域名称，则假定它是<code>base</code>区域的名字。</p>
+<pre><code class="language-j">   abc__   NB. the same as abc_base_
+4
+</code></pre>
+<p>如果全局名字没有使用区域名称进行限定，则它位于当前区域中。<code>base</code>区域是当前默认区域，
+除非在不同的区域中执行动词显式地更改了当前区域。下面的代码定义了<code>base</code>区域中的abc：</p>
+<pre><code class="language-j">   abc =. 6
+   abc_base_
+6
+   abc
+6
+</code></pre>
+<p>由于<code>base</code>区域是当前默认区域，因此名字<code>abc</code>和<code>abc_base_</code>是相同的。</p>
+<p>名字<code>abc_def_</code>显然不同于<code>abc</code>，但到目前为止还没有办法知道发生了什么特别的事情。
+在什么意义上<code>abc</code>和<code>foo</code>在同一个（<code>base</code>）区域中？而<code>abc</code>和<code>abc_def_</code>在不同的区域？</p>
+<p>一种区分方法是使用列出全局名字的工具动词<code>names</code>。</p>
+<pre><code class="language-j">   a =. 23
+   b =. 24
+   a_q_ =. 25
+   w_q_ =. 26
+   names 0	NB. 0 lists nouns
+a abc b
+</code></pre>
+<p>你的<code>names</code>结果可能不同，但它将包括你在<code>base</code>区域中定义的所有全局名字。
+你应该看到上面定义的<code>a</code>和<code>b</code>，并注意到没有看到在<code>q</code>区域中定义的<code>w</code>。</p>
+<p>要查看在<code>q</code>区域中定义的名字，你可以执行以下操作：</p>
+<pre><code class="language-j">   names_q_ 0	NB. names in locale q
+a w
+</code></pre>
+<p>名词<code>a</code>和<code>w</code>在<code>q</code>区域中定义。</p>
+<p>区域将全局名字划分为不同的集合，而诸如<code>names</code>之类的实用程序可以操作特定区域中的全局名字。</p>
+<p>区域的真正威力在于区域中定义的动词。当动词在一个区域中执行时，它将该区域（而不是<code>base</code>区域）作为当前区域。</p>
+<p>让我们在<code>q</code>区域中定义一个简单的动词，看看它是如何工作的。</p>
+<pre><code class="language-j">   f_q_ =. 3 : 'a =: y'
+</code></pre>
+<p>这个动词用右参数定义全局<code>a</code>。可以有许多不同的区域，每个区域都有自己的全局<code>a</code>。但是当<code>f_q_</code>执行时，
+它在<code>q</code>区域中执行，<code>q</code>区域是当前的区域，它使用的全局名字来自<code>q</code>区域。试试下面的实验：</p>
+<pre><code class="language-j">   a =. 23	NB. define a in the base locale
+   a_q_ =. 24	NB. define a in locale q
+   f_q_ 100	NB. execute f in locale q
+100
+   a
+23
+   a_q_
+100
+</code></pre>
+<p>区域将全局名字划分为单独的集合。特别是，相关的名词和动词（比如在一组实用程序中），可以在它们自己的区域中定义。
+它们的名字不会与<code>base</code>区域或其他区域中的名字冲突。当你查看应用程序时，你可以只查看特定区域中的相关全局名字。
+当动词在区域中运行时，它使用来自同一区域的全局名字。</p>
+<p>参数为<code>0</code>时，<code>names</code>动词列出名词，参数为<code>3</code>时列出动词，参数为6时列出区域名称。</p>
+<p>区域名称列表很有趣。<code>base</code>和<code>q</code>大家都知道，但是<code>j</code>和<code>z</code>呢？</p>
+<p><code>j</code>和<code>z</code>区域中的全局名字是在J启动并运行<code>profile.ijs</code>脚本文件时定义的。
+<code>j</code>区域包含在构建应用程序时很有用的东西，在<a href="https://code.jsoftware.com/wiki/Standard_Library/Overview">J在线文档</a>中有详细讨论。</p>
+<p><code>z</code>区域确实非常有趣。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="z区域"><a class="header" href="#z区域">z区域</a></h1>
+<p><code>z</code>区域是所有其他区域的父区域。</p>
+<p>如果在当前区域中找不到名字，但在<code>z</code>区域中有它的定义，则使用该定义，就好像它在当前区域中一样。</p>
+<p><code>z</code>区域用于你希望在任何地方都可用的公共实用程序。通过<code>z</code>区域，它们可以在任何区域中执行，就像它们在该区域中一样，
+但是只有一个副本，并且<code>z</code>区域中的名字不会混淆其他区域中的名字。</p>
+<p><code>profile.ijs</code>在启动J时运行，它在<code>z</code>区域中定义了许多标准实用程序。你已经使用了在<code>z</code>区域中定义的<code>erase</code>和<code>names</code>动词。
+你可以通过以下方式来确认：</p>
+<pre><code class="language-j">   names 3	NB. verbs in the base locale
+...
+</code></pre>
+<p>上面的代码没有将<code>names</code>作为名字列出，但是你可以执行它。这是因为当在<code>base</code>区域中找不到它时，它在<code>z</code>区域中的定义就会被使用，
+就好像它实际上是在<code>base</code>区域中定义的一样。</p>
+<pre><code class="language-j">   names_z_ 3	NB. verbs in z locale
+...
+</code></pre>
+<p>结果太长了，就不在这里列出了。动词<code>names</code>有一个二元定义，它接受一个左参数，该参数指示要返回的名字的第一个字母。</p>
+<pre><code class="language-j">    'n' names_z_ 3
+nameclass namelist names nc nl ...
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="脚本加载"><a class="header" href="#脚本加载">脚本加载</a></h1>
+<p>除了与标准配置文件一起加载的实用程序之外，系统还提供了几个额外的标准实用程序脚本。
+这些标准实用程序在<a href="https://code.jsoftware.com/wiki/Standard_Library/Overview">J在线文档</a>中有记录，
+可通过J帮助菜单获得。你可以直接运行这些脚本，但是你需要记住脚本的路径，以及在哪个区域中运行它们。
+标准配置文件提供了一些实用程序，使你更容易完成此类操作。<code>scripts</code>动词列出了可以使用<code>load</code>动词加载的脚本。</p>
+<pre><code class="language-j">   scripts ''
+. . .
+.... parts    plot     profile  scripts  stdlib ...
+. . .
+</code></pre>
+<p>带有<code>v</code>参数的<code>scripts</code>动词列出了脚本及其完整路径。</p>
+<p><code>~system</code>表示J系统目录。</p>
+<p><code>convert</code>脚本包含几个转换实用程序。</p>
+<pre><code class="language-j">   load 'convert'
+   toupper 'testing 1 2 3'
+TESTING 1 2 3
+   tolower 'Sir Richard'
+sir richard
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="第二个检查点"><a class="header" href="#第二个检查点">第二个检查点</a></h1>
+<p>到了这个检查点，你应该明白：</p>
+<ul>
+<li>作为句子来源的文本文件称为脚本文件</li>
+<li>脚本文件定义全局名字</li>
+<li>如何创建一个新的临时脚本文件</li>
+<li>如何将临时脚本文件保存为永久文件</li>
+<li>如何运行脚本文件来执行语句</li>
+<li>如何在脚本文件中定义动词</li>
+<li>如何定义一个动词的一元和二元模式</li>
+<li><code>=.</code>和<code>=:</code>之间的区别</li>
+<li>局部名字和全局名字的区别</li>
+<li>区域是一组全局名字</li>
+<li>可以有多个区域</li>
+<li><code>base</code>区域是你通常使用的</li>
+</ul>
+<p>通过做以下练习来检查你的理解：</p>
+<ul>
+<li>创建一个新的临时脚本文件</li>
+<li>在脚本中将<code>square</code>定义为使用<code>*:</code>对其参数进行平方的单子</li>
+<li>将脚本保存在用户目录中，并命名为<code>square.ijs</code></li>
+<li>运行脚本并测试动词<code>square</code></li>
+<li>关闭J，重新启动，使用<code>load '~/j9.4-user/square.ijs</code>运行<code>square.ijs</code>并测试它（路径描述可能因J版本而异）</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="调试逐步执行"><a class="header" href="#调试逐步执行">调试——逐步执行</a></h1>
+<p>在前面的一节中，你向动词定义添加了调试行，使你能够在运行动词时查看中间步骤的结果。
+有时候你需要更强大的工具。</p>
+<p>在J的最新版本中包含了调试工具，但如果没有，你可以用<code>load 'debug'</code>来加载调试工具。</p>
+<p>打开脚本文件<code>cf.ijs</code>并运行它。</p>
+<p>让我们执行摄氏度，但是每一行都有一个停顿，以便你可以确切地看到正在发生什么。</p>
+<pre><code class="language-j">   dbss 'centigrade *:*'
+</code></pre>
+<p><code>dbss (Set Stop)</code>的参数声明在执行所有摄氏度的行（用<code>*:*</code>表示）之前有一个断点。</p>
+<pre><code class="language-j">   dbr 1
+</code></pre>
+<p>参数为<code>1</code>的<code>dbr</code>要求系统在发生错误或断点时暂停执行。当动词被暂停时，它在执行过程中停止。
+你可以检查定义、更改定义，还可以恢复暂停动词的执行。</p>
+<pre><code class="language-j">   centigrade 212
+|stop
+|       t1=.y-32
+|centigrade[0]
+</code></pre>
+<p>错误报告（在左侧行首的竖线）指出执行在摄氏度时在第0行暂停，并显示该行中的句子。</p>
+<p>摄氏度的执行被暂停，缩进六个空格，而不是三个，表示暂停。变量<code>y</code>是参数。</p>
+<pre><code class="language-j">      y
+212
+</code></pre>
+<p>暂停发生在行执行之前，所以<code>t1</code>没有被定义，如果你试图查看它，你将得到一个值错误。</p>
+<p>使用<code>dbrun</code>继续执行。它将执行当前行，因为所有行都设置了断点，所以它将在下一行暂停。</p>
+<pre><code class="language-j">      dbrun ''
+|stop
+|       t2=.t1*5
+|centigrade[1]
+      t1
+180
+      t1*5
+900
+</code></pre>
+<p>现在，摄氏度在第一行暂停了，正如你所看到的，你可以检查在第0行中定义的局部<code>t1</code>的值。继续调试后续的行，检查局部名字。</p>
+<pre><code class="language-j">      dbrun ''
+|stop
+|       t3=.t2%9
+|centigrade[2]
+      t2
+900
+      t2%9
+100
+      dbrun ''
+100
+</code></pre>
+<p>摄氏度执行完毕后，你又回到了正常的三个空间的缩进。</p>
+<p>关闭调试暂停请求并重置为没有断点。</p>
+<pre><code class="language-j">   dbr 0
+   dbss ''
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="调试处理错误"><a class="header" href="#调试处理错误">调试——处理错误</a></h1>
+<p>让我们在你的摄氏度动词中引入一个错误，看看它是什么样子的，以及你如何发现和修复它。</p>
+<p>打开你的<code>cf.ijs</code>脚本并编辑第一行，通过在连词<code>=.</code>右侧的表达式两边添加引号来制造错误。</p>
+<pre><code class="language-j">t1 =. 'y - 32'
+</code></pre>
+<p><code>t1</code>不再被定义为<code>y - 32</code>的结果，它将被定义为字符串。</p>
+<p>运行脚本生成新的定义。关闭调试暂停，并清除断点，然后运行有bug的摄氏度动词。</p>
+<pre><code>   dbr 0	NB. disable suspension
+   dbss ''
+   centigrade 212 NB. Error messages in versions prior to J9.4
+|domain error
+|   t2=.t1    *5
+
+   centigrade 212    NB. Expanded error messages in J9.4
+|domain error in centigrade, executing dyad *
+|x is character
+|   t2=.t1    *5
+</code></pre>
+<p>你正在禁用暂停（<code>dbr 0</code>）的情况下运行，所以执行没有在摄氏度上暂停，缩进依然是正常的3个空格。</p>
+<p>如果你看一下错误行，很明显，<code>5</code>是乘法的有效参数，所以<code>t1</code>一定有问题。但是你不知道<code>t1</code>的值。
+你可以查看源代码找错误，但是，在复杂的情况下，使用debug可能会更快。</p>
+<p>启用暂停并重新运行。</p>
+<pre><code class="language-j">   dbr 1	NB. enable suspension
+   centigrade 212
+|domain error
+|   t2=.t1    *5
+|centigrade[1]
+</code></pre>
+<p>此时光标会缩进6个空格表示暂停，因为摄氏度被暂停了，你可以看看<code>t1</code>的值。</p>
+<pre><code class="language-j">      t1
+y - 32
+</code></pre>
+<p>从<code>t1</code>的显示可以清楚地看出它是一个字符串，而不是所需计算的数字。现在可以查看源代码，
+看看<code>t1</code>是在哪里定义的，并发现引号不应该出现在那里。</p>
+<p>编辑源代码，通过删除引号来修复定义，并运行脚本来重新定义摄氏度动词。</p>
+<p>要重新运行第0行来正确地定义<code>t1</code>，你可以通过使用<code>dbjmp</code>从第0行继续执行。</p>
+<pre><code class="language-j">      dbjmp 0
+100
+</code></pre>
+<p>由于没有设置断点，也没有其他错误，因此摄氏度第0行被执行，它将给局部名字<code>t1</code>设置正确的值，并继续执行直到完成。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="比较原语"><a class="header" href="#比较原语">比较原语</a></h1>
+<p>如果左右参数相等，则双子<code>=</code>的结果为1，如果它们不同，则结果为0。</p>
+<pre><code>   23 = 34
+0
+   23 = 23
+1
+   a =. 'd'
+   a = 'c'
+0
+   7 + a = 'c'
+7
+   7 + a = 'd'
+8
+</code></pre>
+<p>一些编程语言将比较原语（如<code>=</code>）的结果视为非数字的<code>True</code>和<code>False</code>值。在J中，比较的结果只是数字。</p>
+<p>还有其他几个比较动词：小于<code>&lt;</code>、小于等于<code>&lt;:</code>、大于<code>&gt;</code>和大于等于<code>&gt;:</code>。这些比较原语有时被称为关系原语。</p>
+<pre><code>   7 &lt; 8
+1
+   7 &lt; 7
+0
+   7 &lt;: 7
+1
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="控制结构"><a class="header" href="#控制结构">控制结构</a></h1>
+<p>在摄氏度中，定义中的句子只是一个接一个地按顺序执行。要有条件地控制执行哪些句子，可以使用控制结构。</p>
+<p>控制结构由控制词和句子组成。下面是一个控制结构的例子：</p>
+<pre><code class="language-j">if. x = 'c'
+ do. centigrade y
+ else. fahrenheit y
+end.
+</code></pre>
+<p>控制词<code>if.</code>开启控制结构，控制词<code>end.</code>结束控制结构。<code>x = 'c'</code>句子的值是测试结果，
+它决定了控制结构中哪个句子被执行。如果测试结果为<code>1</code>，则控制词<code>do.</code>后的句子被执行。
+如果测试结果是<strong>任何其他值</strong>，则控制词<code>else.</code>后面的句子被执行。
+用汉语解释就是：如果左参数<code>x</code>等于字母<code>c</code>，则执行摄氏温度，否则执行华氏温度。</p>
+<p>使用此功能可以在<code>cf.ijs</code>脚本中添加一个新的动词，该动词将根据左参数的值将数字
+从华氏度转换为摄氏度，或从摄氏度转换为华氏度。打开<code>cf.ijs</code>脚本，并在最后添加以下定义。</p>
+<pre><code class="language-j">NB. convert f to c if x is 'c', otherwise c to f
+convert =: dyad : 0
+if. x = 'c'
+ do. centigrade y
+ else. fahrenheit y
+end.
+)
+</code></pre>
+<p>以上定义了动词的二元形式。这个双子有一个左参数<code>x</code>，一个右参数<code>y</code>。动词的左参数为<code>'c'</code>时，
+将华氏度转换为摄氏度。除了<code>'c'</code>以外的任何左边参数都会将摄氏度转换为华氏度。</p>
+<p>注意，动词华氏度和摄氏度的用法就像使用原语动词一样。</p>
+<p>运行脚本并测试转换。</p>
+<pre><code class="language-j">   'c' convert  212
+100
+   'f' convert 100
+212
+</code></pre>
+<p>通常一个句子是脚本中的一行。但是，使用控制词将一行分隔成几个句子，就有可能在一行中包含多个句子。</p>
+<p>下面的单行相当于前面使用的多行。</p>
+<pre><code class="language-j">if. x = 'c' do. centigrade y else. fahrenheit y end.
+</code></pre>
+<p>控制结构只允许在脚本中使用，不能直接在REPL窗口中输入执行控制结构。</p>
+<p>有九种控制结构模式：</p>
+<pre><code class="language-j">if. T do. B end.
+if. T do. B else. B1 end.
+if. T do. B elseif. T1 do. B1 elseif. T2 do. B2 end.
+try. B catch. B1 end.
+while. T do. B end.
+whilst. T do. B end.
+for. T do. B end.
+for_i. T do. B end.
+select. T
+ case. T0 do. B0
+ case. T1 do. B1
+ fcase.T2 do. B2
+ case. T3 do. B3
+end.
+</code></pre>
+<p>控制结构以<code>if.</code>、<code>try.</code>、<code>while.</code>、<code>whilst.</code>、<code>for.</code>、 <code>for_i.</code>或<code>select.</code>开始，并以一个匹配的<code>end.</code>结束。</p>
+<p>以<strong>T</strong>或<strong>B</strong>开头的单词表示由0个或多个句子组成的块，并且可以包含嵌套的控制结构。</p>
+<p>T块中最后一个句子的结果决定接下来执行哪个块，以及控制结构是否执行完毕。</p>
+<p>通常，T块是一个简单的句子，可以做一个简单的测试，就像上面例子中的一样。</p>
+<p><code>try.</code>控制结构是一个有趣的结构。它执行B块句子，如果没有错误，它就跳到结构的末尾。但是，如果出现错误，则执行B1块。</p>
+<p><code>while.</code>控制结构执行T块，如果其结果不为0，则执行B块并继续执行，直到T块的结果为0。如果T块第一次为0，则B块不执行。</p>
+<p><code>whilst.</code>控制结构与<code>while.</code>相同，除了T块第一次被跳过。这意味着B块总是至少执行一次。</p>
+<p>在<code>for.</code>控制结构中，B块对阵列A中的每一项求值一次，该阵列A是由求值T块产生的。在<code>for_i.</code>形式中，
+局部名字<code>i</code>被设置为每次对B块求值时项的值，<code>i_index</code>被设置为该项的索引。控制词<code>break.</code>跳到<code>for.</code>控制结构的结尾，
+控制词<code>continue.</code>跳到B块对下一项的进行求值。</p>
+<p>在<code>select.</code>控制结构中，T的结果<strong>R</strong>与Ti的结果Ri进行比较，第一个匹配的<code>case.</code>或<code>fcase.</code>中的Bi将被执行。
+如果匹配的是<code>case.</code>，则<code>select.</code>控制结构的执行就此结束；如果匹配的是<code>fcase.</code>，则下一个<code>case.</code>或<code>fcase.</code>
+的B(i+1)块将被执行。如果下一个是<code>fcase.</code>，则还会继续执行下下一个，直到遇不到<code>fcase.</code>或执行到<code>select.</code>的结尾。</p>
+<p>有关控制结构的更多信息，请参考<a href="https://code.jsoftware.com/wiki/Vocabulary/ControlStructures">NuVoc</a>。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="第三个检查点"><a class="header" href="#第三个检查点">第三个检查点</a></h1>
+<p>到了这个检查点，你应该明白：</p>
+<ul>
+<li>动词调试的一般方法</li>
+<li>控制词如何将将句子分组成块来创建控制结构</li>
+<li>T块测试结果是什么</li>
+<li>测试结果如何决定执行哪个B块</li>
+<li>测试结果如何决定控制结构的执行何时结束</li>
+</ul>
+<p>通过做以下练习来检查你的理解：</p>
+<ul>
+<li>单步调试温度转换动词</li>
+<li>创建一个临时脚本文件，并定义一个名为<code>conv</code>的动词，它类似于温度转换，但坚持使用<code>'f'</code>参数来进行华氏度的转换，并且当
+做参数既不是<code>'f'</code>也不是<code>'c'</code>时，返回一个字符串表示错误。
+<strong>提示</strong>：使用下面的控制结构示例，或者使用<code>select.</code>控制结构
+<pre><code class="language-j">if. x = 'c' do. ...
+  elseif. x = 'f' do. ...
+  elseif. 1 do. 'left arg not c or f'
+end.
+</code></pre>
+</li>
+<li>创建一个临时脚本文件，并定义一个名为<code>plus</code>的双子，将其左参数和右参数相加。但是，如果有错误，它应该给出一个字符串结果。
+<strong>提示</strong>：
+<ul>
+<li>使用<code>dyad : 0</code>；</li>
+<li><code>4 plus 9</code>应当返回13；</li>
+<li><code>'a' plus 9</code>应当返回错误字符串（比如，<code>'there was an error'</code>）;</li>
+<li>使用<code>try.</code>控制结构来捕捉错误并给出字符串结果。</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="列表相加的基础方式"><a class="header" href="#列表相加的基础方式">列表相加的基础方式</a></h1>
+<p>你可以创建数字列表。</p>
+<pre><code class="language-j">   a =. 12 24 47
+   b =. 12 34 45
+</code></pre>
+<p>如果你想在Basic之类的语言中把两个数字列表相加，你必须依次从每个列表中获取每个数字，将它们加在一起，
+然后将这个新结果添加到结果列表的末尾。</p>
+<p>要以这种方式将两个数字列表相加，你需要一些新的原语。你需要一种从列表中获取一个数字的方法。动词<code>{ (from)</code>可以做到这一点。</p>
+<pre><code class="language-j">   0 { 7 9 2 4	NB. index 0 value
+7
+   1 { 7 9 2 4	NB. index 1
+9
+   2 { 7 9 2 4	NB. index 2
+2
+   3 { 7 9 2 4	NB. index 3
+4
+</code></pre>
+<p>你需要能够向结果列表添加一个新的结果值。可以使用动词<code>,</code>。</p>
+<pre><code class="language-j">   7 9 2 , 4	NB. append 4 to the list
+7 9 2 4
+   7 9 2 4 , 7	NB. append 7 to the list
+7 9 2 4 7
+   a =. 7 9 2 4
+   a =. a , 23
+   a
+7 9 2 4 23
+</code></pre>
+<p>你需要知道列表中有多少个数字，这样你就知道什么时候完成了。单子<code># (tally)</code>告诉我们列表中有多少个数字。</p>
+<pre><code class="language-j">   # 7 9 2 4
+4
+   # 7 9 2 4 7
+5
+</code></pre>
+<p>你还需要方法来创建一个空结果，你将向其中添加每个新结果。空字符串可用来创建空列表。</p>
+<pre><code class="language-j">   r =. '' 	  NB. an empty string
+</code></pre>
+<p>有了这些新的动词，再加上你已经知道的，就可以编写一个Basic或Java风格的程序来把两个列表相加。</p>
+<p>创建一个临时脚本文件并加入<code>addlists</code>的定义。</p>
+<pre><code class="language-j">addlists =: dyad : 0
+r =. ''
+count =. # x
+i =. 0
+while. i &lt; count do.
+ left =. i { x
+ right =. i { y
+ sum =. left + right
+ r =. r , sum
+ i =. i + 1
+end.
+r
+)
+</code></pre>
+<p>局部名字<code>i</code>是从每个列表中选择数字的索引。它从0开始，从左参数和右参数中选择第一个数字。
+在<code>while.</code>控制结构的最后，<code>i.</code>自增加1，以便下次执行块时它将选择下一个数字。<code>while.</code>控制结构测试
+以查看<code>i</code>是否小于列表参数的长度。当<code>i</code>等于要加在一起的列表的长度时，控制结构完成。
+局部名字<code>left</code>和<code>right</code>被定义为下一对数字。它们被加在一起，并添加到结果<code>r</code>的末尾。</p>
+<p>运行脚本并测试<code>addlist</code>的定义。</p>
+<pre><code class="language-j">   2 3 4 addlists 4 5 6
+6 8 10
+</code></pre>
+<p>如果你在定义中打错字，就会得到一个运行错误或错误的答案。在这种情况下，你应该仔细检查是否输入了正确的定义。</p>
+<p>某些错误（例如省略了更新<code>i</code>值的行）会造成<code>while.</code>死循环。因为<code>while.</code>永远不会结束，
+程序继续添加左和右参数的第一个元素，永远不会处理下一个元素。如果你处于这样的循环中，
+则需要运行<code>jbreak</code>程序来中断J的执行。在Windows或Mac中<code>jbreak</code>是<strong>黄色的J图标</strong>，Unix中是<strong>jbreak shell脚本</strong>。</p>
+<p>事实上，值得一看死循环会发生什么。首先，确保你知道如何运行<code>jbreak</code>程序来发出中断信号（在Windows或Mac中：找到黄色的J图标，
+在Unix中打开一个命令窗口，准备在J目录中运行jbreak shell脚本）。在J空闲时运行<code>jbreak</code>不会做任何事情。编辑<code>addlists</code>定义，
+使其不更新<code>i</code>的最简单方法是在<code>i =. i + 1</code>句子前面加上<code>NB.</code>。运行脚本并测试动词。它将一直运行，直到你使用<code>jbreak</code>中断执行（或取消J任务）。</p>
+<p>对于这样一个简单的事情，这个用了11行的定义似乎过于冗长。该定义可以通过组合句子来简化。在临时脚本文件中创建定义的第二个版本。</p>
+<pre><code class="language-j">adda =: dyad : 0
+r =. ''
+count =. # x
+i =. 0
+while. i &lt; count do.
+ r =. r , (i { x) + (i { y)
+ i =. i + 1
+end.
+r
+)
+</code></pre>
+<p>运行脚本并测试这个新版本。</p>
+<pre><code class="language-j">   2 3 4 adda 4 5 6
+6 8 10
+</code></pre>
+<p>这基本上是大多数编程语言的程序员如何把两个数字列表相加的方法。该程序可以进一步精简，但它仍然必须是一个控制结构，
+每次处理一个数字。大多数语言只知道如何将两个单个数字相加。要把两个数字列表加起来，你需要编写一个控制结构，
+循环并显式地依次把两个列表中的每个元素相加。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="列表相加的j方式"><a class="header" href="#列表相加的j方式">列表相加的J方式</a></h1>
+<p>J知道如何处理单个数字，但它也知道如何处理列表。</p>
+<p>因为J知道如何进行列表相加，所以可以编写第三个更简单的版本。</p>
+<pre><code class="language-j">addb =: 4 : 'x + y'
+</code></pre>
+<p>将此定义添加到临时脚本文件中，运行脚本并对其进行测试。</p>
+<pre><code class="language-j">   2 3 4 addb 4 5 6
+6 8 10
+</code></pre>
+<p>现在，你可能意识到<code>addb</code>是如此简单，以至于没有必要定义它。</p>
+<pre><code class="language-j">   2 3 4 + 4 5 6
+6 8 10
+</code></pre>
+<p>在J中，你可以直接把两个数字列表相加，因为动词<code>+</code>知道所有关于数字列表的信息。</p>
+<p>多年来的研究和思考已经渗入J动词与列表一起工作的方式。例如，如果你想对列表中的每个数字加1。</p>
+<pre><code class="language-j">   1 adda 2 3 4
+3
+</code></pre>
+<p>基本方式的动词<code>adda</code>给出了答案，但这是错误的答案。事情是这样的。<code>while.</code>使用左参数的长度（为1）来确定在结果中应有多少个元素，
+因此只计算第一个结果。</p>
+<pre><code class="language-j">   2 3 4 adda 1
+|index error
+|   r=.r,(i{x.)+(i    {y.)
+</code></pre>
+<p>上面的代码会产生一个错误，因为<code>while.</code>使用长度3（左参数中的数字个数）但是右参数没有那么多数字，所以你会得到一个错误。</p>
+<p>但是J动词<code>+</code>以你喜欢和期望的方式处理这两种情况！</p>
+<pre><code class="language-j">   1 + 2 3 4
+3 4 5
+   2 3 4 + 1
+3 4 5
+</code></pre>
+<p>谢天谢地，动词<code>addlist</code>和<code>adda</code>都在一个临时文件中，很容易删除，因为在J中显然不需要它们。现在关闭并删除那个临时脚本。</p>
+<p>操纵列表而不是单个元素，这个简单概念在整个J中得到了扩展。</p>
+<pre><code class="language-j">   2 4 6 * 7 8 9
+14 32 54
+   2 * 2 3 4
+4 6 8
+   2 3 4 * 2
+4 6 8
+   5 6 7 % 2
+2.5 3 3.5
+   2 3 4 - 3
+_1 0 1
+</code></pre>
+<p>它也适用于比较原语。</p>
+<pre><code class="language-j">   2 3 4 = 7 3 8
+0 1 0
+   2 &lt; 0 1 2 3 4 5
+0 0 0 1 1 1
+   't' = 'testing'
+1 0 0 1 0 0 0
+</code></pre>
+<p>如果它适用于原语，那么像摄氏度这样的动词呢？</p>
+<pre><code class="language-j">   fahrenheit _40 0 100
+_40 32 212
+</code></pre>
+<p>适用于二元转换吗？</p>
+<pre><code class="language-j">   'c' convert _40 32 212
+_40 0 100
+   'f' convert _40 0 32 100 212
+_40 32 89.6 212 413.6
+</code></pre>
+<p>动词的拓展使其能够一致地操作列表，这非常非常强大，也是J与大多数其他语言的显著区别。
+重要的是，你要把这一点融入到思考解决问题的方式中。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="更多原语"><a class="header" href="#更多原语">更多原语</a></h1>
+<p>单子<code>i. (integers)</code>的结果是从0到其右参数的整数列表。</p>
+<pre><code class="language-j">   i. 2
+0 1
+   i. 4
+0 1 2 3
+   i. 6
+0 1 2 3 4 5
+</code></pre>
+<p>双子<code>$</code>成为赋形。</p>
+<pre><code class="language-j">   5 $ 7	NB. a list of 5 7's
+7 7 7 7 7
+   8 $ 23	NB. a list of 8 23's
+23 23 23 23 23 23 23 23
+</code></pre>
+<p>单子<code>? (roll)</code>在范围0到参数减1内生成一个随机数。参数0则生成一个大于等于0且小于1的随机浮点数。
+生成结果取决于掷骰子的方式。</p>
+<pre><code class="language-j">   ? 10
+6
+   ? 10
+0
+   ? 10 10 10 10  NB. 4 numbers in range 0 to 9
+3 0 4 6
+   ? 5 $ 100	  NB. 5 numbers in range 0 to 99	
+58 93 84 52 9
+   ? 0 0 0
+0.708477 0.553165 0.00766673
+</code></pre>
+<p>双子<code>^ (power)</code>的结果是左参数的幂，幂次数由右参数给出。</p>
+<pre><code class="language-j">   3 ^ 2	NB. 3 * 3
+9
+   2 ^  3	NB. 2 * 2 * 2
+8
+   2 ^ 4	NB. 2 * 2 * 2 * 2
+16
+   2 2 2 2 2 2 ^ 0 1 2 3 4 5
+1 2 4 8 16 32
+   2 ^ 0 1 2 3 4 5
+1 2 4 8 16 32
+   2 ^ i. 6
+1 2 4 8 16 32
+</code></pre>
+<p>二元动词<code>o. (circle)</code>是字母<code>o</code>加上<code>.</code>的变形，它提供了圆（三角）函数。特别地，左参数为1时，动词<code>o.</code>求右参数的正弦值。</p>
+<pre><code class="language-j">   1 o. i.7
+0 0.841471 0.909297 0.14112 _0.756802 _0.958924 _0.279415
+</code></pre>
+<p>单纯语言描述很难搞明白这些动词的含义，所以下一章我们将用图表来展示这些数据。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="绘图"><a class="header" href="#绘图">绘图</a></h1>
+<p>要使用绘图功能，你需要加载它。</p>
+<pre><code class="language-j">   load 'plot'
+</code></pre>
+<p>尝试一个简单的绘图。</p>
+<pre><code class="language-j">   plot 5 10 23 45 8
+</code></pre>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../pics/Help-plot.gif" alt=""><span class="img-wrapper"><img src="../pics/Help-plot.gif" alt=""></span></label></p>
+<p>绘图位于一个单独的窗口。关闭绘图窗口，丢弃它。</p>
+<p>现在可以绘制数据了，让我们看一下在前一节中使用的一些原语。</p>
+<pre><code class="language-j">   plot 2 ^ i. 5
+   plot ? 5 $ 100
+   plot ? 50 $ 100
+   plot ? 100 $ 100
+   plot ? 1 + i. 50
+   plot ? 1 + i. 100
+</code></pre>
+<p>通过左参数定制绘图。</p>
+<pre><code class="language-j">   'TITLE myplot;TYPE bar' plot 2 ^ i. 5
+</code></pre>
+<p>或者试试之前计算的正弦值。</p>
+<pre><code class="language-j">   plot 1 o. i. 16  
+</code></pre>
+<p>在<code>trig.ijs</code>脚本中定义了一系列实用程序，你可以在这里使用。使用load来加载该脚本。</p>
+<pre><code class="language-j">   load 'trig'
+   plot sin i. 16
+</code></pre>
+<p>为了生成更精细的图，你需要在类似的范围内提供更多的数值结果。</p>
+<pre><code class="language-j">   plot sin 0.2 * i.60
+   plot cos 0.2 * i.60
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="绘图区域"><a class="header" href="#绘图区域">绘图区域</a></h1>
+<p>绘图还说明了使用区域的一种常用技术。关闭J并重新启动它以获得一个干净的环境。
+<code>base</code>区域中没有动词名字，但是<code>profile.ijs</code>脚本加载了一些其他标准区域。</p>
+<pre><code class="language-j">   names 3	NB. verbs
+   names 6	NB. locales
+base     j        jcompare jgl2     jp       jqtide   jregex   jrx      jtask    z 
+</code></pre>
+<p>动词<code>load</code>（在<code>z</code>区域中定义）将<code>plot.ijs</code>脚本加载到<code>plot</code>区域中。</p>
+<pre><code class="language-j">   load 'plot'
+   plot ? 5 $ 100	
+   names 3
+   names 6
+base  j     jcfg  jplot z
+   plot
++----------+
+|plot_plot_|
++----------+
+</code></pre>
+<p>动词<code>plot</code>没有在<code>base</code>区域中定义，而是在<code>z</code>区域中定义。当它在<code>base</code>区域中执行时，
+来自<code>z</code>区域的定义就像在其定义在<code>base</code>区域中一样执行。输入<code>plot</code>名字将显示其定义。
+关于<code>plot</code>定义的有趣之处在于，它执行在<code>plot</code>区域中定义的<code>plot</code>动词。
+<code>z</code>区域中的<code>plot</code>是一个在所有语言区域中都有效的覆盖，它的作用是在执行<code>plot</code>区域中的<code>plot</code>动词。</p>
+<blockquote>
+<p>注：在较新的J版本中（J9.7以上），<code>plot.jis</code>已经被替换为别的脚本，具体看J实现。</p>
+</blockquote>
+<p>这种技术将像<code>plot</code>包这样的工具加载到它自己的区域中，然后在<code>z</code>区域中定义覆盖动词，
+以便用简单名字引用（不需要加区域后缀）调用功能区域中所需的动词。可以将<code>plot</code>区域中的定义
+视为该工具包的私有实现，而通过在<code>z</code>区域中定义而公开的名字是公共或发布的接口。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="打印精度"><a class="header" href="#打印精度">打印精度</a></h1>
+<p>打印精度是显示数字时显示的位数。</p>
+<pre><code class="language-j">   1 % 3
+0.333333
+   10 % 3
+3.33333
+   100 % 3
+33.3333
+</code></pre>
+<p>使用列表和一些新的原语，现在可以更简洁地看明白打印精度：</p>
+<pre><code class="language-j">   (10 ^ i. 6) % 3
+0.333333 3.33333 33.3333 333.333 3333.33 33333.3
+</code></pre>
+<p>你可以猜到默认的打印精度是6，因为在每种情况下显示6位数字。</p>
+<pre><code class="language-j">   a =. 1e5 + 10 % 3
+   b =. a + 0.1
+   a
+100003
+   b
+100003
+   a = b
+0
+</code></pre>
+<p>如果只显示6个数字，a和b看起来是一样的，尽管它们并不相等。在这种情况下，你需要看到更多的数字。
+使用下面的动词可以改变打印精度。</p>
+<pre><code class="language-j">   pps 9
+   a
+100003.333
+   b
+100003.433
+</code></pre>
+<p>打印精度设为9，因此有足够的细节可以看到发生了什么。</p>
+<pre><code class="language-j">   pps 6
+   %3 9 13
+0.333333 0.111111 0.0769231
+   pps 12
+   %3 9 13
+0.333333333333 0.111111111111 0.0769230769231
+</code></pre>
+<p>默认的打印精度6对于大多数情况来说是足够的，因为你通常不需要看到所有这些额外的数字细节。
+然而，重要的是要知道额外的数字确实存在，只是为了方便起见，显示被缩短了。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="不精确数值"><a class="header" href="#不精确数值">不精确数值</a></h1>
+<p>数值在计算机中的存储方式限制了数值的最大位数。这个最大值取决于硬件，
+但通常执行以20为参数的<code>pps</code>动词将保证显示一个数值的所有可用数字。</p>
+<pre><code class="language-j">   pps 6
+   %3
+0.333333
+   pps 12
+   %3
+0.333333333333
+   pps 20
+   %3
+0.33333333333333331483
+</code></pre>
+<p>在精度为20位的情况下，<code>%3</code>的结果以17位数字显示该数值的所有细节。
+<code>%3</code>的结果不是精确的数学结果，但它是可以存储在计算机中的最接近精确结果的数字。
+你从精确数学中得到的结果和计算机中数值存储方式的限制之间的差异可能会令人困惑。</p>
+<p><code>%3</code>没有精确地存储在计算机中，如果你意识到精确的十进制表示需要无数个3，那么你可能不会感到太惊讶。</p>
+<p>由于计算机内部以二进制格式存储数值（其中每个数字都是0或1），而不是你熟悉的十进制格式（其中数字的值范围从0到9），
+因此还有一个额外的困惑来源。这样做的结果是，即使是非常简单的十进制数，在转换成计算机的二进制格式时，
+也会被存储为一个不精确的值。</p>
+<pre><code class="language-j">   pps 20
+   0.5 0.25 0.1
+0.5 0.25 0.10000000000000000555
+</code></pre>
+<p>0.5和0.25被精确地存储，但是0.1被不精确地存储，当以最大精度显示时显示为0.10000000000000000555。</p>
+<p>这些都是计算机存储浮点数时无法该变的事实，适用于所有计算机语言，而不仅仅是J语言。
+通常你可以忽略这些细节，但如果你不知道发生了什么，它们有时会引起问题或困惑。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="容差"><a class="header" href="#容差">容差</a></h1>
+<p>这一部分有点高级，理解它并不重要。如果能理解，那很好。如果不明白，不要担心，直接进入下一部分。</p>
+<p>对于使用浮点数的某些工作，本节非常重要，同时还需要更详细地了解硬件如何存储和操作数值。然而，对于大多数工作，这部分可以忽略。</p>
+<p>在上一节的最后，我们看到计算机不能总是精确地表示数值。那么如果它们不能被精确地表示出来呢，我们怎么知道一个数是否等于另一个数？
+解决这个问题的方法是宽容比较的概念。也就是说，数值不必完全相同才能被认为是相等的。</p>
+<p>让我们通过实验来了解比较的宽容度如何，方法是逐渐使值远离100。使用输入行召回快捷键<code>Shift+Ctrl+Up</code>对于这类操作非常有用。</p>
+<pre><code class="language-j">   100 = 100
+1
+   100 = 99.999999999999986
+1
+   100 = 99.99999999999998
+1
+   100 = 99.9999999999999
+1
+   100 = 99.999999999999
+1
+   100 = 99.99999999999
+0
+</code></pre>
+<p>在上面的示例中，你越过了这条线，使得数值离100足够远，以至于它们不再被认为是相等的。让我们看另一个例子。</p>
+<pre><code class="language-j">   a =. 23
+   b =. a - 1e_12
+   c =. a - 1e_11
+   a
+23
+   a-b
+9.9831254374294076115e_13
+   a=b
+1
+   a-c
+1.0000889005823410116e_11
+   a=c
+0
+</code></pre>
+<p>a和b的值足够接近，可以认为是相等的。a和c的值不够接近，不能认为是相等的。
+足够接近和两个数值之间的差异相关。在这两种情况下，差异都很小，但b比c更接近a。
+阅读<a href="https://code.jsoftware.com/wiki/Vocabulary/eq#dyadic">NuVoc对=定义</a>，
+你将看到足够接近和不够接近之间的分界线是由较大的数值乘以默认容差值<code>2^_44</code>的结果决定的。
+也就是说，足够接近与否与数值的大小有关。</p>
+<p>将两个差异值和容差值进行比较：</p>
+<pre><code class="language-j">   (a - b , c) &lt;: tolerance    NB. Remember, this is equivalent to (a - (b,c)) due to right to left precedence.
+1 0
+</code></pre>
+<p>a和b之间的差异小于或等于容差，而a和c之间的差异则不是。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="第四个检查点"><a class="header" href="#第四个检查点">第四个检查点</a></h1>
+<p>到了这个检查点，你应该明白：</p>
+<ul>
+<li>原语适用于列表</li>
+<li>你的自定义动词适用于列表</li>
+<li>如何使用几个新动词</li>
+<li>如何使用绘图功能</li>
+<li>比较原语，如<code>=</code>，给出数值0和1作为结果</li>
+</ul>
+<p>通过做以下练习来检查你的理解：</p>
+<ul>
+<li>查找<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>中动词<code>i. (integers)</code>、<code>$ (shape)</code>、<code>? (roll)</code>、
+<code>^ (power)</code>和<code>o. (circle)</code>的定义；本指南在大多数情况下，只介绍了它们的一部分功能，因此你必须仔细阅读定义，
+以便能够忽略尚未介绍的部分，并挑选出已经介绍的部分</li>
+<li>用这些新的原语进行实验</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="原子"><a class="header" href="#原子">原子</a></h1>
+<p>由单独的实体构成的名词，是一个原子。</p>
+<pre><code class="language-j">   23
+   'a'
+   b =. 23
+   a =. 'q'
+</code></pre>
+<p>一个原子的维度为0。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="列表"><a class="header" href="#列表">列表</a></h1>
+<p>由一列原子构成的名词就是列表。</p>
+<pre><code class="language-j">   23 24 25
+   'this is a string'
+   b =. 7 14 21
+   a =. 'another string'
+</code></pre>
+<p>列表的维度为1。维度的长度是该维度中原子的数量。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="表格"><a class="header" href="#表格">表格</a></h1>
+<p>表格是由原子组成的二维阵列。表格不能像原子或列表那样直接写成字面量，而是必须用原语创建。
+双子<code>$ (shape)</code>可以创建表格。左边的参数表示每个维度中的元素数量，右边的参数提供用于填充表格的元素。</p>
+<pre><code class="language-j">   2 3 $ 7	NB. a 2 by 3 table of 7's
+7 7 7
+7 7 7
+   2 3 $ 7 8 9 10 11 12
+ 7  8  9
+10 11 12
+   2 3 $ 7 8	NB. cycle through atoms to get enough
+7 8 7
+8 7 8
+   3 4 $ 'abcdefghijklmnopqrstuv'
+abcd
+efgh
+ijkl
+</code></pre>
+<p>单子<code>$ (shape of)</code>给出了它的参数的形状。形状是参数每个维度上元素数量的列表。</p>
+<pre><code class="language-j">   a =. 2 3 $ 7
+   $ a
+2 3
+</code></pre>
+<p>前面介绍的用于创建整数列表的单子<code>i. (integers)</code>可用于创建整数表格。</p>
+<pre><code class="language-j">   i.5		NB. list of 5 integers
+0 1 2 3 4
+   i. 2 3	NB. 2 by 3 table of integers
+0 1 2
+3 4 5
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="阵列"><a class="header" href="#阵列">阵列</a></h1>
+<p>原子、列表和表都是阵列。J中的所有名词都是阵列。原子有0个维度，列表有1个维度，表有2个维度。
+这可以扩展到更高维度的阵列。</p>
+<p>前面讨论的关于列表和表的原语<code>$</code>也适用于高维阵列。</p>
+<pre><code class="language-j">   2 3 4 $ i. 24
+ 0  1  2  3
+ 4  5  6  7
+ 8  9 10 11
+
+12 13 14 15
+16 17 18 19
+20 21 22 23
+</code></pre>
+<p>上面是一个三维阵列。空行表示第一维与第二维和第三维之间的分隔。</p>
+<pre><code class="language-j">   b =. 2 3 4 $ 'abcdef'
+   b
+abcd
+efab
+cdef
+
+abcd
+efab
+cdef
+   $ b
+2 3 4
+</code></pre>
+<p>单子<code>i.</code>也适用于高维阵列。</p>
+<pre><code class="language-j">   i. 2 3 4
+ 0  1  2  3
+ 4  5  6  7
+ 8  9 10 11
+
+12 13 14 15
+16 17 18 19
+20 21 22 23
+</code></pre>
+<p>J术语中的原子、列表和表格类似于数学术语中的标量、向量和矩阵。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="轴"><a class="header" href="#轴">轴</a></h1>
+<p>比起属于“维度”，我们更倾向于使用术语“轴”。原子有0个轴，列表有1个轴，表格有2个轴。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="形"><a class="header" href="#形">形</a></h1>
+<p>名词的形是它每个轴上的原子数量的列表。单子<code>$</code>给出名词的形。</p>
+<pre><code class="language-j">   a =. 4 2 3 $ 'abcdef'
+   $ a
+4 2 3
+   $ 4		NB. atom has 0 axes and its shape is empty
+   $ i. 5
+5
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="秩"><a class="header" href="#秩">秩</a></h1>
+<p>名词的秩是它的轴数。原子的秩为0，列表的秩为1，表格的秩为2，有5个轴的阵列的秩为5。
+阵列的秩非常重要，它在很大程度上决定了动词如何操作阵列。</p>
+<p>阵列的形是一个列表，其中的数字个数与阵列的轴数一样多。这意味着阵列的形的长度就是它的秩。</p>
+<pre><code class="language-j">   # $ 4	NB. atom has rank 0
+0
+   # $ 4 5 6	NB. list has rank 1
+1
+   # $ 2 3 $ 'a'	NB. table has rank 2
+2
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="空阵列"><a class="header" href="#空阵列">空阵列</a></h1>
+<p>如果阵列中没有原子，那么它就是空的。一个空阵列的形是0。</p>
+<pre><code class="language-j">   a =. 0 $ 0	NB. empty list
+   $a
+0
+   $ ''	NB. empty list
+0
+   b =. 2 0 3 $ 'a'	NB. empty rank 3 array
+   $b
+2 0 3
+</code></pre>
+<p>空阵列没有原子来显示，如果不知道该期望什么，那么显示可能会让人困惑。
+空阵列显示为空白行。一个0行的表格被当作0行来显示（即没有显示）；一个有3行0列的表格，显示为3个空白行。</p>
+<pre><code class="language-j">   2 $ 5
+5 5
+   1 $ 5
+5
+   0 $ 5	NB. empty list displays as blank line
+   2 2 $ 5
+5 5
+5 5
+   1 2 $ 5
+5 5
+   2 0 $ 5	NB. 2 rows displays 2 lines
+
+
+   0 2 $ 5	NB. 0 rows displays 0 lines
+</code></pre>
+<p>列表和表格的显示可以看起来是一样的，你必须查看它们的形来区分它们。</p>
+<pre><code class="language-j">   a =. 2 $ 5
+   b =. 1 2 $ 5
+   a
+5 5
+   b		NB. b displays the same as a
+5 5
+   $ a
+2
+   $ b		NB. but b has a different shape
+1 2
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="单原子阵列"><a class="header" href="#单原子阵列">单原子阵列</a></h1>
+<p>只有一个原子的阵列称为单例。具有相同原子的所有单例都以相同的方式显示。
+然而，它们有不同的秩这一事实影响了动词对它们的作用。对于初学者来说，这可能是一个陷阱。
+重要的是要记住，如果它显示为原子，但行为不像原子，那么检查它的秩。</p>
+<pre><code class="language-j">   atom =. 5
+   list =. 1 $ 5
+   atom
+5
+   list	NB. list looks like atom
+5
+   atom + 23 23 23
+28 28 28
+   list + 23 23 23	NB. but does not behave like atom
+|length error
+|   list    +23 23 23
+   # $ atom	NB. rank of atom is 0
+0
+   # $ list	NB. rank of list is 1
+1
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="动词参数"><a class="header" href="#动词参数">动词参数</a></h1>
+<p>J的很大一部分功能在于动词将其参数视为一系列部分的能力。
+动词将自己应用于每个部分，创建一系列部分结果，然后将部分结果组装成最终结果。
+接下来的几节将详细描述它的工作原理以及使用它可以做些什么。</p>
+<p>让我们看几个例子，以了解后续学习方向。</p>
+<pre><code class="language-j">   m =. i. 2 2
+   m
+0 1
+2 3
+</code></pre>
+<p>你可以将具有相同秩和形的阵列加在一起。</p>
+<pre><code class="language-j">   m + 2 2 $ 10 11 12 13
+10 12
+14 16
+</code></pre>
+<p>也可以把单个数值和阵列相加。</p>
+<pre><code class="language-j">  10 + m
+10 11
+12 13
+</code></pre>
+<p>如果你想给第一行加上一个数值，给第二行加上另一个数值呢？</p>
+<pre><code class="language-j">   10 20 + m
+10 11
+22 23
+</code></pre>
+<p>但是如果你想把这些数值加到列上呢？那你必须明确想要加到列上而不是行上。</p>
+<pre><code class="language-j">   10 20 +"1 m
+10 21
+12 23
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="框架和单元格"><a class="header" href="#框架和单元格">框架和单元格</a></h1>
+<p>到目前为止，名词一直被视为整体。但是，将阵列视为由单元格组成是有用的，
+单元格是阵列的一部分（子阵列），当将其放置在框架中时，就构成了整个阵列。</p>
+<pre><code class="language-j">   a =. 2 3 $ 'abcdef'
+   a
+abc
+def
+</code></pre>
+<p>阵列<code>a</code>可以被认为有<code>6</code>个单元格，每个单元格是一个原子。框架的形是<code>2 3</code>，
+将<code>6</code>个单独的单元格组装到阵列<code>a</code>中。视觉上（单元格是原子，框架是<code>2 3</code>）：</p>
+<pre><code class="language-j">	a       cell 0
+	b       cell 1
+	...
+	f       cell 5
+</code></pre>
+<p>阵列<code>a</code>也可以被认为有<code>2</code>个单元格，其中每个单元格是一个列表。框架的形是<code>2</code>，
+将单元格组装到阵列<code>a</code>中。视觉上（单元格是列表，框架是<code>2</code>）：</p>
+<pre><code class="language-j">	abc   cell 0
+	def   cell 1
+</code></pre>
+<p>最后，可以认为阵列<code>a</code>有一个单元格，其中单元格是一个表格。框架的形为空，
+将单元格组装到阵列<code>a</code>中。视觉上（单元格是表格，框架是空的）：</p>
+<pre><code class="language-j">	abc   cell 0
+	def
+</code></pre>
+<p>形为<code>2 3</code>的表格可以理解为：</p>
+<ul>
+<li>一个以原子为单元格，形为<code>2 3</code>的框架</li>
+<li>一个以列表（形为<code>3</code>）为单元格，形为<code>2</code>的框架</li>
+<li>一个以表格（形为<code>2 3</code>）为单元格的空框架</li>
+</ul>
+<p>类似地，形为<code>4 3 2</code>的阵列可以被认为是：</p>
+<ul>
+<li>一个以原子为单元格，形为<code>4 3 2</code>的框架</li>
+<li>一个以列表（形为<code>2</code>）为单元格，形为<code>4 3</code>的框架</li>
+<li>一个以表格（形为<code>3 2</code>）为单元格，形为<code>4</code>的框架</li>
+<li>一个以秩为3的阵列（形为<code>4 3 2</code>）为单元格的空框架</li>
+</ul>
+<p>框架是阵列形的前缀。它可以是整个形（以整个形作为前缀），在这种情况下，单元格是原子。
+它可以为空（空前缀），在这种情况下，以整个阵列作为单一单元格。或者介于两者之间。</p>
+<p>单元格的形是去掉框架前缀后阵列的形。单元格形的长度就是单元格的秩。</p>
+<p>阵列的单元格是子阵列，当它们组装到相应的框架中时，就创建了整个阵列。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="项"><a class="header" href="#项">项</a></h1>
+<p>阵列通常被视为具有长度为1的框架。以这种框架看阵列，其单元格的秩比阵列的秩小1。这些单元格是阵列的<strong>项</strong>。</p>
+<p>列表中的项是列表中的原子。</p>
+<p>表格中的项是表格中的行。</p>
+<p>秩为3的阵列的项是阵列中的表格。</p>
+<p><strong>阵列是它的项的列表。</strong></p>
+<p>一个原子有一个项，它自己。</p>
+<p>名词的计数（<code># (tally)</code>）是名词中项的数量。</p>
+<pre><code class="language-j">   # 23
+1
+   # 1 $ 5
+1
+   # i. 5
+5
+   # i.2 3
+2
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="k元格"><a class="header" href="#k元格">k元格</a></h1>
+<p>秩为k的单元格也称为k秩单元格或k元格。0元格是一个原子，1元格是一个列表，2元格是一个表格，以此类推。
+如果一个名词的单元格的秩是已知的，那么它的框架就是它的形除去单元格的秩所剩下的东西。</p>
+<p>也可以使用负数，如<code>_2</code>元格和<code>_1</code>元格；这种单元格的框架的长度由其负数秩的绝对值表示。你之前已经见过<code>_1</code>元格：它们是项。</p>
+<pre><code class="language-j">  abc =. 4 3 2 $ i. 24
+</code></pre>
+<p>名词<code>abc</code>可以理解为：</p>
+<ul>
+<li><code>4 3 2</code>框架装着0元格</li>
+<li><code>4 3</code>框架装着1元格</li>
+<li><code>4</code>框架装着2元格</li>
+<li>空框架装着3元格</li>
+</ul>
+<p>更通用的表达方式是：</p>
+<ul>
+<li>秩为3的框架装着0元格</li>
+<li>秩为2的框架装着1元格</li>
+<li>秩为1的框架装着2元格</li>
+<li>秩为0的框架装着3元格</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="动词的秩"><a class="header" href="#动词的秩">动词的秩</a></h1>
+<p>动词也有秩，决定了它如何应用于其参数。秩为<strong>k</strong>的单子应用于其参数的<strong>k</strong>元格。
+左秩<strong>kl</strong>和右秩<strong>kr</strong>的双子应用于左参数的<strong>kl</strong>元格和右参数的<strong>kr</strong>元格。
+动词的秩是一个强大的工具，它控制着动词应用于阵列的方式。</p>
+<p>原语动词的秩在NuVoc定义中给出。例如，查找<code>+</code>的定义。秩信息紧挨着标题中的动词名称。
+对于<code>+</code>，显示为<code>0 Conjugate</code>，这表明单子<code>+ (Conjugate)</code>适用于原子。
+双子<code>+ (Plus)</code>的秩是<code>Plus 0 0</code>，表示它适用于左参数和右参数的每个原子。</p>
+<p>让我们看看把两个表相加时它是如何工作的。</p>
+<pre><code class="language-j">   a =. i. 2 3
+   b =. 6 + a
+   a
+0 1 2
+3 4 5
+   b
+6  7  8
+9 10 11
+   a + b
+ 6  8 10
+12 14 16
+</code></pre>
+<p>双子<code>+</code>的左秩是0。这意味着它应用于左参数的原子。类似地，右秩为0，也应用于其右参数的原子。
+动词从其左参数中获取一个原子，从其右参数中获取一个原子，并将它们相加以创建部分结果。
+它对来自左右参数的每个原子执行此操作，并创建适当数量的部分结果，然后将其组装到结果框架中以创建最终结果。</p>
+<p>在上面的例子中，动词<code>+</code>的左秩为0。这意味着左参数被看作是一个装着原子的<code>2 3</code>框架。
+类似地，右秩为0意味着右参数被视为装着原子的<code>2 3</code>框架。</p>
+<p>结果的框架是由参数的框架决定的，所以它的框架也是<code>2 3</code>，其每个单元格都是左参数中的一个原子和右参数中的一个原子相加的结果。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="秩协商"><a class="header" href="#秩协商">秩协商</a></h1>
+<p>对于双子，动词的左秩和左参数的秩决定了左参数的框架。同样，动词的右秩和右参数的秩决定了右参数的框架。
+如果左右框架相同，则每个参数中有相同数量的单元格，只需依次从左右参数中取出每个单元格，应用动词，并将结果放入结果框架中。</p>
+<pre><code class="language-j">   a =. i. 2 3
+   b =. 2 3 $ 7
+   a + b
+ 7  8  9
+10 11 12
+</code></pre>
+<p>可视化地看，左边的每个原子是如何与右边的相应原子是这么一起使用的。</p>
+<pre><code class="language-j">0 1 2   +   7 7 7   gives   7  8  9
+3 4 5       7 7 7          10 11 12
+</code></pre>
+<p>你也看到了下面的也能正常运算。</p>
+<pre><code class="language-j">   a + 7
+ 7  8  9
+10 11 12
+</code></pre>
+<p>可视化地看，左边的每个原子是如何与右边的相应原子是这么一起使用的。</p>
+<pre><code class="language-j">0 1 2   +   7 ...      gives   7  8  9
+3 4 5       ...               10 11 12
+</code></pre>
+<p>这个<code>...</code>指示重复单元格以提供所需的参数。这个7右边及下边的<code>...</code>右边表示7在两个轴上重复。</p>
+<p>但是下面这个呢？</p>
+<pre><code class="language-j">   a + 3 4
+3 4 5
+7 8 9
+</code></pre>
+<p>可以再次看到，右参数的单元格如何重复以提供所需的动词参数。</p>
+<pre><code class="language-j">0 1 2   +   3 ...      gives    3 4 5
+3 4 5       4 ...               7 8 9
+</code></pre>
+<p>但是参数的单元格一定要能协商一致。</p>
+<pre><code class="language-j">   a + 3 4 5
+|length error
+|   a    +3 4 5
+</code></pre>
+<p>可视化地看，情况是这样的：</p>
+<pre><code class="language-j">0 1 2   +   3 ...      gives    3 4 5
+3 4 5       4 ...               7 8 9
+            5 ...	error - ran out of lefts
+</code></pre>
+<p>上面的例子很简单，但是考虑下面秩为3的名词。</p>
+<pre><code class="language-j">   b =. i. 2 3 4
+   b + a
+ 0  1  2  3
+ 5  6  7  8
+10 11 12 13
+
+15 16 17 18
+20 21 22 23
+25 26 27 28
+</code></pre>
+<p>这个可视化起来比较复杂。</p>
+<pre><code class="language-j"> 0  1  2  3   +   0 ...   gives   0  1  2  3
+ 4  5  6  7       1 ...           5  6  7  8
+ 8  9 10 11       2 ...          10 11 12 13
+
+12 13 14 15       3 ...          15 16 17 18
+16 17 18 19       4 ...          20 21 22 23
+20 21 22 23       5 ...          25 26 27 28
+</code></pre>
+<p>类似地：</p>
+<pre><code class="language-j">   b + 2 3
+ 2  3  4  5
+ 6  7  8  9
+10 11 12 13
+
+15 16 17 18
+19 20 21 22
+23 24 25 26
+</code></pre>
+<p>可视化：</p>
+<pre><code class="language-j"> 0  1  2  3   +   2 ...   gives  2  3  4  5
+ 4  5  6  7       ...            6  7  8  9
+ 8  9 10 11                     10 11 12 13
+
+12 13 14 15       3 ...         15 16 17 18
+16 17 18 19       ...           19 20 21 22
+20 21 22 23                     23 24 25 26
+</code></pre>
+<p>秩协商规则很简单。如果左右框架是一样的，那就没有问题。
+否则，一个框架必须是另一个框架的前缀，并且其单元格要按照另一个框架的剩余轴结构进行重复，
+以提供所需的参数。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
