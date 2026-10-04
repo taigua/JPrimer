@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>需要的背景知识 - J Primer</title>
+        <title>结果的形 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -176,23 +176,51 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="需要的背景知识"><a class="header" href="#需要的背景知识">需要的背景知识</a></h1>
-<p>本书假设你熟悉另一种编程语言，如Basic、Java或C。然而，这不是先决条件，即使J是你的第一门计算机语言，
-应该也不会有什么特别的问题（实际上，更应祝贺你！）。</p>
-<p>大多数事情都可以在J中完成，就像在其他语言中完成一样，并且通常一个主题的引入方式和在其他语言中引入它一样，
-这使得在J中更容易理解它是如何工作的。在某些情况下，有一种更好的J方法来解决问题，也会介绍这种方法。</p>
+                        <h1 id="结果的形"><a class="header" href="#结果的形">结果的形</a></h1>
+<p>在前面几节中，结果的形这个问题被掩盖了。对于单子，结果的框架与参数的框架相同。
+对于双子，结果的框架是参数的框架中较长的框架（或者如果它们相同，则任意一个框架）。</p>
+<p>像<code>+</code>这样的动词，每个原子参数都有一个原子结果，这很简单。行为更复杂的动词会让事情变得更有趣。</p>
+<p>考虑动词<code>$</code>。在<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>中查找它，你会看到它对于单子的秩为<code>_</code>，
+这表示无限（无界）秩，并且意味着动词适用于整个参数。如果你认为单子<code>$</code>的结果的形是其整个右参数的形，这是有意义的。
+双子的左秩是1，这意味着它适用于左参数的列表。双子的右秩是无界的<code>_</code>，因此适用于整个右参数。</p>
+<pre><code class="language-j">   2 4 $ i.3
+0 1 2 0
+1 2 0 1
+   2 4 $"1 0 i.3
+0 0 0 0
+0 0 0 0
+
+1 1 1 1
+1 1 1 1
+
+2 2 2 2
+2 2 2 2
+</code></pre>
+<p>第一个例子是你之前见过的，但第二个例子是什么呢？<code>$"1 0</code>表示<code>$</code>将以左侧列表（1元格）和右侧原子（0元格）的形式获取单元格参数。
+左框架是空（在取了一个1元格后，左参数形的左边没有任何东西），右框架是3（右参数中有3个0元格）。所以结果的框架是3。</p>
+<pre><code class="language-j">2 4 $ 0   gives   0 0 0 0   left 1-cell $ right 0-cell
+                  0 0 0 0
+
+... $ 1   gives   1 1 1 1   repeat 1-cell $ next 0-cell
+                  1 1 1 1
+
+... $ 2   gives   2 2 2 2   repeat 1-cell $ next 0-cell
+                  2 2 2 2
+</code></pre>
+<p>结果的框架是3，框架里的东西是2 x 4的表格，所以最终结果的形状是3 x 4。</p>
+<pre><code class="language-j">   $ 2 4 $"1 0 i.3
+3 2 4
+</code></pre>
+<p>秩（名词秩、动词秩、框架、单元格和秩连词）适用于所有动词，并且大大增加了你使用任何动词的方式。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="003.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="074.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="005.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -200,13 +228,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="003.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="074.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="005.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                    </a>
             </nav>
 
         </div>
