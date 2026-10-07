@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-91813877.js";
+            window.path_to_searchindex_js = "searchindex-ff88bb79.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-d07b8e85.js"></script>
+        <script src="toc-e6568e00.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -421,7 +421,7 @@ _4
 <p>一条竖线标记了错误报告。如果可以的话，句子会用额外的空格来标记检测到错误的地方。
 在J9.4版本中，错误消息得到了改进，使调试更加容易。</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="两可性"><a class="header" href="#两可性">两可性</a></h1>
+<h1 id="双重性"><a class="header" href="#双重性">双重性</a></h1>
 <p>每个动词都有两种定义：当它同时有左参数和右参数时使用双子（<strong>dyad</strong>），当它只有右参数时使用单子（<strong>monad</strong>）。
 这两个定义通常是相关的，比如<code>-</code>的双子定义表示减法，而单子定义表示求负。</p>
 <pre><code class="language-j">   5 - 3
@@ -430,7 +430,7 @@ _4
 _7
 </code></pre>
 <p>双子也被称为动词的二元模式，而单子被称为动词的一元模式。
-“两可性”一词用于化学意义上的两种价态，表明一个动词既可以与一个参数反应，也可以与两个参数反应。</p>
+“双重性”一词用于化学意义上的两种价态，表明一个动词既可以与一个参数反应，也可以与两个参数反应。</p>
 <p><strong>记住</strong>：绝大多数动词都有单子和双子两种定义。</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="双子"><a class="header" href="#双子">双子</a></h1>
@@ -501,7 +501,7 @@ wiki页面的上半部分是描述<code>Conjugate</code>的信息。<code>Plus</
 在原语表的下面是一个辅助页面列表，它们解释了J的一些概念。它们中的一些在你完成本入门之后值得一看，
 因为它们提供了你将看到的一些概念的更详细的信息。</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第一个检查点"><a class="header" href="#第一个检查点">第一个检查点</a></h1>
+<h1 id="检查点一"><a class="header" href="#检查点一">检查点一</a></h1>
 <p>到了这个检查点，你应该明白：</p>
 <ul>
 <li>如何使用J字典词汇表</li>
@@ -756,7 +756,7 @@ t3 =. t2 % 9
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="单子双子定义"><a class="header" href="#单子双子定义">单子/双子定义</a></h1>
-<p>正如前面关于<a href="#两可性">两可性</a>的部分所讨论的那样，所有动词都有两种定义，单子和双子。
+<p>正如前面关于<a href="#双重性">两可性</a>的部分所讨论的那样，所有动词都有两种定义，单子和双子。
 你只定义了摄氏度的单子。那么双子呢？</p>
 <pre><code class="language-j">   23 centigrade 32
 |domain error: centigrade
@@ -1126,7 +1126,7 @@ TESTING 1 2 3
 sir richard
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第二个检查点"><a class="header" href="#第二个检查点">第二个检查点</a></h1>
+<h1 id="检查点二"><a class="header" href="#检查点二">检查点二</a></h1>
 <p>到了这个检查点，你应该明白：</p>
 <ul>
 <li>作为句子来源的文本文件称为脚本文件</li>
@@ -1335,7 +1335,7 @@ end.
 的B(i+1)块将被执行。如果下一个是<code>fcase.</code>，则还会继续执行下下一个，直到遇不到<code>fcase.</code>或执行到<code>select.</code>的结尾。</p>
 <p>有关控制结构的更多信息，请参考<a href="https://code.jsoftware.com/wiki/Vocabulary/ControlStructures">NuVoc</a>。</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第三个检查点"><a class="header" href="#第三个检查点">第三个检查点</a></h1>
+<h1 id="检查点三"><a class="header" href="#检查点三">检查点三</a></h1>
 <p>到了这个检查点，你应该明白：</p>
 <ul>
 <li>动词调试的一般方法</li>
@@ -1743,7 +1743,7 @@ base  j     jcfg  jplot z
 </code></pre>
 <p>a和b之间的差异小于或等于容差，而a和c之间的差异则不是。</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第四个检查点"><a class="header" href="#第四个检查点">第四个检查点</a></h1>
+<h1 id="检查点四"><a class="header" href="#检查点四">检查点四</a></h1>
 <p>到了这个检查点，你应该明白：</p>
 <ul>
 <li>原语适用于列表</li>
@@ -2262,6 +2262,34 @@ def
 3 2 4
 </code></pre>
 <p>秩（名词秩、动词秩、框架、单元格和秩连词）适用于所有动词，并且大大增加了你使用任何动词的方式。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="检查点五"><a class="header" href="#检查点五">检查点五</a></h1>
+<p>到了这个检查点，你应该明白：</p>
+<ul>
+<li>术语原子、列表、表、阵列、轴、秩、形、项、框架和单元格</li>
+<li>名词的秩</li>
+<li>动词的秩</li>
+<li>“（秩连词）</li>
+<li>秩协商</li>
+<li>秩如何决定动词应用于哪个单元格参数</li>
+<li>结果是如何由部分结果组成的</li>
+</ul>
+<p>通过做以下练习来检查你的理解：</p>
+<ul>
+<li>尝试使用你知道的原语，使用<code>"</code>将它们应用于单元格，并查看部分结果如何构建最终结果</li>
+<li>不要把你的实验局限于像<code>+</code>这样的动词，也可以尝试像<code>$ (shape)</code>和<code>, (append)</code>这样的动词。</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="副词"><a class="header" href="#副词">副词</a></h1>
+<p>副词与动词相似，但在以下方面有所不同：</p>
+<ul>
+<li>副词只有一个左参数（动词具有双重性，要么有一个右参数，要么有一个左参数和一个右参数）</li>
+<li>副词可用于名词或动词（动词仅用于名词）</li>
+<li>副词通常生成一个动词作为结果（动词总是有一个名词结果）。</li>
+</ul>
+<p>副词生成的动词结果称为派生动词。</p>
+<p>原语<code>/</code>是副词。它的结果是一个新的动词。如果使用派生动词的一元形式，则将<code>/</code>称为<em>插入</em>。
+如果使用派生动词的二元形式，则将<code>/</code>称为<em>表格化</em>。</p>
 
                     </main>
 
