@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-9d676db8.js";
+            window.path_to_searchindex_js = "searchindex-884947ca.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-347e8af8.js"></script>
+        <script src="toc-e2818df8.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2381,6 +2381,104 @@ sumrows   8 9 10 11	(next 1-cell)	gives  38
    +/"1 a	NB. sum over rows
  6 22 38
 54 70 86
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="表格化副词"><a class="header" href="#表格化副词">表格化副词</a></h1>
+<p>双子<code>v/</code>为动词<code>v</code>计算一个表格（函数表）。</p>
+<pre><code class="language-j">   a =. i. 5
+   a +/ a	NB. addition table
+0 1 2 3 4
+1 2 3 4 5
+2 3 4 5 6
+3 4 5 6 7
+4 5 6 7 8
+   a */ a	NB. times table
+0 0 0  0  0
+0 1 2  3  4
+0 2 4  6  8
+0 3 6  9 12
+0 4 8 12 16
+  0 1 +/ 0 1	NB. + table on booleans
+0 1
+1 2
+  0 1 +./ 0 1	NB. or
+0 1
+1 1
+   0 1 +:/ 0 1	NB. not-or
+1 0
+0 0
+   0 1 */ 0 1	NB. times
+0 0
+0 1
+   0 1 *./ 0 1	NB. and
+0 0
+0 1
+    0 1 *:/ 0 1	NB. not-and
+1 1
+1 0
+</code></pre>
+<p>派生动词<code>v/</code>左秩是<code>v</code>的左秩，右秩是<code>_</code>；它在左参数的每个单元格和整个右参数之间应用<code>v</code>。</p>
+<pre><code class="language-j">   additiontable =. +/
+</code></pre>
+<p>动词<code>additiontable</code>被定义为副词<code>/</code>以<code>+</code>为参数应用后的结果。
+该定义与你在前一节中使用的<code>sumver</code>的定义相同。<code>addtiontable</code>表示在使用双子，
+<code>summover</code>表示在使用单子。当然名字无法阻止对派生动词的误导使用。</p>
+<pre><code class="language-j">   a additiontable a
+0 1 2 3 4
+1 2 3 4 5
+2 3 4 5 6
+3 4 5 6 7
+4 5 6 7 8
+</code></pre>
+<p><code>+</code>的左秩是0，所以派生动词的秩是0，它的单元格参数是原子。
+派生动词的右秩是<code>_</code>，它的单元格参数是整个右参数。从视觉上看，上面的工作原理如下：</p>
+<pre><code class="language-j">0 (first atom from left) + entire right   gives  0 1 2 3 4
+1 (next atom from left)  + entire right   gives  1 2 3 4 5
+2 (next atom from left)  + entire right   gives  2 3 4 5 6
+3 (next atom from left)  + entire right   gives  3 4 5 6 7
+4 (next atom from left)  + entire right   gives  4 5 6 7 9
+</code></pre>
+<p>下面是一个有趣的表格化用法，用于前面章节的绘图原语。
+绘图工具将表格参数中的每一行绘制为单独的数据系列。</p>
+<pre><code class="language-j">   load 'plot'
+   plot 1 2 o. / 0.2 * i.60   
+</code></pre>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../pics/Help-plot2.gif" alt=""><span class="img-wrapper"><img src="../pics/Help-plot2.gif" alt=""></span></label></p>
+<pre><code class="language-j">	'surface' plot 1 2 o. / 0.2 * i.60
+</code></pre>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../pics/Help-plot3.gif" alt=""><span class="img-wrapper"><img src="../pics/Help-plot3.gif" alt=""></span></label></p>
+<p>左参数中的1用作<code>o.</code>的左参数，给出第一行的正弦值。左边参数中的2用作<code>o.</code>的做参数，给出了第二行的余弦值。</p>
+<p>在上面的例子中，原始动词的左秩总是0，因此派生动词的左参数的单元格就是左参数的原子。让我们看一个例子，其中原始动词的左秩不是0。</p>
+<pre><code class="language-j">   f =. ,"1
+</code></pre>
+<p>动词<code>f</code>是左右秩分别为1的<code>, (append)</code>原语。</p>
+<pre><code class="language-j">   p=. 2 2 $'abcd'
+   p
+ab
+cd
+   q=.3 3$'ABCD'
+   q
+ABC
+DAB
+CDA
+
+   p f/ q
+abABC
+abDAB
+abCDA
+
+cdABC
+cdDAB
+cdCDA
+</code></pre>
+<p>可视化：</p>
+<pre><code class="language-j">ab (1st list from left) , entire right   gives	abABC
+			                        abDAB
+			                        abCDA
+
+cd (next list)    	, entire right   gives	cdABC
+		                                cdDAB
+		                                cdCDA
 </code></pre>
 
                     </main>
