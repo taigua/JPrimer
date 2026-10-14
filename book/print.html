@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-31fbdd63.js";
+            window.path_to_searchindex_js = "searchindex-b54e8d60.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-90ed48a4.js"></script>
+        <script src="toc-75368cec.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2486,6 +2486,26 @@ cd (next list)    	, entire right   gives	cdABC
 在前面的章节中非正式地介绍了秩连词<code>"</code>。此外，用于定义动词（如摄氏度）的<code>:</code>现在可以被认为是连词。
 在定义摄氏度时，<code>:</code>的左参数为3，右参数为0。因此看起来它可能是一个动词，但它的结果是一个动词的，这个事实证明它是一个连词。</p>
 <p>连词的动词结果称为派生动词。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="副词和连词的执行顺序"><a class="header" href="#副词和连词的执行顺序">副词和连词的执行顺序</a></h1>
+<p>副词和连词的优先级高于动词。这意味着副词或连词在动词之前执行。
+此外，副词或连词的左参数是它前面的整个动词短语。<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>的
+<a href="https://code.jsoftware.com/wiki/Vocabulary/Modifiers">Modifiers</a>辅助页面给出了解析和执行的确切规则。</p>
+<p>出于实践目的，下面用示例说明这些规则。</p>
+<pre><code class="language-j">   a =. i.2 3
+   +/"1 - a
+_3 _12
+</code></pre>
+<p>与所有J句子一样，上面的句子从右到左执行。在将<code>+</code>解析为双子或单子之前，执行优先级更高的连词<code>"</code>。连词以<code>1</code>作为它的右参数，
+以它左边的整个动词短语作为它的左参数。左边的动词短语是副词，它的左参数是<code>+</code>。下面使用括号来明确根据规则所确定的执行顺序。</p>
+<pre><code class="language-j">   ((+/)"1) (- a)
+</code></pre>
+<p>如前所述，带有常量的简单例子可能需要将作为连词宾语的常量与作为派生动词宾语的常量分开。</p>
+<pre><code class="language-j">   a (+"1) 1 2 3
+   a +"1 (1 2 3)
+   a +"1 [ 1 2 3
+</code></pre>
+<p>最后一个使用原语单子<code>[ (same)</code>来返回它的参数。这样比较短，并且避免了括号的使用。</p>
 
                     </main>
 
