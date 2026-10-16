@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-a9c8b4b6.js";
+            window.path_to_searchindex_js = "searchindex-3b0ab6fc.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-4c344be4.js"></script>
+        <script src="toc-74241145.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2593,6 +2593,68 @@ _3 _12
 +---+------------+
 </code></pre>
 <p>盒子可以嵌套！</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="开盒---单子-"><a class="header" href="#开盒---单子-">开盒 - 单子 &gt;</a></h1>
+<p>单子<code>&gt; (open)</code>是<em>装盒</em>的逆操作。也就是说，它把盒子里的东西取出来。
+把它用在已经<em>开盒</em>的名词上是没有效果的。</p>
+<pre><code class="language-j">   &gt; 23 5 7
+23 5 7
+   a =. i.5
+   a
+0 1 2 3 4
+   &lt; a
++---------+
+|0 1 2 3 4|
++---------+
+   &gt; &lt; a
+0 1 2 3 4
+</code></pre>
+<p>在<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>中查找<a href="https://code.jsoftware.com/wiki/Vocabulary/gt">&gt;</a>。
+单子<code>&gt;</code>的秩为<code>0</code>，所以它应用于参数中的每个原子。每个原子被打开，创建一个部分结果，然后与所有其他部分结果组合成最终结果。</p>
+<pre><code class="language-j">   a =. 1 2 3 ; 5 6 7
+   a
++-----------+
+|1 2 3|5 6 7|
++-----------+
+   &gt; a
+1 2 3
+5 6 7
+</code></pre>
+<p>如果部分结果都具有相同的秩和形，则直接组装它们。但是，<em>开盒</em>的部分结果可能会有非常不同的秩和形。</p>
+<pre><code class="language-j">   a =. 1 ; 2 3 ; 4 5 6
+   a	
++-----------+
+|1|2 3|4 5 6|
++-----------+
+   &gt; a
+1 0 0
+2 3 0
+4 5 6
+</code></pre>
+<p>打开每个原子，并扩展部分结果以适应结果框架。</p>
+<pre><code class="language-j">&gt; 1     gives	1	(atom)
+&gt; 2 3  	gives	2 3	(list)
+&gt; 4 5 6	gives	4 5 6	(list)
+</code></pre>
+<p>结果框架必须具有具有相同秩和形的部分结果。为此，将每个部分结果扩展为具有与最高秩结果的秩相同的秩，
+并且每个部分结果的形在任何轴上都取最大值。</p>
+<p>在上面的示例中，原子<code>1</code>被扩展为一个列表，并用<code>0</code>填充以获得形为<code>3</code>的列表。
+用<code>0</code>填充列表<code>2 3</code>，使其形为<code>3</code>。列表<code>4 5 6</code>无需填充。最终结果的框架为<code>3</code>，
+其中每个结果单元格是一个包含3个原子的列表。</p>
+<p>如果盒子中包含字符呢？</p>
+<pre><code class="language-j">   &gt; 'abc' ; 'defg' ; 'hijkl'
+abc
+defg
+hijkl
+</code></pre>
+<p>结果是一个<code>3 × 5</code>的表格。字符部分结果以类似的方式进行扩展，但使用空白作为填充，而不是<code>0</code>。
+不能打开同时包含字符和数值数据的盒装列表。</p>
+<pre><code class="language-j">   &gt; 1 2 3 ; 'asdf'
+|domain error, executing monad &gt;
+|contents are incompatible: numeric and character
+|       &gt;1 2 3;'asdf'
+</code></pre>
+<p>没有办法把数值和字符部分结果放在一起，所以这是一个域错误。</p>
 
                     </main>
 
