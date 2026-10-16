@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-07908230.js";
+            window.path_to_searchindex_js = "searchindex-a9c8b4b6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-bbbe2f51.js"></script>
+        <script src="toc-4c344be4.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2555,6 +2555,44 @@ _3 _12
 |   |8 9 10 11|  |
 +---+---------+--+
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="链接---双子-"><a class="header" href="#链接---双子-">链接 - 双子 ;</a></h1>
+<p>双子<code>; (link)</code>可以很容易地创建一个盒装名词列表。</p>
+<pre><code class="language-j">   2 3 4 ; 4 7 9
++-----+-----+
+|2 3 4|4 7 9|
++-----+-----+
+   'abc' ; 5 7 9
++---+-----+
+|abc|5 7 9|
++---+-----+
+   (2 3 $ 'abcdef') ; (i. 3 4) ; 23
++---+---------+--+
+|abc|0 1  2  3|23|
+|def|4 5  6  7|  |
+|   |8 9 10 11|  |
++---+---------+--+
+</code></pre>
+<p>在<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>中查找<a href="https://code.jsoftware.com/wiki/Vocabulary/semi#dyadic">链接</a>。
+注意它的二元秩是<code>_ _</code>，所以它适用于整个左参数和整个右参数。它总是把左参数装盒，而右参数如果已经是<em>盒装</em>，则不会被装盒。
+只有当右参数不是<em>盒装</em>时，才会对它进行装盒，从而使以下操作运行：</p>
+<pre><code class="language-j">   'abc' ; 'defg' ; 'hijkl'
++---+----+-----+
+|abc|defg|hijkl|
++---+----+-----+
+</code></pre>
+<p>从右到左计算为：</p>
+<pre><code class="language-j">   'abc' ; ('defg' ; 'hijkl')
+</code></pre>
+<p>所以最左边<code>;</code>的右参数已经是<em>盒装</em>了，就不会再被装盒了。再次装盒的话，会是什么样子？</p>
+<pre><code class="language-j">   'abc' ; &lt; 'defg' ; 'hijkl'
++---+------------+
+|abc|+----+-----+|
+|   ||defg|hijkl||
+|   |+----+-----+|
++---+------------+
+</code></pre>
+<p>盒子可以嵌套！</p>
 
                     </main>
 
