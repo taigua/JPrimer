@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-3b0ab6fc.js";
+            window.path_to_searchindex_js = "searchindex-5b00ebee.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-74241145.js"></script>
+        <script src="toc-42bac33f.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2655,6 +2655,37 @@ hijkl
 |       &gt;1 2 3;'asdf'
 </code></pre>
 <p>没有办法把数值和字符部分结果放在一起，所以这是一个域错误。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="取自---二元-"><a class="header" href="#取自---二元-">取自 - 二元 {</a></h1>
+<p>双子<code>{ (from)</code>用于从阵列中选择项。这有时被称为索引阵列。</p>
+<pre><code class="language-j">   a =. 5 7 9 4 8
+   3 { a	NB. select item at index 3
+4
+   0 { a     	NB. indexes start at 0
+5
+   2 4 { a 	NB. select 2 items
+9 8
+   2 0 4 { a	NB. select 3 items
+9 5 8
+</code></pre>
+<p><code>{</code>从其参数中选择它的项，因此从表格中选择的是行。</p>
+<pre><code class="language-j">   m =. i. 3 4
+   m
+0 1  2  3
+4 5  6  7
+8 9 10 11
+   0 { m
+0 1 2 3
+   2 1 { m
+8 9 10 11
+4 5  6  7
+</code></pre>
+<p><code>{</code>从秩为3的阵列中选择的是表格。</p>
+<pre><code class="language-j">   1 { i. 2 3 4
+12 13 14 15
+16 17 18 19
+20 21 22 23
+</code></pre>
 
                     </main>
 
