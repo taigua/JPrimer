@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-3d6834a9.js";
+            window.path_to_searchindex_js = "searchindex-5fa1afc3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-c472abbe.js"></script>
+        <script src="toc-9a9d27ee.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2806,6 +2806,76 @@ row-2   8    10     11
 <p>这被称为分散索引。</p>
 <pre><code class="language-j">   (0 0 ; 1 1 ; 2 2) { m	   NB. scatter index a diagonal
 0 5 10
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="修订-修改选中的"><a class="header" href="#修订-修改选中的">修订 }（修改选中的）</a></h1>
+<p><code>} (amend)</code>是一个副词，其结果是一个双子，用于修改阵列。
+<code>amend</code>的左参数通常是名词。让我们来看一个例子：</p>
+<pre><code class="language-j">   change_index_two =. 2}
+</code></pre>
+<p>动词<code>change_index_two</code>用作双子。它的右参数是原数据，左参数是为索引位置<code>2</code>准备的新值。</p>
+<pre><code class="language-j">   15 change_index_two 5 6 7 8
+5 6 15 8
+   30 change_index_two 23 18 17
+23 18 30
+   'b' change_index_two 'cat'
+cab
+   15 (2}) 5 6 7 8
+5 6 15 8
+   30 (2}) 23 18 17
+23 18 30
+   'b' 2} 'cat'
+cab
+</code></pre>
+<p>它以你可能期望的方式扩展。</p>
+<pre><code class="language-j">   23 (1 4}) 7 7 7 7 7
+7 23 7 7 23
+   23 24 (1 4}) 7 7 7 7 7
+7 23 7 7 24
+   'bet' 2 5 8} 'cattumbiz'
+cabtuebit
+</code></pre>
+<p>一般来说，修正<code>x s} y</code>定义为：</p>
+<blockquote>
+<p>通过将y中被s选择的部分替换为x来形成结果。<code>}</code>的<code>s</code>参数与动词<code>{</code>的左参数处理方式相同。</p>
+</blockquote>
+<p>修订允许我们为阵列的选定部分赋予新值。修订的参数提供关于要修改的数据的索引信息。
+这用于选择要修改的元素，就像将其用作二元动词<code>{</code>的左参数一样。</p>
+<p>如果你理解<code>{ (from)</code>，那么修订就很简单了。</p>
+<pre><code class="language-j">   m =. i. 3 4
+   1 { m
+4 5 6 7
+   23 23 23 23 (1}) m
+ 0  1  2  3
+23 23 23 23
+ 8  9 10 11
+   23 (1}) m
+ 0  1  2  3
+23 23 23 23
+ 8  9 10 11
+</code></pre>
+<p>你可以先使用选择信息来查看要修改的数据。</p>
+<pre><code class="language-j">   1 2 { m
+4 5  6  7
+8 9 10 11
+</code></pre>
+<p>所选数据是形为<code>2 4</code>的子阵列。因此，你需要一个形为<code>2 4</code>的子阵列来替换所选数据。</p>
+<pre><code class="language-j">  (2 4 $ 23 23 23 23 24 24 24 24) (1 2}) m
+ 0  1  2  3
+23 23 23 23
+24 24 24 24
+</code></pre>
+<p>假设要修改第1行和第2行以及第0列和第3列的子阵列，该子阵列的新值为12。</p>
+<pre><code class="language-j">   12 ((&lt;1 2;0 3)}) m
+ 0 1  2  3
+12 5  6 12
+12 9 10 12
+</code></pre>
+<p>修改该子阵列，将其替换为左参数中的阵列。</p>
+<pre><code class="language-j">   (2 2 $ 23 24 25 26) ((&lt;1 2;0 3)}) m
+ 0 1  2  3
+23 5  6 24
+25 9 10 26
 </code></pre>
 
                     </main>
