@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-5fa1afc3.js";
+            window.path_to_searchindex_js = "searchindex-cca45e9f.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-9a9d27ee.js"></script>
+        <script src="toc-d6c1add6.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2876,6 +2876,83 @@ cabtuebit
  0 1  2  3
 23 5  6 24
 25 9 10 26
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="取自--之外的选择方式"><a class="header" href="#取自--之外的选择方式">取自 { 之外的选择方式</a></h1>
+<p>有些使用<code>{ (from)</code>的情况非常常见，所以它们有自己的原语。
+这里没有对这些原语进行任何详细的讲解，提到这些原语是为了让你了解它们，
+可以查找它们的定义并且在你自己的工作中使用它们。这里通过例子来说明。</p>
+<p>单子<code>{. (head)</code>取其参数的第一个项，类似于<code>{</code>左参数为0。</p>
+<pre><code class="language-j">   {. 5 6 7
+5
+   {. i. 3 4
+0 1 2 3
+</code></pre>
+<p>单子<code>{: (tail)</code>取其参数的最后一项，类似于<code>{</code>左参数为<code>_1</code>（哦，对了，前面忘了提，负索引是从轴的末端开始索引）。</p>
+<pre><code class="language-j">   {: 5 6 7
+7
+   {: i. 3 4
+8 9 10 11
+</code></pre>
+<p>单子<code>}. (behead)</code>删除其参数的第一项。</p>
+<pre><code class="language-j">   }. 5 6 7
+6 7
+   }. i. 3 4
+4 5  6  7
+8 9 10 11
+</code></pre>
+<p>单子<code>}: (curtail)</code>删除其参数的最后一项。</p>
+<pre><code class="language-j">   }: 5 6 7
+5 6
+   }: i. 3 4
+0 1 2 3
+4 5 6 7
+</code></pre>
+<p>双子<code>{. (take)</code>从左参数所列的轴获取指定数量的项。</p>
+<pre><code class="language-j">   3 {. i. 8
+0 1 2
+   2 3 {. i. 3 4
+0 1 2
+4 5 6
+   2 {. i. 3 4
+0 1 2 3
+4 5 6 7
+</code></pre>
+<p>双子<code>}. (drop)</code>从左参数所列的轴上删除指定数量的项。</p>
+<pre><code class="language-j">   1 }. 2 3 4
+3 4
+   1 2 }. i. 3 4
+ 6  7
+10 11
+</code></pre>
+<p>一个有趣的思考<code>{.</code>，<code>{:</code>，<code>}.</code>和<code>}:</code>的方式是：它们对数组的角落进行索引。</p>
+<p>双子<code>{.</code>的一个和<code>{</code>没有直接关系的功能是：它可以创建一个比选定角落更大的阵列。
+它通过适当地填充<code>0</code>、<code>''</code>或<code>a:</code>来实现这一点。</p>
+<pre><code class="language-j">   5 {. 5 6 7
+5 6 7 0 0
+   4 5 {. i. 2 3
+0 1 2 0 0
+3 4 5 0 0
+0 0 0 0 0
+0 0 0 0 0
+   5 {. 'abc'
+abc
+   &lt;"0 [ 5 {. 'abc'	NB. make sure they are there
++-+-+-+-+-+
+|a|b|c| | |
++-+-+-+-+-+
+   7 {. (&lt;"0) 5 {. 'abc'	NB. fill with a:
++-+-+-+-+-+++
+|a|b|c| | |||
++-+-+-+-+-+++ 
+</code></pre>
+<p>双子<code># (拷贝)</code>也与<code>{ (from)</code>有相当直接的关系。它的左参数是一个列表，表示从右参数中重复相应项的次数。</p>
+<pre><code class="language-j">   3 2 1 2 3 # 'abcde'
+aaabbcddeee
+</code></pre>
+<p>以上内容相当于以下内容：</p>
+<pre><code class="language-j">   0 0 0 1 1 2 3 3 4 4 4 { 'abcde'
+aaabbcddeee
 </code></pre>
 
                     </main>
