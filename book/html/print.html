@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-cca45e9f.js";
+            window.path_to_searchindex_js = "searchindex-9d6dc227.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-d6c1add6.js"></script>
+        <script src="toc-015a8140.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2698,7 +2698,7 @@ hijkl
    (&lt; 1 2) { m
 6
 </code></pre>
-<p>打开的做参数是列表<code>1 2</code>。第一项为1，作为第一个轴的索引；第二个项目是2，作为第二个轴的索引。
+<p>打开的做参数是列表<code>1 2</code>。第一项为1，作为第一个轴的索引；第二个项是2，作为第二个轴的索引。
 1选择列表<code>4 5 6 7</code>，2从列表中选择<code>6</code>。</p>
 <p>如果列表中的项数少于轴数，则选择所有尾轴。</p>
 <pre><code class="language-j">   (&lt;1) { m
@@ -2946,13 +2946,85 @@ abc
 |a|b|c| | |||
 +-+-+-+-+-+++ 
 </code></pre>
-<p>双子<code># (拷贝)</code>也与<code>{ (from)</code>有相当直接的关系。它的左参数是一个列表，表示从右参数中重复相应项的次数。</p>
+<p>双子<code># (copy)</code>也与<code>{ (from)</code>有相当直接的关系。它的左参数是一个列表，表示从右参数中重复相应项的次数。</p>
 <pre><code class="language-j">   3 2 1 2 3 # 'abcde'
 aaabbcddeee
 </code></pre>
 <p>以上内容相当于以下内容：</p>
 <pre><code class="language-j">   0 0 0 1 1 2 3 3 4 4 4 { 'abcde'
 aaabbcddeee
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="分割-"><a class="header" href="#分割-">分割 ;.</a></h1>
+<p><code>;. (cut)</code>连词将动词应用于其参数的分割。在讨论<code>;. (cut)</code>时，我们将使用表达式<code>f =: u ;. n</code>来给各个元素命名。
+<code>;. (cut)</code>的左参数是动词<code>u</code>，它将应用于派生动词的右参数的分割。<code>;. (cut)</code>的右参数是名词<code>n</code>，表示分割的种类。</p>
+<p>让我们考虑<code>n</code>为<code>1</code>、<code>_1</code>、<code>2</code>和<code>_2</code>，以及衍生动词作为单子使用的情况。</p>
+<p>如果<code>n</code>是<code>2</code>或<code>_2</code>，右参数的项被划分为以参数中的最后一项为分隔符的参数。用于标记分割的项称为品（乐器术语）。
+负<code>n</code>表示该品不包括在分割中。每个分割被传递给动词<code>u</code>，部分结果被组装成最终结果。</p>
+<pre><code class="language-j">   cut2  =. &lt; ;. 2
+</code></pre>
+<p><code>cut2</code>的定义可以理解为：<code>box cut last</code>。</p>
+<pre><code class="language-j">   cut2 'how now brown cow '
++----+----+------+----+
+|how |now |brown |cow |
++----+----+------+----+ 
+</code></pre>
+<p>在本例中，右参数的项是字符。品是最后一个字符，即一个空格。品用于将整个参数分解为一系列参数，
+动词<code>&lt;</code>用于这些参数。视觉上:</p>
+<pre><code class="language-j">&lt; 'how '  (first partition)  gives  first partial result
+&lt; 'now '  (next partition)   gives  next partial result
+&lt; 'brown '
+&lt; 'cow '
+</code></pre>
+<p>部分结果被组合成最终结果。</p>
+<pre><code class="language-j">   &lt;;._2 'how now brown cow '
++---+---+-----+---+
+|how|now|brown|cow|
++---+---+-----+---+
+</code></pre>
+<p><code>cut2</code>装盒的结果包括品，而<code>&lt;;._2</code>装盒的结果不包括品。</p>
+<p>下面的代码应用于同样的右参数的分割，但是应用双子<code># (tally)</code>。这为我们提供了每个分割的计数。</p>
+<pre><code class="language-j">   #;._2 'how now brown cow '
+3 3 5 3
+</code></pre>
+<p>这同样适用于数值数据。在下面的代码中，<code>_1</code>是品。</p>
+<pre><code class="language-j">   a =. 2 3 4 _1 5 3 2 _1 23 45 65 132 _1
+   &lt;;._2 a
++-----+-----+------------+
+|2 3 4|5 3 2|23 45 65 132|
++-----+-----+------------+
+   #;._2 a
+3 3 4
+   +/;._2 a
+9 10 265
+</code></pre>
+<p><code>1</code>或<code>_1</code>使用第一项作为品。如果为正，则在结果中包含品，如果为负则不包含品。</p>
+<pre><code class="language-j">   &lt;;._1 'madam i''m adam'
++---+---+----++
+|ada| i'| ada||
++---+---+----++
+</code></pre>
+<p>有时，分割信息与数据是分开的。分割信息可以在派生动词的左参数中提供，而不是使用数据中的品。
+分割信息是布尔数据，其中<code>1</code>表示分割的开始（<code>1</code>或<code>_1</code>）或结束（2或_2）。</p>
+<pre><code class="language-j">   1 0 0 0 1 0 0 &lt;;.1 'abcdefg'
++----+---+
+|abcd|efg|
++----+---+
+   d =.  'the test is the thing'
+   'the' E. d
+1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+   ('the' E. d) &lt;;.1 d
++------------+---------+
+|the test is |the thing|
++------------+---------+
+</code></pre>
+<p>上面的示例使用了一个新的原语<code>E.</code>，如果想知道它的额外的信息，可以在<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>中查找它。
+然而，无需关注细节，你应该知道发生了什么。</p>
+<p>将字符列表分割成盒子非常有用，以至于有一个叫做<code>cutopen</code>的标准库实用程序，它可以处理许多常见情况。例如:</p>
+<pre><code class="language-j">   cutopen 'testing testing 1 2 3'
++-------+-------+-+-+-+
+|testing|testing|1|2|3|
++-------+-------+-+-+-+
 </code></pre>
 
                     </main>
