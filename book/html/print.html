@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-9d6dc227.js";
+            window.path_to_searchindex_js = "searchindex-3b4137d1.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-015a8140.js"></script>
+        <script src="toc-7ecb9628.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3026,6 +3026,49 @@ aaabbcddeee
 |testing|testing|1|2|3|
 +-------+-------+-+-+-+
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="每个-each"><a class="header" href="#每个-each">每个 each</a></h1>
+<p>对于盒装数据，能够对每个盒装数据的内容执行一些操作通常是很有用的。
+这非常有用，以至于标准配置文件定义了一个名为<code>each</code>的副词来完成这个任务。
+<code>each</code>的定义涉及到的内容比逆目前所了解的要多一些，但是不要担心细节，只要使用它就可以了。</p>
+<p>副词<code>each</code>以一个动词作为它的左参数。派生动词应用于其参数的盒装内容。</p>
+<pre><code class="language-j">   a =. 10 12 13 ; 2 3 ; 4 5 6 8 3
+   a
++--------+---+---------+
+|10 12 13|2 3|4 5 6 8 3|
++--------+---+---------+
+   +/ each a	NB. sum over each
++--+-+--+
+|35|5|26|
++--+-+--+
+   */ each a	NB. times over each
++----+-+----+
+|1560|6|2880|
++----+-+----+
+   |. each a	NB. reverse each
++--------+---+---------+
+|13 12 10|3 2|3 8 6 5 4|
++--------+---+---------+
+   &gt;./ each a	NB. max over each
++--+-+-+
+|13|3|8|
++--+-+-+
+</code></pre>
+<p>前面的例子都是使用衍生动词的单子形式。下面的用法实用派生动词的双子形式。</p>
+<pre><code class="language-j">   23 , each a		NB. append each
++-----------+------+------------+
+|23 10 12 13|23 2 3|23 4 5 6 8 3|
++-----------+------+------------+
+   5 &lt; each a
++-----+---+---------+
+|1 1 1|0 0|0 0 1 1 0|
++-----+---+---------+
+   1 |. each a
++--------+---+---------+
+|12 13 10|3 2|5 6 8 3 4|
++--------+---+---------+
+</code></pre>
+<p>看明白上面的新动词<code>|. (reverse or rotate)</code>了吗？在<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>里查一下。</p>
 
                     </main>
 
