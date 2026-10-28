@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-3b4137d1.js";
+            window.path_to_searchindex_js = "searchindex-471e5496.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-7ecb9628.js"></script>
+        <script src="toc-d74e3467.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3069,6 +3069,31 @@ aaabbcddeee
 +--------+---+---------+
 </code></pre>
 <p>看明白上面的新动词<code>|. (reverse or rotate)</code>了吗？在<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>里查一下。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="挂钩"><a class="header" href="#挂钩">挂钩</a></h1>
+<p><code>train</code>是由两个或三个单词组成的一个序列，具有特殊的含义。由两个动词组成的序列是一个挂钩，其计算方法如下：</p>
+<pre><code class="language-j">  (f g) y	evaluates as	y f g y
+x (f g) y	evaluates as	x f g y
+</code></pre>
+<p>假设你想缩放一个数字列表，使结果是每个数字除以列表中的最大值。列表上的最大值由将副词<code>/</code>应用于动词<code>&gt;.</code>得到的派生的动词给出。</p>
+<pre><code class="language-j">   a =. 3 5 8 2 7
+   maxover =. &gt;./
+   maxover a
+8
+</code></pre>
+<p>要把参数除以参数的最大值，你可以使用：</p>
+<pre><code class="language-j">   a % maxover a
+0.375 0.625 1 0.25 0.875
+</code></pre>
+<p>上面的代码可以写成一个挂钩。</p>
+<pre><code class="language-j">   (% maxover) a
+0.375 0.625 1 0.25 0.875
+</code></pre>
+<p>现在可以将缩放定义为<code>% &gt;. /</code>组成的挂钩。</p>
+<pre><code class="language-j">   scale =. % &gt;./
+   scale a
+0.375 0.625 1 0.25 0.875
+</code></pre>
 
                     </main>
 
