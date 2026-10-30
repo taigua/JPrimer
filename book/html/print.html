@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-471e5496.js";
+            window.path_to_searchindex_js = "searchindex-37c38aa5.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-d74e3467.js"></script>
+        <script src="toc-be53c8b0.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3071,7 +3071,7 @@ aaabbcddeee
 <p>看明白上面的新动词<code>|. (reverse or rotate)</code>了吗？在<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>里查一下。</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="挂钩"><a class="header" href="#挂钩">挂钩</a></h1>
-<p><code>train</code>是由两个或三个单词组成的一个序列，具有特殊的含义。由两个动词组成的序列是一个挂钩，其计算方法如下：</p>
+<p>由两个或三个单词组成的一个序列，具有特殊的含义。由两个动词组成的序列是一个挂钩，其计算方法如下：</p>
 <pre><code class="language-j">  (f g) y	evaluates as	y f g y
 x (f g) y	evaluates as	x f g y
 </code></pre>
@@ -3093,6 +3093,28 @@ x (f g) y	evaluates as	x f g y
 <pre><code class="language-j">   scale =. % &gt;./
    scale a
 0.375 0.625 1 0.25 0.875
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="分叉"><a class="header" href="#分叉">分叉</a></h1>
+<p>由三个动词组成的序列是一个分叉，其运行方式如下：</p>
+<pre><code class="language-j">  (f g h) y	evaluates as	(f y) g (h y)
+x (f g h) y	evaluates as	(x f y) g (x h y)
+</code></pre>
+<p>分叉的一个简单示例是三个动词的序列<code>+/ % #</code>。副词<code>/</code>接受它的左参数<code>+</code>并返回一个动词，
+因此这是一个由三个动词组成的序列。让我们从单子的角度来研究一下分叉的用法。</p>
+<pre><code class="language-j">   (f  g h) y	evaluates as	(f  y) g (h y)
+   (+/ % #) y	evaluates as	(+/ y) % (# y)
+</code></pre>
+<p>这可以读作：<strong>参数的总和除以参数的个数</strong>。这就是<strong>均值</strong>的定义。</p>
+<pre><code class="language-j">   (+/ % #) 5 9 12
+8.66667
+   (+/ % #) i.9
+4
+</code></pre>
+<p>现在可以将<code>mean</code>定义为带有<code>+/ % #</code>的分叉。</p>
+<pre><code class="language-j">   mean =. +/ % #
+   mean i.9
+4
 </code></pre>
 
                     </main>
