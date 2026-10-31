@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>分叉 - J Primer</title>
+        <title>隐式定义 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-37c38aa5.js";
+            window.path_to_searchindex_js = "searchindex-3191aa9e.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-be53c8b0.js"></script>
+        <script src="toc-dfa40f1f.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -176,27 +176,34 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="分叉"><a class="header" href="#分叉">分叉</a></h1>
-<p>由三个动词组成的序列是一个分叉，其运行方式如下：</p>
-<pre><code class="language-j">  (f g h) y	evaluates as	(f y) g (h y)
-x (f g h) y	evaluates as	(x f y) g (x h y)
+                        <h1 id="隐式定义"><a class="header" href="#隐式定义">隐式定义</a></h1>
+<p>动词摄氏度通过连词<code>:</code>被显式定义。术语<strong>显式</strong>表示定义中动词的参数通过其名称x和y显式地引用。</p>
+<p>在隐式定义中，参数没有名字，也不显式地出现在定义中。参数由定义的语法要求隐式引用。你已经使用了几个隐式定义。</p>
+<pre><code class="language-j">   plus =. +
+   sumover =. +/
+   maxover =. &gt;./
+   scale =. % &gt;./
+   mean =. +/ % #
 </code></pre>
-<p>分叉的一个简单示例是三个动词的序列<code>+/ % #</code>。副词<code>/</code>接受它的左参数<code>+</code>并返回一个动词，
-因此这是一个由三个动词组成的序列。让我们从单子的角度来研究一下分叉的用法。</p>
-<pre><code class="language-j">   (f  g h) y	evaluates as	(f  y) g (h y)
-   (+/ % #) y	evaluates as	(+/ y) % (# y)
+<p>以上都是隐式定义。并且不要通过名称来引用参数。在某些情况下，隐式定义比同等的显式定义更简单、更明显。
+在更复杂的情况下，你可能需要一些经验才能适应一个隐式定义。这部分是因为你可能有显式定义的经验，
+而很少有隐式定义的经验。此外，隐式定义往往是定义的更简洁和数学表达形式。在等效的隐式定义变得清晰之前，
+可能需要经历更详细的创建显式定义的步骤。</p>
+<p>让我们回顾一下华氏度，看看它是如何被隐式定义的。打开<code>cf.ijs</code>脚本，查看华氏度定义。</p>
+<pre><code class="language-j">fahrenheit =: 3 : 0
+t1 =. y * 9
+t2 =. t1 % 5
+t3 =. t2 + 32
+)
 </code></pre>
-<p>这可以读作：<strong>参数的总和除以参数的个数</strong>。这就是<strong>均值</strong>的定义。</p>
-<pre><code class="language-j">   (+/ % #) 5 9 12
-8.66667
-   (+/ % #) i.9
-4
+<p>你可以从清理显式定义开始。现在你对J比较熟悉了，你可以将这些计算合并成一行。</p>
+<pre><code class="language-j">fa =: 3 : '(y * 9 % 5) + 32'
 </code></pre>
-<p>现在可以将<code>mean</code>定义为带有<code>+/ % #</code>的分叉。</p>
-<pre><code class="language-j">   mean =. +/ % #
-   mean i.9
-4
+<p>括号是必需的，因为其中的计算必须在加32之前完成。</p>
+<p>让我们稍微调整一下定义，使构建隐式定义的步骤更清晰一些。</p>
+<pre><code class="language-j">fb =: 3 : '32 + ((9%5) * y)'
 </code></pre>
+<p>上面的代码可以理解为：<strong>将32加到参数的九分之五上</strong>。</p>
 
                     </main>
 

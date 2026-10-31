@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>挂钩 - J Primer</title>
+        <title>分叉 - J Primer</title>
 
 
         <!-- Custom HTML head -->
@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-37c38aa5.js";
+            window.path_to_searchindex_js = "searchindex-3191aa9e.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-be53c8b0.js"></script>
+        <script src="toc-dfa40f1f.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -176,36 +176,33 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="挂钩"><a class="header" href="#挂钩">挂钩</a></h1>
-<p>由两个或三个单词组成的一个序列，具有特殊的含义。由两个动词组成的序列是一个挂钩，其计算方法如下：</p>
-<pre><code class="language-j">  (f g) y	evaluates as	y f g y
-x (f g) y	evaluates as	x f g y
+                        <h1 id="分叉"><a class="header" href="#分叉">分叉</a></h1>
+<p>由三个动词组成的序列是一个分叉，其运行方式如下：</p>
+<pre><code class="language-j">  (f g h) y	evaluates as	(f y) g (h y)
+x (f g h) y	evaluates as	(x f y) g (x h y)
 </code></pre>
-<p>假设你想缩放一个数字列表，使结果是每个数字除以列表中的最大值。列表上的最大值由将副词<code>/</code>应用于动词<code>&gt;.</code>得到的派生的动词给出。</p>
-<pre><code class="language-j">   a =. 3 5 8 2 7
-   maxover =. &gt;./
-   maxover a
-8
+<p>分叉的一个简单示例是三个动词的序列<code>+/ % #</code>。副词<code>/</code>接受它的左参数<code>+</code>并返回一个动词，
+因此这是一个由三个动词组成的序列。让我们从单子的角度来研究一下分叉的用法。</p>
+<pre><code class="language-j">   (f  g h) y	evaluates as	(f  y) g (h y)
+   (+/ % #) y	evaluates as	(+/ y) % (# y)
 </code></pre>
-<p>要把参数除以参数的最大值，你可以使用：</p>
-<pre><code class="language-j">   a % maxover a
-0.375 0.625 1 0.25 0.875
+<p>这可以读作：<strong>参数的总和除以参数的个数</strong>。这就是<strong>均值</strong>的定义。</p>
+<pre><code class="language-j">   (+/ % #) 5 9 12
+8.66667
+   (+/ % #) i.9
+4
 </code></pre>
-<p>上面的代码可以写成一个挂钩。</p>
-<pre><code class="language-j">   (% maxover) a
-0.375 0.625 1 0.25 0.875
-</code></pre>
-<p>现在可以将缩放定义为<code>% &gt;. /</code>组成的挂钩。</p>
-<pre><code class="language-j">   scale =. % &gt;./
-   scale a
-0.375 0.625 1 0.25 0.875
+<p>现在可以将<code>mean</code>定义为带有<code>+/ % #</code>的分叉。</p>
+<pre><code class="language-j">   mean =. +/ % #
+   mean i.9
+4
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="091.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="092.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
@@ -219,7 +216,7 @@ x (f g) y	evaluates as	x f g y
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="091.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="092.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
