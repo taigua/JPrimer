@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-3191aa9e.js";
+            window.path_to_searchindex_js = "searchindex-34ed3aee.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-dfa40f1f.js"></script>
@@ -204,6 +204,46 @@ t3 =. t2 + 32
 <pre><code class="language-j">fb =: 3 : '32 + ((9%5) * y)'
 </code></pre>
 <p>上面的代码可以理解为：<strong>将32加到参数的九分之五上</strong>。</p>
+<p>所以，你需要一个<code>add32</code>动词和一个<code>ninefifthtimes</code>动词。你可以用绑定连词<code>&amp;</code>来隐式构建这些动词。
+带有常量左参数的绑定连词返回一个派生单子，该单子是带有常量左参数并需要右参数的动词。</p>
+<pre><code class="language-j">   add32 =: 32 &amp; +
+</code></pre>
+<p>这将<code>add32</code>定义为将32与其参数相加的单子。</p>
+<pre><code class="language-j">   add32 12
+44
+   ninefifthstimes =: (9%5) &amp; *
+</code></pre>
+<p>这给出了一个单子，它把其参数乘以9%5。</p>
+<pre><code>   ninefifthstimes 20
+36
+</code></pre>
+<p>结合这些，你会得到：</p>
+<pre><code class="language-j">   add32 ninefifthstimes 100
+212
+</code></pre>
+<p>连词<code>@</code>将两个动词组合成一个派生动词，该派生动词将右边的动词应用于其参数，然后将左边的动词应用于该结果。</p>
+<pre><code class="language-j">	(u @ v) y	evaluates as	u v y
+</code></pre>
+<p>使用连词<code>@</code>将两个动词组合起来，形成最终的定义。</p>
+<pre><code class="language-j">   fc =: add32 @ ninefifthstimes
+   fc 100
+212
+   fc _40
+_40
+   fc 0
+32
+</code></pre>
+<p>显示动词fc，并注意其定义依赖于其他两个定义。</p>
+<pre><code class="language-j">   fc
++-----+-----------------+
+|add32|@|ninefifthstimes|
++-----+-----------------+
+</code></pre>
+<p>有时，在你从较小的构建块构建了一个隐式定义之后，你会意识到真的不希望所有这些较小的定义到处存在。
+副词<code>f.</code>以一个隐式定义为参数，并将其中的名字替换成对应的定义。</p>
+<pre><code class="language-j">   fz =. fc f.
+</code></pre>
+<p>副词<code>f.</code>像所有副词一样，其参数在它的左边。</p>
 
                     </main>
 
