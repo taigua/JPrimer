@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-34ed3aee.js";
+            window.path_to_searchindex_js = "searchindex-96c08771.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-dfa40f1f.js"></script>
@@ -244,6 +244,51 @@ _40
 <pre><code class="language-j">   fz =. fc f.
 </code></pre>
 <p>副词<code>f.</code>像所有副词一样，其参数在它的左边。</p>
+<p>看一下<code>fz</code>的最终定义。</p>
+<pre><code class="language-j">   fz
++--------+-+---------+
+|+--+-+-+|@|+---+-+-+|
+||32|&amp;|+|| ||1.8|&amp;|*||
+|+--+-+-+| |+---+-+-+|
++--------+-+---------+
+</code></pre>
+<p>系统可以以几种不同的形式显示隐式定义。这些选项可以通过<strong>Edit | Session Display Form | Boxed</strong>来选择，
+你将得到上面的显示。<strong>盒装</strong>在理解隐式定义方面非常有用。不过，现在选择<strong>Linear</strong>，这样你会看到以下内容：</p>
+<pre><code class="language-j">   fz
+32&amp;+@(1.8&amp;*)
+</code></pre>
+<p>在比较像定义为<code>+</code>的动词这样简单的东西时，隐式定义要比等效的显式定义简单得多。在华氏度的例子中，
+可以认为显式定义更简单，特别是如果你直接使用<code>1.8</code>而不是像默认定义那样使用<code>9%5</code>。</p>
+<pre><code class="language-j">fx =: 3 : '32+1.8*y'
+vs.
+fz =: 32&amp;+@(1.8&amp;*)
+</code></pre>
+<p>隐式编程的真正优势在于对参数进行更复杂的转换，特别是当参数必须被多次引用时。下面举例说明了隐式定义的另一种用法。</p>
+<pre><code class="language-j">   xmean =: 3 : '(+/y) % #y'
+</code></pre>
+<p>这是你们在<a href="./093.html">分叉</a>章节遇到的平均值。</p>
+<pre><code class="language-j">   mean =: +/ % #
+</code></pre>
+<p>隐式定义只是直接使用分叉。</p>
+<p>分叉也可以在显式定义中使用，但需要在分叉周围加上括号。</p>
+<pre><code class="language-j">   xmean =: 3 : '(+/ % #)y'
+</code></pre>
+<p>隐式定义的一个优点是，与显式定义相比，它们更容易以正式的方式进行操作。例如，
+J可以自动派生许多隐式定义的逆定义。让我们用隐式定义<code>fz</code>尝试一下。华氏度的逆是摄氏度的数。
+标准配置文件定义了副词<code>inverse</code>。</p>
+<pre><code class="language-j">   fz =: 32&amp;+@(1.8&amp;*)
+   cz =: fz inverse
+   fz 100
+212
+   cz 212
+100
+   fz 0
+32
+   cz 32
+0
+</code></pre>
+<p>隐式编程非常强大，但没有必要深入它。重要的知道它是什么，并在简单的情况下开始使用它，
+因为这是熟悉它的最好方法。</p>
 
                     </main>
 
