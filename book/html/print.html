@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-96c08771.js";
+            window.path_to_searchindex_js = "searchindex-e9c3cc58.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-dfa40f1f.js"></script>
+        <script src="toc-82e67d53.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3230,6 +3230,88 @@ J可以自动派生许多隐式定义的逆定义。让我们用隐式定义<cod
 </code></pre>
 <p>隐式编程非常强大，但没有必要深入它。重要的知道它是什么，并在简单的情况下开始使用它，
 因为这是熟悉它的最好方法。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="显式-隐式转换器"><a class="header" href="#显式-隐式转换器">显式-隐式转换器</a></h1>
+<p>有一个原语可以自动将单行显式定义转换为等效的隐式定义。通过编写一行显式定义，将它们转换为隐式形式，
+并研究得到的隐式定义，逆可以学到很多关于隐式编程的知识。</p>
+<p>我们用华氏度的显示定义来试一下。<code>:</code>的左参数3创建显式定义。<code>:</code>的左参数13创建隐式定义。</p>
+<pre><code class="language-j">   fx =:  3 : '32 + y * 9 % 5'	NB.  3 explicit
+   ft =: 13 : '32 + y * 9 % 5'	NB. 13 tacit
+</code></pre>
+<p>使用<strong>Edit | Session Display Form | Linear</strong>显示。</p>
+<pre><code class="language-j">   ft
+32 + 1.8 * ]
+</code></pre>
+<p>乍一看，这是令人困惑的，因为它一次引入了几个新东西。首先要做的是查看盒装显示。</p>
+<p>使用<strong>Edit | Session Display Form | Boxed</strong>选择盒装显示。</p>
+<pre><code class="language-j">   ft
++--+-+---------+
+|32|+|+---+-+-+|
+|  | ||1.8|*|]||
+|  | |+---+-+-+|
++--+-+---------+
+</code></pre>
+<p>在盒装的顶层有3个盒子。这是一个有三个要素的序列：noun verb verb。序列<strong>noun verb verb</strong>当作<strong>noun“_ verb verb</strong>，
+这是一个分叉。你可以把它拆开，给各个部分命名，然后分开看。</p>
+<p>分叉的第一个元素是短语<code>32"_</code>。给它起个名字，试着把它当作一个单子动词。</p>
+<pre><code class="language-j">   left =: 32"_
+   left 123
+32
+   left i.5
+32
+</code></pre>
+<p>不管你给<code>left</code>什么参数，它都会返回32。你以前见过连词<code>"</code>，但不是带常数左参数。
+我们在<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>里查一下。当你翻到定义<code>"</code>的秩信息时，
+你会注意到定义有三页，每页都是单独页面。这三页是：</p>
+<pre><code class="language-j">	Rank	u " n
+	Rank	m " n
+	Assign rank	m " v	u " v	mv lv rv
+</code></pre>
+<p>不同的定义是用于不同类型参数的秩连词。在标题中，<code>m</code>和<code>n</code>表示名词参数，<code>u</code>和<code>v</code>表示动词参数。
+你之前使用的<code>"</code>包含一个动词左参数和一个名词右参数涵盖在第一个定义中。<code>32</code>和<code>_ (infinity)</code>都是名词，
+所以和第二个定义相关。</p>
+<p>阅读<code>m"n</code>的定义可以清楚地看出观察结果是正确的。派生动词的右秩为<code>_</code>，应用于它的整个右参数，
+且无论右参数是什么，都会返回左参数，即<code>32</code>。</p>
+<p>让我们看看分叉的右参数。</p>
+<pre><code class="language-j">   right =: 1.8 * ]
+   right 23
+41.4
+   right 10
+18
+</code></pre>
+<p>让我们不要担心定义的细节，而是再一次通过观察，动词<code>right</code>所做的是将其参数乘以<code>1.8</code>（即<code>9%5</code>）。</p>
+<p>最后一个定义是个分叉。</p>
+<pre><code class="language-j">   ff =: left + right
+   ff 100
+212
+   ff 0
+32
+</code></pre>
+<p>比较上一课中的手动隐式定义与自动翻译的隐式定义，并注意它们的不同之处。</p>
+<pre><code class="language-j">32&amp;+@(1.8&amp;*)
+32+1.8*]
+</code></pre>
+<p>隐式编程丰富多样，与<code>bond</code>、<code>atop</code>、<code>rank</code>等副词和连词以及<code>hook</code>、<code>fork</code>等序列紧密相连。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="检查点六"><a class="header" href="#检查点六">检查点六</a></h1>
+<p>到了这个检查点，你应该明白：</p>
+<ul>
+<li>术语副词和连词</li>
+<li>如何求值带有副词和连词的句子</li>
+<li>如何从阵列中选择子阵列</li>
+<li>如何修改阵列中的子阵列</li>
+<li>盒装数据</li>
+<li>挂钩和分叉</li>
+<li>隐式定义</li>
+</ul>
+<p>通过做以下练习来检查你的理解：</p>
+<ul>
+<li>实验双子<code>{ {. }.</code>（用负数做做参数）</li>
+<li>在<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>查找<code>a.</code>，并用它作为双子<code>{ {. }</code>实验种的右参数</li>
+<li>实验一下目前介绍的副词和连词</li>
+<li>尝试使用挂钩<code>= &lt;.</code>，确定它做什么以及为什么这样做（提示：给它一个名称并应用于<code>2.4 5.2 7 6.5</code>）</li>
+<li>对挂钩<code>= +</code>做同样的事</li>
+</ul>
 
                     </main>
 
