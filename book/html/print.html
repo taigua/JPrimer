@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-e9c3cc58.js";
+            window.path_to_searchindex_js = "searchindex-5832b76d.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-82e67d53.js"></script>
+        <script src="toc-9442f457.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3312,6 +3312,31 @@ J可以自动派生许多隐式定义的逆定义。让我们用隐式定义<cod
 <li>尝试使用挂钩<code>= &lt;.</code>，确定它做什么以及为什么这样做（提示：给它一个名称并应用于<code>2.4 5.2 7 6.5</code>）</li>
 <li>对挂钩<code>= +</code>做同样的事</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="外部-"><a class="header" href="#外部-">外部 !:</a></h1>
+<p>J与环境交互是由连词<code>!: (foreign)</code>完成的。在大多数情况下，外部结果是提供特定服务的动词。
+<code>foreign</code>的左参数选择一个通用的服务族，右参数选择一个特定的服务。由左参数选择的服务族是：</p>
+<pre><code class="language-j">  0  scripts
+  1  files
+  2  host commands
+  3  types
+  4  names
+  5  representations
+  6  time
+  7  space
+  9  global parameters
+ 11  windows
+ 13  debug
+ 15  dynamic link library (shared library)
+ 18  locales
+128  numerical functions
+</code></pre>
+<p><a href="https://code.jsoftware.com/wiki/Vocabulary/bangco">NuVoc</a>中记录了外部连词的概述，
+<a href="https://code.jsoftware.com/wiki/Vocabulary/Foreigns">J词典的词汇表</a>中有更详细的文档。</p>
+<p>在前面的章节中，你已经遇到了一些外部连词的具体用法。</p>
+<p>派生动词<code>9!:11</code>用于打印精度控制。<code>9</code>选择全局参数族，<code>11</code>给出一个派生动词，用于设置打印精度。</p>
+<p>加载动词使用<code>0!:0</code>加载脚本。左参数选择脚本族。查看<a href="https://code.jsoftware.com/wiki/Vocabulary/Foreigns#m0">定义</a>。
+右参数<code>0</code>被视为三个十进制数字<code>000</code>，表示从文件中执行句子，在出现错误时停止，并且进行静默加载（不显示句子或结果）。</p>
 
                     </main>
 
