@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-a0a5487c.js";
+            window.path_to_searchindex_js = "searchindex-cd755d1c.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-0db91409.js"></script>
+        <script src="toc-019006a8.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3513,6 +3513,59 @@ readtable =: 3 : '&gt;0 ". each cutopen toJ 1!:1 y'
  9 10 11 12 13 14 15 16 17
 18 19 20 21 22 23 24 25 26
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="组件文件"><a class="header" href="#组件文件">组件文件</a></h1>
+<p>组件文件<code>jfile</code>可以看作是存储在文件中的盒装列表。文件中盒装列表的项被称为组件。
+脚本<code>jfiles.ijs</code>提供了处理<code>jfile</code>的实用程序。</p>
+<pre><code class="language-j">   load 'jfiles'
+   f =. 'user\data.jf'
+   jcreate f
+1
+   'first component' jappend f
+0
+   (1.5+i.2 3) jappend f
+1
+   ('asdf';23) jappend f
+2 3
+   (&lt;'mum';'dad') jappend f
+4
+</code></pre>
+<p><code>jsize</code>的结果给出文件信息，包括第一项和最后一项的索引。</p>
+<pre><code class="language-j">   jsize f
+0 5 1408 0
+   jread f;0
++---------------+
+|first component|
++---------------+
+   jread f;1
++-----------+
+|1.5 2.5 3.5|
+|4.5 5.5 6.5|
++-----------+
+   jread f;2
++----+
+|asdf|
++----+
+   jread f;3
++--+
+|23|
++--+
+   jread f;4
++---------+
+|+---+---+|
+||mum|dad||
+|+---+---+|
++---------+
+   'new' jreplace f;3
+3
+   jread f;i.5
++---------------+-----------+----+---+---------+
+|first component|1.5 2.5 3.5|asdf|new|+---+---+|
+|               |4.5 5.5 6.5|    |   ||mum|dad||
+|               |           |    |   |+---+---+|
++---------------+-----------+----+---+---------+
+</code></pre>
+<p><code>jfiles</code>相关文档在<a href="https://code.jsoftware.com/wiki/Guides/Component_Files">J在线文档</a>中。</p>
 
                     </main>
 
