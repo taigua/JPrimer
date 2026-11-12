@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-cd755d1c.js";
+            window.path_to_searchindex_js = "searchindex-321cb34d.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-019006a8.js"></script>
+        <script src="toc-a9869450.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3566,6 +3566,49 @@ readtable =: 3 : '&gt;0 ". each cutopen toJ 1!:1 y'
 +---------------+-----------+----+---+---------+
 </code></pre>
 <p><code>jfiles</code>相关文档在<a href="https://code.jsoftware.com/wiki/Guides/Component_Files">J在线文档</a>中。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="图形用户界面第一部分"><a class="header" href="#图形用户界面第一部分">图形用户界面（第一部分）</a></h1>
+<p>现在，在被打包到图形用户界面（GUI）中之前，几乎没有一个编程任务算是完成了。</p>
+<p>让我们为摄氏度和华氏度动词添加一个GUI。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../pics/Cfgui_form.png" alt=""><span class="img-wrapper"><img src="../pics/Cfgui_form.png" alt=""></span></label></p>
+<p>构建表单和应用程序有许多步骤。你应该遵循的确切步骤包含在一系列缩进的项目中。
+一般性讨论和背景资料以文本形式在这些项目间提供。</p>
+<p>运行<code>cf.ijs</code>脚本，确保摄氏度和华氏度正常工作。</p>
+<p>创建GUI的第一步是创建表单定义。表单定义存储在脚本文件中，就像所有其他定义一样。</p>
+<p>创建一个新的脚本文件，将其保存为用户目录中的永久文件。表单的创建在JQt帮助菜单中的
+<a href="https://code.jsoftware.com/wiki/Guides/Window_Driver">窗口驱动</a>条目中有更详细的介绍，
+如果你现在需要更多信息，请参考该条目。</p>
+<ul>
+<li>用<strong>File | New</strong>创建一个新的脚本文件</li>
+<li>将其保存在用户目录里的<code>cfgui.ijs</code>文件中</li>
+</ul>
+<pre><code class="language-j">NB. base form
+
+CFGUI=: 0 : 0
+pc cfgui;
+pmove 100 200 200 100;
+bin v;
+ bin h;
+  minwh 80 10;cc s1 static;cn "Centigrade";
+  minwh 40 14;cc cid edit;
+ bin z;
+ bin h;
+  minwh 80 10;cc s1 static;cn "Farenheit";
+  minwh 40 14;cc fid edit;
+ bin z;
+bin z;
+)
+
+cfgui_run=: 3 : 0
+wd CFGUI
+NB. initialize form here
+wd 'pshow;'
+)
+
+cfgui_close=: 3 : 0
+wd'pclose'
+)
+</code></pre>
 
                     </main>
 
