@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-321cb34d.js";
+            window.path_to_searchindex_js = "searchindex-9b52b453.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a9869450.js"></script>
@@ -3609,6 +3609,33 @@ cfgui_close=: 3 : 0
 wd'pclose'
 )
 </code></pre>
+<p>所有与表单的交互都是通过<code>wd (Window Driver)</code>动词完成的。
+<code>wd</code>参数总是一个以命令开头的字符串。字符串可以包含多个以分号分隔的命令。</p>
+<p>名词<code>CFGUI</code>由连词<code>:</code>定义，与定义动词的方式类似。左参数<code>0</code>创建一个名词。
+<code>CFGUI</code>被定义为接下来的字符行，直到只包含<code>)</code>的行结束。它包含将创建表单的命令。
+现在不要担心细节，但大部分应该是好懂的。命令后跟参数，一行中的多个命令用<code>;</code>分隔。
+<code>pc</code>命令是一个父创建（创建的窗口被当作父窗口）。下一行中的<code>pmove 100 200 200 100;</code>
+将窗口放置在<code>x=100 y=200</code>的位置，且窗口大小为<code>width=200 height=100</code>。
+<code>bin v;</code>创建垂直分组的组件，<code>bin h;</code>创建水平分组的组件。<code>bin z;</code>命令终止最近的<code>bin v;</code>或<code>bin h;</code>。
+以<code>minwh</code>命令开头的行在表单上设置了一个矩形区域，后面跟着<code>cc</code>命令（创建组件），<code>cc</code>命令用于创建表单上的一个控件。</p>
+<p>在<code>CFGUI</code>定义之后，你将看到一个名为<code>cfgui_run</code>的动词。这个动词忽略它的参数。它以<code>CFUGUI</code>作为参数执行<code>wd</code>动词。
+这将创建表单，但不会显示表单。最后一个带有参数<code>pshow;</code>的<code>wd</code>命令将显示父（窗体）。</p>
+<p><code>cfgui_close</code>动词将使用<code>wd 'pclose'</code>命令关闭窗口。此时，<code>cfgui.ijs</code>脚本还没有运行，所以定义只是脚本文件中的文本，
+还没有在J环境中定义。运行脚本之后，就可以运行应用程序了。</p>
+<ul>
+<li>用<strong>Run | Load Script</strong>运行<code>cfgui.ijs</code>脚本</li>
+<li>在<strong>Term</strong>窗口执行：<code>cfgui_run 0</code></li>
+</ul>
+<p>当你执行<code>cfgui_run 0</code>时，应该在屏幕的左上角看到表单。在控件中输入并按<strong>Enter</strong>没有效果，
+因为你还没有连接到输入事件的代码。你可以通过执行<code>wd 'reset'</code>命令手动关闭表单，该命令关闭所有表单。</p>
+<ul>
+<li>在<strong>Term</strong>窗口执行：<code>wd 'reset'</code></li>
+</ul>
+<p>当你在摄氏度编辑控件中输入一个值并按下<strong>Enter</strong>键时，就会触发一个事件。事件由发生该事件的窗体、控件以及事件类型来标识。
+在编辑控件中按下<strong>Enter</strong>键属于按钮事件（在编辑字段中按下<strong>Enter</strong>键类似于按下按钮控件）。因此，这里关注的事件属于窗体
+<code>cfgui</code>、控件<code>cid</code>，并且是一个按钮事件。当事件发生时，会执行一个名为事件处理程序的动词。所执行动词的名称由事件决定。
+事件处理程序的名称由三部分组成：<code>formid_controlid_event</code>。因此，这里关注的事件处理程序名为<code>cfgui_cid_button</code>。
+事件处理程序<code>cfgui_cid_button</code>应将<code>cid</code>编辑控件中的值转换为华氏温度，然后在<code>fid</code>编辑控件中显示该结果。</p>
 
                     </main>
 
