@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-9b52b453.js";
+            window.path_to_searchindex_js = "searchindex-e0638a57.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a9869450.js"></script>
@@ -3636,6 +3636,98 @@ wd'pclose'
 <code>cfgui</code>、控件<code>cid</code>，并且是一个按钮事件。当事件发生时，会执行一个名为事件处理程序的动词。所执行动词的名称由事件决定。
 事件处理程序的名称由三部分组成：<code>formid_controlid_event</code>。因此，这里关注的事件处理程序名为<code>cfgui_cid_button</code>。
 事件处理程序<code>cfgui_cid_button</code>应将<code>cid</code>编辑控件中的值转换为华氏温度，然后在<code>fid</code>编辑控件中显示该结果。</p>
+<p>逆需要定义<code>cfgui_cid_button</code>。当事件处理程序被执行时，名词<code>cid</code>将自动具有编辑字段内容的值。
+值是一个字符串，你需要用<code>".</code>原语把它转换成一个数字。</p>
+<pre><code class="language-j">t =. 0 ". cid
+</code></pre>
+<p>接下来就是把摄氏度转换成华氏度。</p>
+<pre><code class="language-j">t =. fahrenheit t
+</code></pre>
+<p>名词<code>t</code>是你希望在<code>fid</code>编辑控件中显示的数字。必须将数字转换为字符串，才能在编辑字段中显示。
+使用<code>": (format)</code>来转换。</p>
+<pre><code class="language-j">t =. ": t
+</code></pre>
+<p>最后，将文本字符串写入<code>fid</code>编辑字段。</p>
+<pre><code class="language-j">wd 'set fid text' , t
+</code></pre>
+<p><code>wd</code>参数有一个命令<code>set</code>、要设置的控件标志<code>fid</code>、要设置的属性<code>text</code>，<code>t</code>包含要设置的数据。</p>
+<p>将这些句子添加到<code>cfgui.ijs</code>脚本中的<code>cfgui_cid_button</code>定义里。</p>
+<pre><code class="language-j">cfgui_cid_button=: 3 : 0
+t =. 0 ". cid
+t =. fahrenheit t
+t =. ": t
+wd 'set fid text', t
+)
+</code></pre>
+<p>为了保持表单的自成体系，我们将在脚本中添加华氏度和摄氏度的定义，以便执行计算。注意在脚本中输入正确的内容。</p>
+<pre><code class="language-j">fahrenheit =: 3 : 0
+t1 =. y * 9
+t2 =. t1 % 5
+t3 =. t2 + 32
+)
+
+centigrade =: 3 : 0
+t1 =. y - 32
+t2 =. t1 * 5
+t3 =. t2 % 9
+)
+</code></pre>
+<p>此时，<code>cfgui.ijs</code>脚本没有运行，所以更改只是脚本文件中的文本。</p>
+<ul>
+<li>使用<strong>Run | Load script</strong>运行脚本</li>
+<li>在<strong>Term</strong>窗口中运行应用程序：cfgui_run 0</li>
+</ul>
+<p>你应该会在屏幕中央看到表单。在摄氏度区域输入一个数字并按回车键。
+华氏度应该显示在它的字段中。</p>
+<p>如果你输入华氏度并按回车键，什么也不会发生。这是因为你没有为该事件提供处理程序。
+如果未定义事件处理程序谓词，则忽略该事件。<code>cfgui_fid_button</code>的定义类似于<code>cfgui_cid_button</code>。</p>
+<pre><code class="language-j">cfgui_fid_button=: 3 : 0
+t =. 0 ". fid
+t =. centigrade t
+wd'set cid text', ": t
+)
+</code></pre>
+<ul>
+<li>将<code>cfgui_fid_button</code>的定义添加到cfgui.ijs中</li>
+<li>使用<strong>Run | Load Script</strong>运行脚本</li>
+<li>在<strong>Term</strong>窗口执行：cfgui_run 0</li>
+</ul>
+<p>现在，当你在华氏度字段中键入一个值并按回车键时，它将被转换并显示在摄氏度字段中。</p>
+<p><code>cfgui_close</code>动词在单击表单上的关闭框时处理事件。<code>wd 'pclose' (parent close)</code>命令关闭表单。
+但是作为实践，你应该添加一个标题为<code>Close</code>的按钮控件，该按钮控件也将关闭窗体。</p>
+<ul>
+<li>在<strong>Term</strong>窗口中输入：wd ‘reset’</li>
+<li>在<code>CFGUI</code>定义中最后两个bin z之间添加行<code>minwh 80 30;cc close button;cn "Close";</code></li>
+</ul>
+<pre><code class="language-j">pc cfgui;
+pmove 100 100 200 100;
+bin v;
+ bin h;
+  minwh 80 10;cc s1 static;cn "Centigrade";
+  minwh 40 14;cc cid edit;
+ bin z;
+ bin h;
+  minwh 80 10;cc s1 static;cn "Farenheit";
+  minwh 40 14;cc fid edit;
+ bin z;
+ minwh 80 30;cc close button;cn "Close";
+bin z;
+)
+</code></pre>
+<ul>
+<li>定义<code>cfgui_close_button</code></li>
+</ul>
+<pre><code class="language-j">cfgui_close_button=: 3 : 0
+wd'pclose;'
+)
+</code></pre>
+<ul>
+<li>使用<strong>Run | Load Script</strong>运行脚本</li>
+<li>在<strong>Term</strong>窗口中运行：cfgui_run 0</li>
+</ul>
+<p>当你厌倦了该程序时，可以按<strong>Close</strong>按钮关闭表单。</p>
+<p>恭喜！你已经用J编写了一个GUI应用程序。
+它很简单，虽然有一些粗糙，但是你已经跨过了很高的障碍。</p>
 
                     </main>
 
