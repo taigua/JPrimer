@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-e0638a57.js";
+            window.path_to_searchindex_js = "searchindex-7abd86ed.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-a9869450.js"></script>
+        <script src="toc-e3809c82.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3728,6 +3728,81 @@ wd'pclose;'
 <p>当你厌倦了该程序时，可以按<strong>Close</strong>按钮关闭表单。</p>
 <p>恭喜！你已经用J编写了一个GUI应用程序。
 它很简单，虽然有一些粗糙，但是你已经跨过了很高的障碍。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="数据处理"><a class="header" href="#数据处理">数据处理</a></h1>
+<p>应用程序通常具有GUI部分和数据处理（DP）部分。DP部分是实际的计算和数据操作。
+一个好的应用程序实现是模块化的，这意味着GUI和DP部分之间有明确的区别。</p>
+<p>在本节中，你将开发一个简单应用程序的DP部分。在下一节中，你将开发GUI部分。</p>
+<p>应用程序的DP部分规范如下：</p>
+<pre><code>The input is the name of a text file. The output is a string that displays as a table that contains: 
+the file name, a count of lines, a count of characters, and a row for each distinct character in the 
+file and a count of how many times it appears in the file. The rows of distinct characters should be 
+sorted by their counts.
+</code></pre>
+<p>你将和文件打交道，因此请加载文件实用程序。</p>
+<pre><code class="language-j">   load 'files'
+</code></pre>
+<p>创建一个简单的文本文件用作测试数据。</p>
+<pre><code class="language-j">   fn =. jpath '~user/text.txt' NB. ~user/ is required for path to place file in user folder
+   data =. 'abc' , LF, 'bc' , LF, 'b' , LF
+   data fwrite fn
+9
+   fread fn
+abc
+bc
+b
+</code></pre>
+<p>你需要定义一个动词<code>report</code>，它以文件名作为参数并返回指定的结果。
+你将在<strong>Term</strong>窗口中构建定义的各个部分，然后将它们一起放入脚本中的定义中。</p>
+<p>输入是一个文件名，在动词<code>report</code>中，它的名称为<code>y</code>，因此首先在<strong>Term</strong>窗口中处理<code>y</code>。</p>
+<pre><code class="language-j">   y =. jpath '~user/text.txt'
+</code></pre>
+<p>读取文件。</p>
+<pre><code class="language-j">   d =. fread y
+</code></pre>
+<p>报告将有两列。第一列将是标签<code>'File:', 'Lines:', 'Chars:'</code>以及文件中的每个不同字符。
+第二列将是该行的值。由于数据是文本和数字的混合，因此将结果构建为盒装数据是有意义的。</p>
+<p>用固定的标签创建一个名词。</p>
+<pre><code class="language-j">   r =. 'File:' ; 'Lines:' ; 'Chars:'
+   r
++-----+------+------+
+|File:|Lines:|Chars:|
++-----+------+------+
+</code></pre>
+<p>这些标签值的计算方法如下：</p>
+<pre><code class="language-j">   y ; (+/ LF = d) ; #d
++-------------+-+-+
+|user\text.txt|3|9|
++-------------+-+-+
+</code></pre>
+<p>双子<code>,. (stitch)</code>可以把这两个列表连接成一张表格。</p>
+<pre><code class="language-j">   r =. r ,.  y ; (+/ LF = d) ; #d
+   r
++------+-------------+
+|File: |user\text.txt|
++------+-------------+
+|Lines:|3            |
++------+-------------+
+|Chars:|9            |
++------+-------------+
+</code></pre>
+<p>下一件事是添加包含字符及其频率计数的行。字母是标签，计数是值，
+所以它只是向<code>r</code>中添加了更多的项。让我们推迟处理这部分问题，
+转而将盒装表格转换为规范要求的字符串结果。使用注释来标记我们现在跳过的部分。</p>
+<pre><code class="language-j">   NB. need to add frequency rows to r here
+</code></pre>
+<p>第二列中的数字需要转换为字符。最简单的方法是将每个盒子的内容转换为字符。
+字符已经是字符，不受影响，但任何数字都将被转换。</p>
+<pre><code class="language-j">   r  =. ":each r
+   r
++------+-------------+
+|File: |user\text.txt|
++------+-------------+
+|Lines:|3            |
++------+-------------+
+|Chars:|9            |
++------+-------------+
+</code></pre>
 
                     </main>
 
