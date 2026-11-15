@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-7abd86ed.js";
+            window.path_to_searchindex_js = "searchindex-6ebcf6c3.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-e3809c82.js"></script>
@@ -3803,6 +3803,102 @@ b
 |Chars:|9            |
 +------+-------------+
 </code></pre>
+<p><code>r</code>的所有字符显示看起来是一样的，但是每个盒子现在包含的是字符。</p>
+<p>下一步很有趣，细节留给你去琢磨。它在每个标签后面添加一个<code>TAB</code>，在每个值后面添加一个<code>LF</code>。
+在最后的结果中，<code>TAB</code>将标签与其值分开，<code>LF</code>为下一个标签生成新的行。盒装显示显示<code>TAB</code>和<code>LF</code>为空白，但它们确实在那里。</p>
+<pre><code class="language-j">   r =. r ,each"1 1 TAB;LF
+   r
++-------+--------------+
+|File:  |user\text.txt |
++-------+--------------+
+|Lines: |3             |
++-------+--------------+
+|Chars: |9             |
++-------+--------------+
+</code></pre>
+<p>单子<code>; (raze)</code>打开所有的盒子并组装一个字符串结果。</p>
+<pre><code class="language-j">   ; r
+File: 	user\text.txt
+Lines:	3
+Chars:	9
+</code></pre>
+<p>现在可以定义动词<code>report</code>了。创建一个新脚本并将其保存为<code>jpath '~user\textdp.ijs'</code>。
+将其和<strong>Term</strong>实验放在一起，将以下<code>report</code>定义添加到脚本中。</p>
+<pre><code class="language-j">report =: 3 : 0
+d =. fread jpath y
+r =. 'File:' ; 'Lines:' ; 'Chars:'
+r =. r ,. y ; (+/ LF = d) ; #d
+NB. need to add frequency rows to r here
+r =. ":each r
+r =. r ,each"1 1 TAB;LF
+; r
+)
+</code></pre>
+<p>运行脚本测试<code>report</code>。</p>
+<pre><code class="language-j">   report fn
+File: 	user\text.txt
+Lines:	3
+Chars:	9
+</code></pre>
+<p>现在计算频率行。你需要一个动词<code>freq</code>，它返回一个盒子表格，其中第一列是不同的字符，
+第二列是它们在文件中出现的次数。<code>freq</code>的参数是文件数据，在<code>freq</code>内部，它的名称是<code>y</code>，
+所以让我们从定义为文件数据的<code>y</code>开始。</p>
+<pre><code class="language-j">   y =. fread fn
+</code></pre>
+<p>数据可能包括<code>TAB</code>、<code>CR</code>和<code>LF</code>字符，它们应该被删除。双子<code>-. (less)</code>可以删除这些不需要的字符。</p>
+<pre><code class="language-j">   d =. y -. TAB,CR,LF
+   d
+abcbcb
+</code></pre>
+<p><code>nubcount</code>，定义为<code>nubcount=: ~.;"_1 #/.~</code>，返回一个盒子表格，其中第一列包含参数中的不同项，第二列包含计数。</p>
+<pre><code class="language-j">   nubcount=: ~. ;"_1 #/.~
+   nc =. nubcount d
+   nc
++-+-+
+|a|1|
++-+-+
+|b|3|
++-+-+
+|c|2|
++-+-+
+</code></pre>
+<p>要按计数对项进行排序，你需要将计数放入列表中。</p>
+<pre><code class="language-j">   &gt; 1 {"1 nc
+1 3 2
+</code></pre>
+<p>双子<code>\: (sort down)</code>根据其右参数对其左参数的项进行排序。</p>
+<pre><code class="language-j">   nc \: &gt; 1 {"1 nc
++-+-+
+|b|3|
++-+-+
+|c|2|
++-+-+
+|a|1|
++-+-+
+</code></pre>
+<p>将所有这些放在一起，并将以下定义添加到脚本中。</p>
+<pre><code class="language-j">freq =: 3 : 0
+d =. y -. TAB,CR,LF
+nc =. nubcount d
+nc \: &gt; 1 {"1 nc
+)
+nubcount=: ~. ;"_1 #/.~
+</code></pre>
+<p>运行脚本测试<code>freq</code>。</p>
+<p>现在可以在动词<code>report</code>中使用<code>freq</code>。修改<code>report</code>种的<code>NB.</code>注释行为：</p>
+<pre><code class="language-j">r =. r , freq d
+</code></pre>
+<p>运行脚本测试<code>report</code>。</p>
+<pre><code class="language-j">   report fn
+File:	user\text.txt
+Lines:	3
+Chars:	9
+b	3
+c	2
+a	1
+</code></pre>
+<p>在其他文本文件上尝试一下。</p>
+<p>你已经完成了数据处理部分。</p>
 
                     </main>
 
