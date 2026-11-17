@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-6ebcf6c3.js";
+            window.path_to_searchindex_js = "searchindex-273a4be6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-e3809c82.js"></script>
+        <script src="toc-9ad7aa46.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3899,6 +3899,80 @@ a	1
 </code></pre>
 <p>在其他文本文件上尝试一下。</p>
 <p>你已经完成了数据处理部分。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="图形用户界面第二部分"><a class="header" href="#图形用户界面第二部分">图形用户界面（第二部分）</a></h1>
+<p>应用程序的GUI部分规定如下：</p>
+<p>表单应该有一个<strong>File</strong>按钮、一个<strong>Close</strong>按钮和一个多行编辑控件。
+<strong>File</strong>按钮允许用户选择文本文件。所选文本文件的报告将显示在多行编辑控件中。</p>
+<p>你需要设计表单并定义事件处理程序。</p>
+<p>在本例中，GUI定义将使用与前一节的<code>DP</code>定义不同的脚本，以保持这两个部分之间的清晰区别。
+创建一个新的脚本文件并将其保存为<code>jpath '~user\textgui.ijs'</code>。打开脚本并设计表单。
+<strong>File</strong>按钮的标识符应该是<code>file</code>， <strong>Close</strong>按钮的标识符应该是<code>close</code>。
+新建控件命令创建的大型编辑控件是一个多行编辑控件，需要使用<code>editm</code>类。
+多行编辑控件的标识符应该是<code>editm</code>（默认值是<code>cceditm</code>，因此必须指定<code>editm</code>）。表单应该如下所示：</p>
+<p>你需要为<strong>Close</strong>和<strong>File</strong>按钮添加事件处理程序。事件处理程序的代码如下清单所示。
+该清单应该类似于最终的<code>cfgui.ijs</code>脚本。</p>
+<pre><code class="language-j">FILEREP=: noun define
+pc filerep;
+pmove 100 200 400 100;
+bin v;
+bin h;
+minwh 34 25;cc file button;cn "File";
+minwh 34 25;cc close button;cn "Close";
+bin s;
+bin z;
+minwh 150 150;cc editm editm;set editm scroll min;
+bin z;
+)
+
+filerep_run=: 3 : 0
+wd FILEREP
+NB. initialize form here
+wd 'pshow;'
+)
+
+filerep_close=: 3 : 0
+wd'pclose'
+)
+
+filerep_close_button=: 3 : 0
+wd'pclose'
+)
+
+filerep_file_button=: 3 : 0
+p =. '"" "" "Text (*.txt)"'
+fn =. }: wd 'mb open ' , p
+if. 0 ~: #fn do.
+ wd 'set editm text *' , report fn end.
+)
+</code></pre>
+<p>唯一新的部分是<code>bin;</code>，它在水平<code>bin</code>中提供了一个间隔符，
+并使用<code>wd 'mopen'</code>命令。<code>wd 'mopen'</code>命令打开一个普通的文件打开对话框，
+允许用户选择一个文件。局部变量<code>p</code>包含<code>mbopen</code>命令的参数。这些参数至关重要，必须正确定义。
+如果你想了解更多关于<code>mopen</code>参数的信息，可以在JQt环境的帮助菜单中的J在线文档中查看
+<a href="https://code.jsoftware.com/wiki/Guides/Window_Driver/MessageBox">窗口驱动程序的消息框部分</a>。
+事实证明，必须使用<code>}:</code>来去掉<code>mb open</code>附加到路径的尾部换行符。</p>
+<p><code>mbopen</code>命令的结果为用户选择的文件名。如果用户在打开对话框中按下取消，结果将是一个空字符串，
+没有什么可做的。如果<code>fn</code>不为空，则执行<code>report fn</code>以生成报告并将其设置到<code>editm</code>控件中。</p>
+<p>行<code>wd 'set editm text *' , report fn end.</code>中的<code>*</code>表示字符串的其余部分（<code>report fn</code>的结果）
+是要设置到<code>editm</code>多行编辑控件中的数据。</p>
+<p>运行<code>textdp.ijs</code>和<code>textgui.ijs</code>，如果是一个新的会话，<code>load 'files'</code>，然后启动应用程序。</p>
+<pre><code class="language-j">   filerep_run 0
+</code></pre>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../pics/DP_GUI_form.png" alt=""><span class="img-wrapper"><img src="../pics/DP_GUI_form.png" alt=""></span></label></p>
+<p>按<strong>File</strong>按钮，选择你的<code>jpath '~user\text.txt'</code>文件，然后按<strong>OK</strong>。也可以尝试其他文本文件。</p>
+<p>该应用程序使用来自三个脚本的定义：<code>textdp.ijs</code>, <code>textgui.ijs</code>和<code>andfiles.ijs</code>。
+那么创建一个脚本来加载所有脚本，然后运行应用程序是有意义的。</p>
+<p>创建一个新的脚本文件，保存为<code>jpath '~user\textapp.ijs</code>，并添加以下行。
+<code>jpath</code>是一个动词，它提供用户文件夹的完整路径。</p>
+<pre><code class="language-j">NB. this application reports file character frequencies
+load 'files'	
+0!:0 &lt; jpath '~user\textdp.ijs'
+0!:0 &lt; jpath '~user\textgui.ijs'
+filerep_run 0
+</code></pre>
+<p>保存脚本。关闭J并重新启动它以获得一个干净的环境。使用<code>open jpath '~user\textapp.ijs'</code>打开文件。
+通过使用<strong>Run | Load Script</strong>运行脚本来运行应用程序。</p>
 
                     </main>
 
