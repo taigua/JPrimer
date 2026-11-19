@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-73861682.js";
+            window.path_to_searchindex_js = "searchindex-26a85e7e.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-6900a402.js"></script>
+        <script src="toc-ccccfe5c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -201,9 +201,9 @@
 <p>如果你对具有挑战性的数据处理问题的编程解决方案感兴趣，那么在学习J上投入的时间将是值得的。</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="本书的目标"><a class="header" href="#本书的目标">本书的目标</a></h1>
-<p><a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>是J语言的权威和明确的规范。<a href="https://www.jsoftware.com/help/dictionary/contents.htm">J字典</a>也可以用来学习J，但正因为它简洁、完整且严谨地涵盖了这门语言，并且更侧重于复杂之处而非寻常之处，它确实把我们中的一些人吓跑了。</p>
+<p><a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>是J语言的权威和明确的规范。<a href="https://www.jsoftware.com/help/dictionary/contents.htm">J词典</a>也可以用来学习J，但正因为它简洁、完整且严谨地涵盖了这门语言，并且更侧重于复杂之处而非寻常之处，它确实把我们中的一些人吓跑了。</p>
 <p>本书为初学者提供了一个更亲切、更温和的起点。它带着你沿着一条路径，以轻松的步骤逐步前进，直到你能够用J语言编写应用程序。
-在这个过程中，你会通过简化和具体的情境来接触J的所有关键概念。这本手册的目的是让你快速上手，达到能够使用NuVoc和J字典的程度，
+在这个过程中，你会通过简化和具体的情境来接触J的所有关键概念。这本手册的目的是让你快速上手，达到能够使用NuVoc和J词典的程度，
 并且用起来会让你纳闷：当初为什么还要为这些简单的东西费心呢？</p>
 <p>你应该能够相当快地完成入门，最后将成为入门级的J程序员。这样，你将比最有经验的Basic或Java程序员拥有更强大的编程能力。</p>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -504,7 +504,7 @@ wiki页面的上半部分是描述<code>Conjugate</code>的信息。<code>Plus</
 <h1 id="检查点一"><a class="header" href="#检查点一">检查点一</a></h1>
 <p>到了这个检查点，你应该明白：</p>
 <ul>
-<li>如何使用J字典词汇表</li>
+<li>如何使用J词典词汇表</li>
 <li>术语：单词、句子、名词、动词、矛盾词、双子、单子等</li>
 </ul>
 <p>通过做以下练习来检查你的理解：</p>
@@ -692,7 +692,7 @@ _4
 <blockquote>
 <p>执行从右向左进行，但当遇到右括号时，先执行它及其匹配的左括号所包含的段，用其结果替换整个段及括号。</p>
 </blockquote>
-<p>我们应该注意到，虽然<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>是J信息的权威来源，但J字典中有很多有用的信息可能没有进入wiki。</p>
+<p>我们应该注意到，虽然<a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>是J信息的权威来源，但J词典中有很多有用的信息可能没有进入wiki。</p>
 <p>在J中，除了名词和动词之外，还有一些你还没见过的东西，它们会让这个规则变得更加复杂。正是这些额外的类在很大程度上证明了J打破传统
 并采用从右到左的求值是合理的。进一步引自<a href="https://www.jsoftware.com/help/dictionary/dicte.htm">J词典E章节</a>：</p>
 <blockquote>
@@ -3980,7 +3980,7 @@ filerep_run 0
 <p>如果你已经掌握了这些材料，那么是时候继续前进了。你可以自己开始深入研究，但花点时间阅读其他手册可能是值得的。</p>
 <ul>
 <li><a href="#j在线文档">J在线文档</a></li>
-<li><a href="https://code.jsoftware.com/wiki/Help/Primer/J_Dictionary">J语言词典和NuVoc</a></li>
+<li><a href="#j词典">J语言词典和NuVoc</a></li>
 <li><a href="https://code.jsoftware.com/wiki/Help/Primer/106_J_Phrases">J惯用语</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -4014,7 +4014,32 @@ filerep_run 0
 </ul>
 <hr>
 <p>Context Sensitive - <em>Ctrl-F1</em>（Mac上是<em>Cmd-F1</em>）将直接带你到任何高亮显示的词类的NuVoc页面。</p>
-<hr>
+<hr><div style="break-before: page; page-break-before: always;"></div>
+<h1 id="j词典"><a class="header" href="#j词典">J词典</a></h1>
+<p><a href="https://code.jsoftware.com/wiki/NuVoc">NuVoc</a>已经取代了J词典作为当前语言信息的权威来源。
+话虽如此，许多人还是更喜欢J词典传达信息的方式。
+因此，如果你愿意忽略偶尔出现的过时信息，J词典仍然是一个有价值的资源。</p>
+<p>到目前为止，你应该熟悉J词典的词汇和定义部分，因为它是NuVoc的前身。
+通过这个链接可以访问J词典的完整目录：
+<a href="https://www.jsoftware.com/help/dictionary/contents.htm">https://www.jsoftware.com/help/dictionary/contents.htm</a>。</p>
+<p>本入门介绍了J词典的大部分概念，不过是以一种更简单的方式且仅限于特定的情况。
+如前所述，J词典是一本参考书，它的描述既尽可能简洁，同时又尽可能完整，
+更多地强调专家会遇到的复杂和棘手的情况，而不是初学者的普通情况。</p>
+<p>阅读各个定义之前的部分是值得的。其中大部分内容都是有意义的，其中一些内容将回答你脑海中出现的问题，
+或者可能会提出有趣的新问题。基于有经验的J程序员的反馈，你将发现自己会反复阅读这些材料，
+并且在每次阅读中都会学到一些新的东西。</p>
+<p>你现在也已经准备好攻克<a href="https://www.jsoftware.com/help/dictionary/intro.htm">引言</a>了。
+你一定要通过自己的方式完成前20课。应该不会太难，你会学到很多东西。</p>
+<div align="center">
+<b>特别是如果你完成了练习！</b>
+</div>
+
+<p>后面的课程更困难，需要更多的努力来掌握。</p>
+<p>逐一学习<a href="https://www.jsoftware.com/help/dictionary/samp.htm">示例主题</a>，
+是了解部分原语实际用法的好方法之一。你将不断地受到挑战，
+不断地参考定义并对系统进行实验，以试图理解正在发生的事情。最后，
+最后你将成为一名更优秀的J语言程序员，更不用说学到了不少数学和计算机科学知识了！</p>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
